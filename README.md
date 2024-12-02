@@ -1,4 +1,4 @@
-# zulmaTabare_e-commerce
+# zulmaTabare_e-Commerce
 Desafío Profesional Full Stack
 
 Nuestro e-commerce ofrece una amplia gama de productos relacionados con la salud, diseñados específicamente para satisfacer las necesidades del personal de salud. Entre nuestra oferta, encontrarás: equipos de bolsillo para médicos y enfermeros, accesorios, lapiceras, anotadores, etc. 
