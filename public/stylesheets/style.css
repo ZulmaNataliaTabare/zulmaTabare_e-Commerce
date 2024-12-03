@@ -1,1 +1,18 @@
 
+@import url('index.css');
+
+:root {
+    --primary-color: #E6B0F6;
+    --secondary-color: #a6ace8;
+    --accent-color-1: #FFD700;
+    --background-color: #FFFFFF;
+    --text-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+}
+
+
