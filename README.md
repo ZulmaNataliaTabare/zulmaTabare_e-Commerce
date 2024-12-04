@@ -33,17 +33,17 @@ Nuestro e-commerce ofrece productos esenciales para el personal de salud, propor
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/ZulmaNataliaTabare/zulmaTabare_e-Commerce.git
+   git clone https://github.com/ZulmaNataliaTabare/zulmaTabare_e-Commerce.git```
 
 2. Instala las dependencias:
 
 ```bash
-npm install
+npm install```
 
 3. Inicia el servidor:
 
 ```bash
-npm start
+npm start```
 
 
 ##Roadmap
