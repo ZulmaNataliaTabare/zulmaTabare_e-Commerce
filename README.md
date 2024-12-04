@@ -37,15 +37,16 @@ Nuestro e-commerce ofrece productos esenciales para el personal de salud, propor
 
 2. Instala las dependencias:
 
-bash
+```bash
 npm install
 
 3. Inicia el servidor:
 
-bash
+```bash
 npm start
 
-###Roadmap
+
+##Roadmap
 
 Fase 1: Implementación de la interfaz de usuario
 
@@ -53,12 +54,13 @@ Fase 2: Integración con la base de datos
 
 Fase 3: Pruebas y despliegue
 
-###Motivación
+
+##Motivación
 
 La motivación detrás de este proyecto es crear una plataforma que facilite el acceso a productos esenciales para el personal de salud, mejorando así su eficiencia y comodidad en el trabajo.
 
 
-###Agradecimientos
+##Agradecimientos
 
 Quisiera expresar mi más sincero agradecimiento a mi profesión actual de enfermera, la cual me inspiró la idea de crear este e-commerce para satisfacer las necesidades del personal de salud.
 
