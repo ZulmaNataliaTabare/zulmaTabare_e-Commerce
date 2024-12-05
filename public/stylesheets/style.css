@@ -1,18 +1,15 @@
-
-@import url('index.css');
+@import url("index.css");
 
 :root {
-    --primary-color: #E6B0F6;
-    --secondary-color: #a6ace8;
-    --accent-color-1: #FFD700;
-    --background-color: #FFFFFF;
-    --text-color: #333333;
+  --primary-color: #e6b0f6; /* Lila Claro */
+  --secondary-color: #a6ece8; /* Azul Claro */
+  --accent-color-1: #ffd700; /* Dorado */
+  --background-color: #a6ece8; /* Fondo Azul Claro */
+  --light-gray-color: #f0f0f0; /* Gris Claro */
+  --text-color: #333333; /* Gris Oscuro */
 }
-
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: Arial, sans-serif;
+background-color: var(--background-color);
+color: var(--text-color);
+font-family: Arial, sans-serif;
 }
-
-
