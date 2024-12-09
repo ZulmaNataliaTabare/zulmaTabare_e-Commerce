@@ -37,13 +37,13 @@ Nuestro e-commerce ofrece productos esenciales para el personal de salud, propor
 
 2. Instala las dependencias:
 
-  ```bash
+  bash
 npm install```
 
 
 3. Inicia el servidor:
 
-  ```bash
+  bash
 npm start```
 
 
