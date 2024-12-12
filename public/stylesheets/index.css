@@ -109,3 +109,20 @@ ul.li a:hover {
     color: #000;
     text-decoration: underline;
 }
+
+
+/* CARRUSEL */
+
+.carrusel{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+}
+
+.elemento{
+    flex: 1 0 auto;
+    margin: 0 50px;
+    background-color: var(--light-gray-color);
+    width: 500px;
+    height: 500px;
+}
