@@ -4,11 +4,10 @@
     <title>Error</title>
 </head>
 <body>
-    <h1>Error <%= error.status %></h1>
+    <h1>Algo salió mal</h1>
     <h2><%= message %></h2>
-    <% if (error.stack) { %>
-        <pre><%= error.stack %></pre>
-    <% } %>
+    <pre><%= error.stack %></pre>
 </body>
 </html>
+
 
