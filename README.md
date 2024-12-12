@@ -37,14 +37,24 @@ git clone https://github.com/ZulmaNataliaTabare/zulmaTabare_e-Commerce.git
 
 2. Instala las dependencias:
 
+<<<<<<< HEAD
 bash
 npm install
+=======
+  bash
+npm install```
+>>>>>>> c5b44dbf1a456968edea470014abd429019d7393
 
 
 3. Inicia el servidor:
 
+<<<<<<< HEAD
 bash
 npm start
+=======
+  bash
+npm start```
+>>>>>>> c5b44dbf1a456968edea470014abd429019d7393
 
 
 ##Roadmap
