@@ -8,51 +8,155 @@
     <script src="https://kit.fontawesome.com/95801be2e2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    
-
 <header>
-        <nav class="nav">
-            <div>
-                <img src="/images/logo.png" alt="Logo" class="logo">
-            </div>
-            <div>
-                <form>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <input class="placeholder" type="search" placeholder="Buscar">
-                    </div>
-                </form>
-            </div>
-            
-            
-            <div class="user">
-                <i class="fa-solid fa-user-plus user-icon"></i>
-                <i class="fa-solid fa-bag-shopping cart-icon"></i>
-            </div>
-        </nav>
-
-        <nav>
-            <ul>
-                <li><a href="#" target="_blank">Ambos</a></li>
-                <li><a href="#" target="_blank">Zuecos</a></li>
-                <li><a href="#" target="_blank">Lanyard</a></li>
-                <li><a href="#" target="_blank">Anotadores</a></li>
-                <li><a href="#" target="_blank">Accesorios</a></li>
-                <li><a href="#" target="_blank">Bazar</a></li>
-        </nav>
-
+    <nav class="nav">
+        <div>
+            <img src="/images/logo.png" alt="Logo" class="logo">
+        </div>
+        <div>
+            <form>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input class="placeholder" type="search" placeholder="Buscar">
+                </div>
+            </form>
+        </div>
+        <div class="user">
+            <i class="fa-solid fa-user-plus user-icon"></i>
+            <i class="fa-solid fa-bag-shopping cart-icon"></i>
+        </div>
+    </nav>
+    <nav>
+        <ul>
+            <li><a href="#" target="_blank">Ambos</a></li>
+            <li><a href="#" target="_blank">Zuecos</a></li>
+            <li><a href="#" target="_blank">Lanyard</a></li>
+            <li><a href="#" target="_blank">Anotadores</a></li>
+            <li><a href="#" target="_blank">Accesorios</a></li>
+            <li><a href="#" target="_blank">Bazar</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-    <div class="carrusel">
-        <div class="elemento"><img src="/public/images/Products/accesorios/coletero-mariquitas.jpg" alt="scrunchie-mariquitas"></div>
-        <div class="elemento"><img src="/public/images/Products/bazar/jarro-corazon.jpg" alt="jarro-corazon"></div>
-        <div class="elemento"><img src="/public/images/Products/ambos/bluson-microfibra-mariquitas.jpg" alt="bluson-mariquitas"></div>
-        <div class="elemento"><img src="/public/images/Products/lanyard/lanyard-pro-enfermeria.jpg" alt="lanyard-enfermeria"></div>
-        <div class="elemento"><img src="/public/images/Products/zuecos/zueco-sanitario-piel-vegana-colorful.jpg" alt="zueco-colorful"></div>
+    <section class="carousel">
+        <input type="radio" id="carousel-1" name="carousel" checked>
+        <input type="radio" id="carousel-2" name="carousel">
+        <input type="radio" id="carousel-3" name="carousel">
+        <input type="radio" id="carousel-4" name="carousel">
+        <input type="radio" id="carousel-5" name="carousel">
+        
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="/images/Products/accesorios/coletero-mariquitas.jpg" alt="scrunchie-mariquitas">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Products/bazar/jarro-corazon.jpg" alt="jarro-corazon">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Products/ambos/bluson-microfibra-mariquitas.jpg" alt="bluson-mariquitas">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Products/lanyard/lanyard-pro-enfermeria.jpg" alt="lanyard-enfermeria">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Products/zuecos/zueco-sanitario-piel-vegana-colorful.jpg" alt="zueco-colorful">
+            </div>
+        </div>
+        
+        <div class="carousel-nav">
+            <label for="carousel-1" class="prev">&#10094;</label>
+            <label for="carousel-2" class="next">&#10095;</label>
+            <label for="carousel-3" class="next">&#10095;</label>
+            <label for="carousel-4" class="next">&#10095;</label>
+            <label for="carousel-5" class="next">&#10095;</label>
+        </div>
+    </section>
+
+    <div> 
+        <h5 >Ofertas</h5>
     </div>
+    
+    <section class="offers">
+        
+        <div class="products">
+            <img class="article" src="/images/Products/bazar/taza-pediatra.jpg" alt="taza-pediatra">
+            <div class="flex-container">
+                <div class="fav">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="precio">$3500</div>
+                <div class="descr">Taza de cerámica</div>
+            </div>
+        </div>
+
+        <div class="products">
+            <img class="article" src="/images/Products/anotadores/anotador-3.png" alt="anotador">
+            <div class="flex-container">
+                <div class="fav">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="precio">$4200</div>
+                <div class="descr">Anotador</div>
+            </div>
+        </div>
+
+        <div class="products">
+            <img class="article" src="/images/Products/accesorios/salvabolsillos-ciguena.jpg" alt="salvabolsillos">
+            <div class="flex-container">
+                <div class="fav">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="precio">$6000</div>
+                <div class="descr">Salvabolsillos</div>
+            </div>
+        </div>
+
+
+    </section>
+
 </main>
 
-    
+<footer>
+
+    <section class="footer">
+        <div class="icon-size"><i class="fa-solid fa-credit-card"></i></div>
+        <h4 class="title-footer">Pagá con tarjeta o en efectivo</h4>
+        <p>tenés cuotas sin interés con tarjeta o efectivo en puntos de pago. ¡Y siempre es seguro!</p>
+    </section>
+
+    <section class="footer">
+        <div class="icon-size"><i class="fa-solid fa-gift"></i></div>
+        <h4 class="title-footer">Envío gratis desde $ 20.000</h4>
+        <p>Solo por estar registrad@ en nuestra página tenés envíos gratis en todos los productos. Es un beneficio de nuestra comunidad.</p>
+    </section>
+
+    <section class="footer">
+        <div class="icon-size"><i class="fa-solid fa-user-shield"></i></div>
+        <h4 class="title-footer">Seguridad de principio a fin.</h4>
+        <p>¿No te gusta? ¡Devolvelo! en nuestra página, no hay nada que no puedas hacer, porque estás siempre protegid@.</p>
+    </section>
+
+    <div class="Copyright">
+        <p>© 2024 ZNTABARE, todos los derechos reservados.</p>
+    </div>
+
+
+
+    <button onclick="scrollToTop()">Volver al principio</button>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</footer>
+
 </body>
 </html>
+
+
