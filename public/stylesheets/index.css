@@ -37,9 +37,10 @@ header{
 .placeholder {
     padding: 10px 600px 10px 30px;  
     width: 200%;
-    font-size: 16px;
+    font-size: 30px;
     box-sizing: border-box;
     background-color: var(--primary-color);
+    color: var(--text-color--);
 }
 
 
@@ -243,43 +244,102 @@ h5{
     margin-bottom: 5em;
     }
 
-/* footer */
+    /* footer */
+
+footer {
+    background-color: var(--primary-color);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.part-footer {
+    flex: 1;
+}
+
+footer .redes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 150px;
+    font-size: 50px;
+}
+
+.icons-redes {
+    display: flex;
+    gap: 475px;
+    flex-direction: row;
+}
+
+footer .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .icon-size {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+footer .title-footer {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+footer .footer p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+footer .Copyright {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+footer button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 button {
     position: fixed;
     bottom: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: rgb(33, 183, 243);;
-    color: rgb(7, 115, 158);;
+    background-color: rgb(33, 183, 243);
+    color: rgb(7, 115, 158);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition:  background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: var(--primary-color); 
-}
-
-footer {
     background-color: var(--primary-color);
-    margin-top: 2em;
-    box-sizing: border-box;
-
 }
 
 .footer {
     background-color: var(--primary-color);
-    text-align: center;
-    color:var(--text-color--);
-    margin-top: 2em;
-    margin-left: 50px;
+    color: var(--text-color--);
+    margin-top: 5em;
+    margin-left: -60px;
     margin-right: 50px;
     box-sizing: border-box;
-
 }
 
 .title-footer {
@@ -289,12 +349,15 @@ footer {
 }
 
 p {
-    margin-bottom: 40px;
+    background-color: var(--primary-color);
+    margin-bottom: -135px;
+    margin-top: 50px;
     box-sizing: border-box;
 }
 
 .Copyright {
     color: var(--color-grisoscuro);
-    margin-left: 10px;
+    margin-left: -60px;
+    margin-bottom: 110px;
     box-sizing: border-box;
 }
