@@ -1,4 +1,6 @@
-@import "index.css";
+@import "index.css"; 
+@import "ambos.css";
+
 
 :root {
   --primary-color: #e6b0f6; /* Lila Claro */
