@@ -22,7 +22,7 @@ Qué debería empezar a hacer:
 
 🆕 Mejorar la presentación del README.md utilizando guías y ejemplos como el proporcionado en Corecode School.
 
-🆕 Asegurarte de que el logo tiene un tamaño adecuado y es claramente visible en todos los contextos de uso.
+🆕 Asegurarme que el logo tiene un tamaño adecuado y es claramente visible en todos los contextos de uso.
 
 Qué debería dejar de hacer:
 
