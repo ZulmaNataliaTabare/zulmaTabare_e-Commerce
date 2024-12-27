@@ -257,6 +257,7 @@ footer {
     flex-direction: row-reverse;
     margin-left: -8px;
     margin-right: -8px;
+    margin-top: 70px;
 }
 
 .part-footer {

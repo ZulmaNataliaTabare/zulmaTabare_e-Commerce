@@ -32,11 +32,120 @@ router.get('/guardapolvo', (req, res) => {
 // router.get('/:producto', console.log(products));
 
 
-// Añadir otras rutas aquí...
+// Ruta para la página de "Zuecos"
+
 router.get('/zuecos', (req, res) => {
   res.render('zuecos', { title: 'Zuecos' });
 });
 
-// Más rutas según sea necesario...
+router.get('/zuecoColorful', (req, res) => {
+  res.render('zuecoColorful', { title: 'zuecoColorful' });
+});
+
+
+router.get('/zuecoVelcro', (req, res) => {
+  res.render('zuecoVelcro', { title: 'zuecoVelcro' });
+});
+
+router.get('/zuecoLavable', (req, res) => {
+  res.render('zuecoLavable', { title: 'zuecoLavable' });
+});
+
+router.get('/zuecoAntiestatico', (req, res) => {
+  res.render('zuecoAntiestatico', { title: 'zuecoAntiestatico' });
+});
+
+// Ruta para la página de "Lanyard"
+
+router.get('/lanyard', (req, res) => {
+  res.render('lanyard', { title: 'lanyard' });
+});
+
+router.get('/lanyardHospi', (req, res) => {
+  res.render('lanyardHospi', { title: 'lanyardHospi' });
+});
+
+
+router.get('/lanyardHappiness', (req, res) => {
+  res.render('lanyardHappiness', { title: 'lanyardHappiness' });
+});
+
+router.get('/lanyardEnfermeria', (req, res) => {
+  res.render('lanyardEnfermeria', { title: 'lanyardEnfermeria' });
+});
+
+router.get('/lanyardPrincipal', (req, res) => {
+  res.render('lanyardPrincipal', { title: 'lanyardPrincipal' });
+});
+
+// Ruta para la página de "Anotadores"
+
+router.get('/anotadores', (req, res) => {
+  res.render('anotadores', { title: 'anotadores' });
+});
+
+router.get('/anotadorMotiva', (req, res) => {
+  res.render('anotadorMotiva', { title: 'anotadorMotiva' });
+});
+
+
+router.get('/anotadorCuidar', (req, res) => {
+  res.render('anotadorCuidar', { title: 'anotadorCuidar' });
+});
+
+router.get('/anotadorCoolCoco', (req, res) => {
+  res.render('anotadorCoolCoco', { title: 'anotadorCoolCoco' });
+});
+
+router.get('/anotadorValiente', (req, res) => {
+  res.render('anotadorValiente', { title: 'anotadorValiente' });
+});
+
+// Ruta para la página de "Accesorios"
+
+router.get('/accesorios', (req, res) => {
+  res.render('accesorios', { title: 'accesorios' });
+});
+
+router.get('/accesoriosTijera', (req, res) => {
+  res.render('accesoriosTijera', { title: 'accesoriosTijera' });
+});
+
+
+router.get('/accesoriosCompresor', (req, res) => {
+  res.render('accesoriosCompresor', { title: 'accesoriosCompresor' });
+});
+
+router.get('/accesoriosSalvabolsillo', (req, res) => {
+  res.render('accesoriosSalvabolsillo', { title: 'accesoriosSalvabolsillo' });
+});
+
+router.get('/accesoriosScrunchies', (req, res) => {
+  res.render('accesoriosScrunchies', { title: 'accesoriosScrunchies' });
+});
+
+// Ruta para la página de "Bazar"
+
+router.get('/zuecos', (req, res) => {
+  res.render('zuecos', { title: 'Zuecos' });
+});
+
+router.get('/zuecoColorful', (req, res) => {
+  res.render('zuecoColorful', { title: 'zuecoColorful' });
+});
+
+
+router.get('/zuecoVelcro', (req, res) => {
+  res.render('zuecoVelcro', { title: 'zuecoVelcro' });
+});
+
+router.get('/zuecoLavable', (req, res) => {
+  res.render('zuecoLavable', { title: 'zuecoLavable' });
+});
+
+router.get('/zuecoAntiestatico', (req, res) => {
+  res.render('zuecoAntiestatico', { title: 'zuecoAntiestatico' });
+});
+
 
 module.exports = router;
