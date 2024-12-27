@@ -12,6 +12,22 @@ router.get('/ambos', (req, res) => {
   res.render('ambos', { title: 'Ambos' });
 });
 
+router.get('/elleganceFire', (req, res) => {
+  res.render('elleganceFire', { title: 'Ellegance-Fire' });
+});
+
+
+router.get('/blusonMariquitas', (req, res) => {
+  res.render('blusonMariquitas', { title: 'Bluson-Mariquitas' });
+});
+
+router.get('/blusonUnisex', (req, res) => {
+  res.render('blusonUnisex', { title: 'Bluson-Unisex' });
+});
+
+router.get('/guardapolvo', (req, res) => {
+  res.render('guardapolvo', { title: 'guardapolvo' });
+});
 // router.get('/:producto',producto(req, res,next));
 // router.get('/:producto', console.log(products));
 
