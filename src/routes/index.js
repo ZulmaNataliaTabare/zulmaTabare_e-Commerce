@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 // const {productsController}=require('./products');
 // const {products}=productsController;
+
+
 // Ruta para la página de inicio
 router.get('/', (req, res) => {
   res.render('index', { title: 'Inicio' });
@@ -126,26 +128,30 @@ router.get('/accesoriosScrunchies', (req, res) => {
 
 // Ruta para la página de "Bazar"
 
-router.get('/zuecos', (req, res) => {
-  res.render('zuecos', { title: 'Zuecos' });
+router.get('/bazar', (req, res) => {
+  res.render('bazar', { title: 'bazar' });
 });
 
-router.get('/zuecoColorful', (req, res) => {
-  res.render('zuecoColorful', { title: 'zuecoColorful' });
+router.get('/bazarCorazon', (req, res) => {
+  res.render('bazarCorazon', { title: 'bazarCorazon' });
 });
 
 
-router.get('/zuecoVelcro', (req, res) => {
-  res.render('zuecoVelcro', { title: 'zuecoVelcro' });
+router.get('/bazarOftal', (req, res) => {
+  res.render('bazarOftal', { title: 'bazarOftal' });
 });
 
-router.get('/zuecoLavable', (req, res) => {
-  res.render('zuecoLavable', { title: 'zuecoLavable' });
+router.get('/bazarCamillero', (req, res) => {
+  res.render('bazarCamillero', { title: 'bazarCamillero' });
 });
 
-router.get('/zuecoAntiestatico', (req, res) => {
-  res.render('zuecoAntiestatico', { title: 'zuecoAntiestatico' });
+router.get('/bazarPediatria', (req, res) => {
+  res.render('bazarPediatria', { title: 'bazarPediatria' });
 });
 
+// Ruta para la página de "Bazar"
+router.get('/register', (req, res) => {
+  res.render('register', { title: 'register' });
+});
 
 module.exports = router;
