@@ -166,4 +166,9 @@ router.get('/login', (req, res) => {
   res.render('login', { title: 'login' });
 });
 
+// Ruta para la página de "Cart"
+router.get('/cart', (req, res) => {
+  res.render('cart', { title: 'Carrito' });
+});
+
 module.exports = router;

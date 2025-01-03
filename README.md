@@ -99,4 +99,5 @@ La Enfermera al Rescate https://laenfermeraalrescate.online/
 Curaressalvar https://curaressalvar.es/
 
 
-
+ Link al documento o plataforma que estoy utilizando para hacer el seguimiento de las tareas de mi proyecto:
+  https://sulmatabare.atlassian.net/jira/core/projects/C1/board
