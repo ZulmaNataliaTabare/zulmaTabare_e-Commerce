@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-// const {productsController}=require('./products');
-// const {products}=productsController;
+const userController = require('../controllers/userController');
+
+// Ruta para obtener todos los usuarios
+router.get('/users', userController.getAllUsers);
 
 
 // Ruta para la página de inicio
@@ -149,9 +151,19 @@ router.get('/bazarPediatria', (req, res) => {
   res.render('bazarPediatria', { title: 'bazarPediatria' });
 });
 
-// Ruta para la página de "Bazar"
+// Ruta para la página de "Registro"
 router.get('/register', (req, res) => {
   res.render('register', { title: 'register' });
+});
+
+
+router.get('/example', (req, res) => {
+    res.send('Ejemplo de ruta');
+});
+
+// Ruta para la página de "Login"
+router.get('/login', (req, res) => {
+  res.render('login', { title: 'login' });
 });
 
 module.exports = router;

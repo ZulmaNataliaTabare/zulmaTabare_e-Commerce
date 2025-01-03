@@ -27,10 +27,9 @@
         </form>
         </div>
         <div class="user">
-        <a href="/register" target="_blank"
-            ><i class="fa-solid fa-user-plus user-icon"></i
-        ></a>
-        <i class="fa-solid fa-bag-shopping cart-icon"></i>
+            <a href="/login" target="_blank"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
+            <a href="/register" target="_blank"><i class="fa-solid fa-user-plus user-icon"></i></a>
+            <a href="/cart" target="_blank"><i class="fa-solid fa-bag-shopping cart-icon"></i></a>
         </div>
     </nav>
     <nav>
@@ -46,131 +45,23 @@
     </header>
 
     <main>
-    <div id="products" class="products-title">
-        <h5>Registro</h5>
-    </div>
-
-    <div class="form-register">
-        <div class="placeholder">
-        <form action="Home.html" method="get">
-            <label class="size" for="nombre"></label>
-            <input
-            type="text"
-            id="nombre"
-            placeholder="Nombre y apellido"
-            name="nombre_apellido"
-            class="size"
-            />
-            <label class="size" for="NombreUsuario"></label>
-            <input
-            id="NombreUsuario"
-            type="text"
-            placeholder="Nombre de Usuario"
-            name="NombreUsuario"
-            class="size"
-            />
-            <label class="size" for="Email"></label>
-            <input
-            type="email"
-            id="Email"
-            placeholder="Email"
-            name="Email"
-            class="size"
-            />
-            <p class="p-register">Fecha de nacimiento</p>
-            <label class="size" for="Nacimiento"></label>
-            <input type="date" id="Nacimiento" name="Nacimiento" class="size" />
-            <label class="size" for="Adress"></label>
-            <input
-            type="text"
-            id="Adress"
-            placeholder="Domicilio"
-            name="Adress"
-            class="size"
-            />
-        </form>
+        <div class="products-title">
+            <h1>Registro</h1>
         </div>
+        <div class="form-register">
+            <form action="/users/register" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre" required class="input-field">
+                <input type="text" name="NombreUsuario" placeholder="Nombre de Usuario" required class="input-field">
+                <input type="email" name="Email" placeholder="Email" required class="input-field">
+                <input type="date" name="Nacimiento" placeholder="Fecha de Nacimiento" required class="input-field">
+                <input type="text" name="Adress" placeholder="Dirección" required class="input-field">
+                <input type="password" name="Contrasena" placeholder="Contraseña" required class="input-field">
+                <button type="submit" class="send-button">Registrar</button>
+            </form>
+            
 
-        <p class="p-register">Perfil de usuario</p>
 
-        <input type="radio" name="perfil-usuario" id="Comprar" />Comprador
-        <input type="radio" name="perfil-usuario" id="Vender" />Vendedor
-
-        <fieldset>
-        <legend class="p-register">Intereses</legend>
-
-        <div class="input-columna">
-            <label for="electro"
-            ><input
-                type="checkbox"
-                name="Intereses"
-                id="electro"
-                value="electro"
-            />Electro</label
-            >
-
-            <label for="moda"
-            ><input
-                type="checkbox"
-                name="Intereses"
-                id="moda"
-                value="moda"
-            />Moda</label
-            >
-
-            <label for="hogar"
-            ><input
-                type="checkbox"
-                name="Intereses"
-                id="hogar"
-                value="hogar"
-            />Hogar</label
-            >
-
-            <label for="jugueteria"
-            ><input
-                type="checkbox"
-                name="Intereses"
-                id="jugueteria"
-                value="jugueteria"
-            />Juguetería</label
-            >
-
-            <label for="vidasana"
-            ><input
-                type="checkbox"
-                name="Intereses"
-                id="vidasana"
-                value="vidasana"
-            />Vida sana</label
-            >
         </div>
-        </fieldset>
-
-        <form class="placeholder">
-        <div>
-            <label class="size" for="nombre_usuario"></label>
-            <input
-            id="nombre_usuario"
-            type="text"
-            placeholder="Nombre de usuari@"
-            name="nombre_usuario"
-            class="size"
-            />
-        </div>
-        <div>
-            <label class="size" for="Contrasena"></label>
-            <input
-            id="Contrasena"
-            type="password"
-            placeholder="Ingrese su Contraseña"
-            name="Contrasena"
-            class="size"
-            />
-        </div>
-        <div><button class="send-button" type="submit">Enviar</button></div>
-        </form>
-    </div>
     </main>
 
     <footer>

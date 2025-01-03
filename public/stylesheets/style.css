@@ -1,6 +1,8 @@
 @import "index.css"; 
 @import "ambos.css";
 @import "stylesProducts.css";
+@import "register.css";
+@import "login.css";
 
 
 :root {
@@ -16,3 +18,4 @@ background-color: var(--background-color);
 color: var(--text-color);
 font-family: Arial, sans-serif;
 }
+

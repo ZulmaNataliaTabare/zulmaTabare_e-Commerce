@@ -7,10 +7,15 @@
 </head>
 <body>
     <h1>Lista de Usuarios</h1>
-    <ul>
-    <% users.forEach(user => { %>
-        <li><%= user.name %> - <%= user.email %></li>
-    <% }) %>
-    </ul>
+    <form action="/users/register" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="NombreUsuario" placeholder="Nombre de Usuario" required>
+        <input type="email" name="Email" placeholder="Email" required>
+        <input type="date" name="Nacimiento" placeholder="Fecha de Nacimiento" required>
+        <input type="text" name="Adress" placeholder="Dirección" required>
+        <input type="password" name="Contrasena" placeholder="Contraseña" required>
+        <button type="submit">Registrar</button>
+    </form>
+    
 </body>
 </html>

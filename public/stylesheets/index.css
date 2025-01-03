@@ -57,6 +57,10 @@ header{
     font-size: 40px;
 }
 
+.login-icon {
+    font-size: 40px;
+}
+
 ul {
     text-align: left;
     text-decoration: none;
