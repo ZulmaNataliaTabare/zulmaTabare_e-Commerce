@@ -18,15 +18,13 @@ app.listen(3001, () => {
 
 
 
-// JavaScript para controlar la visibilidad del menú hamburguesa
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerMenu = document.getElementById('hamburger-menu');
-    const nav = document.querySelector('.main-nav');
+// controla el menú hamburguesa
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const navMenu = document.querySelector('.main-nav');
 
-    
-    hamburgerMenu.addEventListener('click', function() {
-      nav.classList.toggle('open');  // Alterna la clase "open" para mostrar/ocultar el menú
-    });
+hamburgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
 });
+
 
 

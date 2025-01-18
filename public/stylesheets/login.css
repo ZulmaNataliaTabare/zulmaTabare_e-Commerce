@@ -6,14 +6,7 @@
     color: var(--text-color);
 }
 
-.login-register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--light-gray-color);
-    padding: 2rem;
-    border-radius: 8px;
-}
+
 
 .input-field {
     width: 100%;

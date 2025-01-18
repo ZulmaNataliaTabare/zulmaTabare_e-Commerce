@@ -8,17 +8,17 @@
 
 header {
     background-color: var(--primary-color);
-    margin: -7px -266px 0 -7px;
+    margin: 0;
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
-
-.nav {
+nav.nav {
     display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .input-group {
@@ -50,9 +50,16 @@ header {
     padding-right: 20px;
 }
 
+.user {
+    position: relative;
+    z-index: 10;
+}
+
+
 .user-icon, .cart-icon, .login-icon {
     font-size: 30px;
-    color: var(--text-color--); /* Añadido color */
+    color: var(--text-color--); 
+    margin-right: 15px;
 }
 
 ul {
@@ -124,6 +131,7 @@ ul li a:hover {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
 }
 
 .carousel input {
@@ -179,17 +187,26 @@ h5{
     min-height: 100vh;
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .products {
-    width: 400px;
+    width: 100%;
+    object-fit: cover;
     border-radius: 10%;
-    margin: 10px 0 0 10%;
+    margin: 0;
     height: auto;
 } 
+.products img {
+    width: 100%;       /* Ocupa todo el ancho del contenedor */
+    height: auto;      /* Ajusta la altura proporcionalmente */
+    object-fit: contain; /* Asegura que la imagen no se recorte */
+    border-radius: 10%;
+}
+
 
     .article {
     width: 150%;
@@ -360,7 +377,7 @@ button:hover {
 .Copyright {
     margin-top: 20px;
     font-size: 12px;
-    color: var(--color-grisoscuro);
+    color: var(--color-grisoscuro);                                                       
     margin-top: 20px;
     margin-bottom: 100px;
     box-sizing: border-box;

@@ -24,14 +24,27 @@ color: var(--text-color);
 font-family: Arial, sans-serif;
 }
 
-/* MEDIQUERIES */
+/* Eliminar desbordes horizontales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
 
 /* Estilo básico del menú de navegación */
-/* Estilo básico del menú de navegación */
+
 .main-nav ul {
   display: flex;
   list-style: none;
   justify-content: space-around;
+  flex-direction: row;
 }
 
 .main-nav ul li {
@@ -57,38 +70,682 @@ font-family: Arial, sans-serif;
   color: #333;
 }
 
-/* Media query para pantallas móviles y tabletas */
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: block; /* Mostrar el botón hamburguesa */
+
+/* MEDIQUERIES */
+
+/* Pantallas grandes (≥1200px) */
+@media (min-width: 1200px) {
+  .offers {
+      grid-template-columns: repeat(3, 1fr);
   }
 
-  .main-nav ul {
-    display: none; /* Ocultar el menú por defecto en dispositivos pequeños */
-    flex-direction: column;
-    position: absolute;
-    top: 60px; /* Espaciado para no tapar el header */
-    right: 0;
-    background-color: white;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  .products {
+      width: 350px;
   }
 
-  .main-nav.open ul {
-    display: flex; /* Mostrar el menú cuando está activo */
-  }
-
-  .main-nav ul li {
-    text-align: center;
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
+  .carousel {
+      max-width: 800px;
   }
 }
+
+/* SECCION PRINCIPAL DE PRODUCTOS */
+
+.articles-ambos {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.products-title {
+  font-size: 35px;
+  margin-left: 70px;
+}
+
+.contenedor-img-ambos {
+  width: 400px;
+  margin: 10px;
+}
+
+.products-img-ambos {
+  width: 250px;
+}
+
+.article-text {
+  font-size: 18px;
+}
+
+/* SECCION DE GRAL DE PRODUCTOS */
+
+.articles {
+  width: 50%;
+}
+
+.card {
+  max-width: 800px;
+  padding: 20px;
+}
+
+.products-img {
+  width: 100%;
+}
+
+.product-description, .article-text {
+  font-size: 18px;
+}
+
+/* REGISTER, LOGIN Y CART */
+
+.input-register, .input-field {
+  width: 25%;
+}
+.register, .login-register, .cart-container {
+  padding: 3rem;
+}
+
+/* Pantallas medianas (769px - 1199px) */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .offers {
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products {
+      width: 300px;
+  }
+
+  .carousel {
+      max-width: 600px;
+  }
+}
+
+/* SECCION PRINCIPAL DE PRODUCTOS */
+
+.articles-ambos {
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.products-title {
+  font-size: 32px;
+  margin-left: 40px;
+}
+
+.contenedor-img-ambos {
+  width: 300px;
+  margin: 10px;
+}
+
+.products-img-ambos {
+  width: 200px;
+}
+
+.article-text {
+  font-size: 16px;
+}
+
+/* SECCION DE GRAL DE PRODUCTOS */
+
+.articles {
+  width: 70%;
+}
+
+.card {
+  max-width: 600px;
+  padding: 15px;
+}
+
+.products-img {
+  width: 90%;
+}
+
+.product-description, .article-text {
+  font-size: 16px;
+}
+
+/* REGISTER, LOGIN Y CART */
+
+.input-register, .input-field {
+  width: 40%;
+}
+.register, .login-register, .cart-container {
+  width: 70%;
+  padding: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  
+  /* Menú hamburguesa visible */
+  .hamburger-menu {
+    display: block;
+}
+
+/* Ocultar el menú por defecto */
+.main-nav ul {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 60px; /* Ajustar según el tamaño del header */
+  left: 0;
+  z-index: 1000;
+}
+
+/* Mostrar el menú cuando se activa */
+.main-nav.open ul {
+  display: flex;
+}
+
+/* Asegurar que el ícono hamburguesa esté visible */
+.hamburger-menu {
+  display: block;
+  cursor: pointer;
+}
+
+
+.products img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.offers {
+  grid-template-columns: 1fr; /* Solo una columna en pantallas pequeñas */
+}
+}
+
+.carousel {
+    max-width: 500px;
+}
+
+.user a {
+    font-size: 24px;
+}
+
+
+  .nav {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  ul {
+      flex-direction: column;
+  }
+
+  .carousel-nav {
+      top: 90%;
+  }
+
+  h4 {
+      font-size: 30px;
+  }
+  
+  .descr, .precio {
+      font-size: 20px;
+  }
+
+  
+/* SECCION PRINCIPAL DE PRODUCTOS */
+
+.articles-ambos {
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.products-title {
+  font-size: 28px;
+  margin-left: 20px;
+}
+
+.contenedor-img-ambos {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.products-img-ambos {
+  width: 100%;
+}
+
+.article-text {
+  font-size: 14px;
+}
+
+/* SECCION DE GRAL DE PRODUCTOS */
+
+.articles {
+  width: 90%;
+}
+
+.card {
+  max-width: 100%;
+  padding: 10px;
+}
+
+.products-img {
+  width: 100%;
+}
+
+.product-description, .article-text {
+  font-size: 14px;
+}
+
+ol {
+  flex-direction: column;
+}
+
+/* REGISTER, LOGIN Y CART */
+
+.input-register, .input-field {
+  width: 70%;
+}
+.register, .login-register, .cart-container {
+  width: 90%;
+  padding: 2rem;
+}
+.cart-table th, .cart-table td {
+  padding: 0.5rem;
+}
+
 
 @media (max-width: 480px) {
-  .hamburger-menu {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-group {
+    width: 90%;
+    margin: 10px auto;
+}
+
+.hamburger-menu {
     font-size: 25px;
+}
+
+.offers {
+  grid-template-columns: 1fr;
+}
+
+.products img {
+  width: 100%;
+  height: auto;
+}
+
+
+.carousel {
+    max-width: 100%;
+}
+
+.user a {
+    font-size: 20px;
+}
+
+.logo {
+    width: 50px;
+}
+
+/* SECCION PRINCIPAL DE PRODUCTOS */
+
+.articles-ambos {
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.products-title {
+  font-size: 24px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.contenedor-img-ambos {
+  width: 100%;
+  margin: 5px auto;
+}
+
+.products-img-ambos {
+  width: 100%;
+}
+
+.article-text {
+  font-size: 12px;
+}
+
+/* SECCION DE GRAL DE PRODUCTOS */
+
+.articles {
+  width: 100%;
+}
+
+.card {
+  max-width: 100%;
+  padding: 8px;
+}
+
+.products-img {
+  width: 100%;
+}
+
+.product-description, .article-text {
+  font-size: 12px;
+}
+
+ol {
+  font-size: 12px;
+}
+
+/* REGISTER, LOGIN Y CART */
+
+.input-register, .input-field {
+  width: 90%;
+  font-size: 0.9rem;
+}
+.register, .login-register, .cart-container {
+  width: 100%;
+  padding: 1rem;
+}
+.cart-table th, .cart-table td {
+  font-size: 0.8rem;
+  padding: 0.3rem;
+}
+.send-button, .checkout-button {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+}
+
+/* CONTENEDOR DE LOGIN Y REGISTER */
+
+/* Estilo general para el contenedor */
+.login-register, .register {
+  width: 40%; /* Reducir el ancho en pantallas grandes */
+  max-width: 500px; /* Limitar el tamaño máximo */
+  background-color: var(--light-gray-color);
+  padding: 2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 1199px) {
+  .login-register, .register {
+      width: 60%;
   }
 }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .login-register, .register {
+      width: 80%;
+  }
+}
+
+/* Ajustes para pantallas extra pequeñas */
+@media (max-width: 480px) {
+  .login-register, .register {
+      width: 90%;
+  }
+}
+
+/* PRODUCTADD Y PRODUCTEDIT */
+
+/* Pantallas grandes (≥1200px) */
+@media (min-width: 1200px) {
+  form {
+      max-width: 800px;
+  }
+
+  form button {
+      font-size: 18px;
+  }
+}
+
+/* Pantallas medianas (769px - 1199px) */
+@media (min-width: 769px) and (max-width: 1199px) {
+  form {
+      max-width: 700px;
+      padding: 15px;
+  }
+
+  form label {
+      font-size: 16px;
+  }
+
+  form input, form textarea, form button {
+      font-size: 14px;
+  }
+}
+
+/* Pantallas pequeñas (≤768px) */
+@media (max-width: 768px) {
+  form {
+      max-width: 90%;
+      padding: 10px;
+  }
+
+  form label {
+      font-size: 14px;
+  }
+
+  form input, form textarea, form button {
+      font-size: 12px;
+  }
+
+  form button {
+      padding: 8px;
+  }
+}
+
+/* Pantallas muy pequeñas (≤480px) */
+@media (max-width: 480px) {
+  form {
+      max-width: 100%;
+      padding: 5px;
+  }
+
+  form label {
+      font-size: 12px;
+  }
+
+  form input, form textarea, form button {
+      font-size: 10px;
+  }
+
+  form button {
+      padding: 6px;
+  }
+}
+
+/* TABLA DE PROSUCTOS, FORMULARIOS Y ESTRUCTURA DE VISTA DE ADMINISTRACIÓN */
+
+/* Estilo general */
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Filtro */
+#filterForm {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+#filterForm input {
+  padding: 8px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+#filterForm button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#filterForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Tabla */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botón de eliminación */
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* Paginación */
+#pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#pagination a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #007bff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#pagination a.active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+#pagination a:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* Media Queries */
+
+/* Pantallas grandes (≥1200px) */
+@media (min-width: 1200px) {
+  table {
+      width: 80%;
+  }
+
+  #filterForm input {
+      width: 400px;
+  }
+
+  h1 {
+      font-size: 2.5em;
+  }
+}
+
+/* Pantallas medianas (769px - 1199px) */
+@media (min-width: 769px) and (max-width: 1199px) {
+  table {
+      width: 90%;
+  }
+
+  #filterForm input {
+      width: 350px;
+  }
+
+  h1 {
+      font-size: 2em;
+  }
+}
+
+/* Pantallas pequeñas (≤768px) */
+@media (max-width: 768px) {
+  #filterForm {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #filterForm input {
+      width: 80%;
+      margin-bottom: 10px;
+  }
+
+  table {
+      width: 100%;
+  }
+
+  table th, table td {
+      font-size: 14px;
+      padding: 10px;
+  }
+
+  #pagination a {
+      padding: 5px 8px;
+  }
+}
+
+/* Pantallas muy pequeñas (≤480px) */
+@media (max-width: 480px) {
+  table th, table td {
+      font-size: 12px;
+      padding: 8px;
+  }
+
+  #filterForm input {
+      width: 100%;
+  }
+
+  h1 {
+      font-size: 1.5em;
+  }
+
+  button {
+      padding: 4px 8px;
+  }
+
+  #pagination a {
+      padding: 4px 6px;
+      font-size: 12px;
+  }
+}
+

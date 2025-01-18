@@ -1,0 +1,47 @@
+
+<%-include('../partial/head') %>
+
+<body>
+    <%-include('../partial/header') %>
+
+
+<main class="main-content">
+    <div class="cart-container">
+        <h1>Carrito de Compras</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Producto 1</td>
+                    <td><input type="number" value="1" min="1"></td>
+                    <td>$100</td>
+                    <td>$100</td>
+                    <td>
+                        <button class="remove-button">Eliminar</button>
+                    </td>
+                </tr>
+                <!-- acá se pueden agregar mas filas de productos -->
+            </tbody>
+        </table>
+        <div class="cart-summary">
+            <h2>Resumen de la Compra</h2>
+            <p>Subtotal: $100</p>
+            <p>Envío: $10</p>
+            <p>Total: $110</p>
+            <button class="checkout-button">Proceder al Pago</button>
+        </div>
+    </div>
+</main>
+
+<%-include('../partial/footer') %>
+
+    </body>
+    </html>

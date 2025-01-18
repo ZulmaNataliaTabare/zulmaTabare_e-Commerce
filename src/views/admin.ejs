@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <h1>Administrar Productos</h1>
+
+    <!-- Filtro por nombre o categoría -->
+    <form id="filterForm">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre o categoría">
+        <button type="button" onclick="filterTable()">Filtrar</button>
+    </form>
+
+    <!-- Tabla de productos -->
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product => { %>
+                <tr>
+                    <td><%= product.id %></td>
+                    <td><%= product.name %></td>
+                    <td><%= product.category %></td>
+                    <td>$<%= product.price %></td>
+                    <td>
+                        <a href="/products/edit/<%= product.id %>">Editar</a>
+                        <form action="/products/delete/<%= product.id %>" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <div id="pagination">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+    </div>
+
+    <script>
+        // Función para filtrar la tabla
+        function filterTable() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#productsTable tbody tr');
+
+            rows.forEach(row => {
+                const name = row.children[1].innerText.toLowerCase();
+                const category = row.children[2].innerText.toLowerCase();
+                if (name.includes(input) || category.includes(input)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

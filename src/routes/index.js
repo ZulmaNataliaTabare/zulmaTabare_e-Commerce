@@ -14,24 +14,24 @@ router.get('/', (req, res) => {
 
 // Ruta para la página de "Ambos"
 router.get('/ambos', (req, res) => {
-  res.render('ambos', { title: 'Ambos' });
+  res.render('products/ambos', { title: 'Ambos' });
 });
 
 router.get('/elleganceFire', (req, res) => {
-  res.render('elleganceFire', { title: 'Ellegance-Fire' });
+  res.render('products/elleganceFire', { title: 'Ellegance-Fire' });
 });
 
 
 router.get('/blusonMariquitas', (req, res) => {
-  res.render('blusonMariquitas', { title: 'Bluson-Mariquitas' });
+  res.render('products/blusonMariquitas', { title: 'Bluson-Mariquitas' });
 });
 
 router.get('/blusonUnisex', (req, res) => {
-  res.render('blusonUnisex', { title: 'Bluson-Unisex' });
+  res.render('products/blusonUnisex', { title: 'Bluson-Unisex' });
 });
 
 router.get('/guardapolvo', (req, res) => {
-  res.render('guardapolvo', { title: 'guardapolvo' });
+  res.render('products/guardapolvo', { title: 'guardapolvo' });
 });
 // router.get('/:producto',producto(req, res,next));
 // router.get('/:producto', console.log(products));
@@ -40,112 +40,112 @@ router.get('/guardapolvo', (req, res) => {
 // Ruta para la página de "Zuecos"
 
 router.get('/zuecos', (req, res) => {
-  res.render('zuecos', { title: 'Zuecos' });
+  res.render('products/zuecos', { title: 'Zuecos' });
 });
 
 router.get('/zuecoColorful', (req, res) => {
-  res.render('zuecoColorful', { title: 'zuecoColorful' });
+  res.render('products/zuecoColorful', { title: 'zuecoColorful' });
 });
 
 
 router.get('/zuecoVelcro', (req, res) => {
-  res.render('zuecoVelcro', { title: 'zuecoVelcro' });
+  res.render('products/zuecoVelcro', { title: 'zuecoVelcro' });
 });
 
 router.get('/zuecoLavable', (req, res) => {
-  res.render('zuecoLavable', { title: 'zuecoLavable' });
+  res.render('products/zuecoLavable', { title: 'zuecoLavable' });
 });
 
 router.get('/zuecoAntiestatico', (req, res) => {
-  res.render('zuecoAntiestatico', { title: 'zuecoAntiestatico' });
+  res.render('products/zuecoAntiestatico', { title: 'zuecoAntiestatico' });
 });
 
 // Ruta para la página de "Lanyard"
 
 router.get('/lanyard', (req, res) => {
-  res.render('lanyard', { title: 'lanyard' });
+  res.render('products/lanyard', { title: 'lanyard' });
 });
 
 router.get('/lanyardHospi', (req, res) => {
-  res.render('lanyardHospi', { title: 'lanyardHospi' });
+  res.render('products/lanyardHospi', { title: 'lanyardHospi' });
 });
 
 
 router.get('/lanyardHappiness', (req, res) => {
-  res.render('lanyardHappiness', { title: 'lanyardHappiness' });
+  res.render('products/lanyardHappiness', { title: 'lanyardHappiness' });
 });
 
 router.get('/lanyardEnfermeria', (req, res) => {
-  res.render('lanyardEnfermeria', { title: 'lanyardEnfermeria' });
+  res.render('products/lanyardEnfermeria', { title: 'lanyardEnfermeria' });
 });
 
 router.get('/lanyardPrincipal', (req, res) => {
-  res.render('lanyardPrincipal', { title: 'lanyardPrincipal' });
+  res.render('products/lanyardPrincipal', { title: 'lanyardPrincipal' });
 });
 
 // Ruta para la página de "Anotadores"
 
 router.get('/anotadores', (req, res) => {
-  res.render('anotadores', { title: 'anotadores' });
+  res.render('products/anotadores', { title: 'anotadores' });
 });
 
 router.get('/anotadorMotiva', (req, res) => {
-  res.render('anotadorMotiva', { title: 'anotadorMotiva' });
+  res.render('products/anotadorMotiva', { title: 'anotadorMotiva' });
 });
 
 
 router.get('/anotadorCuidar', (req, res) => {
-  res.render('anotadorCuidar', { title: 'anotadorCuidar' });
+  res.render('products/anotadorCuidar', { title: 'anotadorCuidar' });
 });
 
 router.get('/anotadorCoolCoco', (req, res) => {
-  res.render('anotadorCoolCoco', { title: 'anotadorCoolCoco' });
+  res.render('products/anotadorCoolCoco', { title: 'anotadorCoolCoco' });
 });
 
 router.get('/anotadorValiente', (req, res) => {
-  res.render('anotadorValiente', { title: 'anotadorValiente' });
+  res.render('products/anotadorValiente', { title: 'anotadorValiente' });
 });
 
 // Ruta para la página de "Accesorios"
 
 router.get('/accesorios', (req, res) => {
-  res.render('accesorios', { title: 'accesorios' });
+  res.render('products/accesorios', { title: 'accesorios' });
 });
 
 router.get('/accesoriosTijera', (req, res) => {
-  res.render('accesoriosTijera', { title: 'accesoriosTijera' });
+  res.render('products/accesoriosTijera', { title: 'accesoriosTijera' });
 });
 
 
 router.get('/accesoriosCompresor', (req, res) => {
-  res.render('accesoriosCompresor', { title: 'accesoriosCompresor' });
+  res.render('products/accesoriosCompresor', { title: 'accesoriosCompresor' });
 });
 
 router.get('/accesoriosSalvabolsillo', (req, res) => {
-  res.render('accesoriosSalvabolsillo', { title: 'accesoriosSalvabolsillo' });
+  res.render('products/accesoriosSalvabolsillo', { title: 'accesoriosSalvabolsillo' });
 });
 
 router.get('/accesoriosScrunchies', (req, res) => {
-  res.render('accesoriosScrunchies', { title: 'accesoriosScrunchies' });
+  res.render('products/accesoriosScrunchies', { title: 'accesoriosScrunchies' });
 });
 
 // Ruta para la página de "Bazar"
 
 router.get('/bazar', (req, res) => {
-  res.render('bazar', { title: 'bazar' });
+  res.render('products/bazar', { title: 'bazar' });
 });
 
 router.get('/bazarCorazon', (req, res) => {
-  res.render('bazarCorazon', { title: 'bazarCorazon' });
+  res.render('products/bazarCorazon', { title: 'bazarCorazon' });
 });
 
 
 router.get('/bazarOftal', (req, res) => {
-  res.render('bazarOftal', { title: 'bazarOftal' });
+  res.render('products/bazarOftal', { title: 'bazarOftal' });
 });
 
 router.get('/bazarCamillero', (req, res) => {
-  res.render('bazarCamillero', { title: 'bazarCamillero' });
+  res.render('products/bazarCamillero', { title: 'bazarCamillero' });
 });
 
 router.get('/bazarPediatria', (req, res) => {
@@ -154,7 +154,7 @@ router.get('/bazarPediatria', (req, res) => {
 
 // Ruta para la página de "Registro"
 router.get('/register', (req, res) => {
-  res.render('register', { title: 'register' });
+  res.render('users/register', { title: 'register' });
 });
 
 
@@ -164,12 +164,12 @@ router.get('/example', (req, res) => {
 
 // Ruta para la página de "Login"
 router.get('/login', (req, res) => {
-  res.render('login', { title: 'login' });
+  res.render('users/login', { title: 'login' });
 });
 
 // Ruta para la página de "Cart"
 router.get('/cart', (req, res) => {
-  res.render('cart', { title: 'Carrito' });
+  res.render('users/cart', { title: 'Carrito' });
 });
 
 module.exports = router;

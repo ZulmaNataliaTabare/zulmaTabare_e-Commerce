@@ -1,0 +1,31 @@
+
+<%-include('../partial/head') %>
+
+<body>
+    <%-include('../partial/header') %>
+
+
+
+    <main>
+        <div class="products-title">
+            <h1>Login</h1>
+        </div>
+        <div class="login-register">
+            <form action="/users/register" method="POST">
+                <input type="text" name="usuario" placeholder="Usuario" required class="input-field">
+                <input type="password" name="Contrasena" placeholder="Contraseña" required class="input-field">
+                <div class="remember-me"> 
+                    <input type="checkbox" id="remember" name="remember"> 
+                    <label for="remember">Recuérdame</label> 
+                </div>
+                <button type="submit" class="send-button">Ingresar</button>
+            </form>
+
+            <a href="/forgot-password" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+    </main>
+
+    <%-include('../partial/footer') %>
+    
+</body>
+</html>
