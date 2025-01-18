@@ -12,61 +12,45 @@ var usersRouter = require('./src/routes/users'); // Ruta para users.js
 
 var app = express();
 
-// Temporalmente desactivado: Conectar a mongoose /*
-// Conectar a mongoose
-// const mongoose = require('mongoose');
-
-// const mongoURI = 'mongodb+srv://sulmatabare:<SulmaTabare1>@cluster0.hbhxl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0I';
-
-// mongoose.connect(mongoURI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', () => {
-//   console.log('Connected to MongoDB');
-// });
-
-// Middleware para analizar datos del formulario
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cookieParser());
-
-// Integrar las rutas de usuarios
-app.use('/api', usersRouter); // Asegúrate de usar el nombre correcto
-
-// view engine setup
+// Configuración del motor de plantillas
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public'))); // Sirve archivos estáticos una vez
+app.use((req, res, next) => {
+  console.log(`Archivo solicitado: ${req.originalUrl}`);
+  next();
+});
 
-// Rutas
+// Middleware y rutas
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', usersRouter); // Asegúrate de usar el nombre correcto
 
-// catch 404 and forward to error handler
+// Captura 404 y redirecciona al manejador de errores
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Manejador de errores
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
+// Usar un puerto desde la variable de entorno o 3001 por defecto
+const port = process.env.PORT || 3001;
+
 // Iniciar el servidor
-app.listen(3000, () => {
-  console.log('Servidor corriendo en http://localhost:3000');
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
 
 module.exports = app;
+

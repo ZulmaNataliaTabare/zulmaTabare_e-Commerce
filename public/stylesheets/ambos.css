@@ -12,9 +12,9 @@
 }
 
 .products-img-ambos{
-    width: 400px;
+    width: 250px;
     border-radius: 10%;
-    margin: 10px 0 0 10%;
+    margin: 10px 0 0 5%;
     height: auto;
 }
 
@@ -28,9 +28,12 @@
     width: 400px; 
     height: auto;
     display: inline-block; /* Asegura que cada contenedor se mantenga separado */
-    margin: 10px; /* da Espacio entre las imágenes */
+    margin-left: 32px;
+    margin: 10px ; /* da Espacio entre las imágenes */
     vertical-align: top;
 }
+
+
 
 .contenedor-img-ambos img {
     width: 100%;

@@ -14,9 +14,81 @@
   --light-gray-color: #f0f0f0; /* Gris Claro */
   --text-color: #333333; /* Gris Oscuro */
 }
+
+/* NORMALIZACIÓN */
+
+
 body {
 background-color: var(--background-color);
 color: var(--text-color);
 font-family: Arial, sans-serif;
 }
 
+/* MEDIQUERIES */
+
+/* Estilo básico del menú de navegación */
+/* Estilo básico del menú de navegación */
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+}
+
+.main-nav ul li {
+  padding: 10px;
+}
+
+.hamburger-menu {
+  display: none; /* Ocultar el botón hamburguesa por defecto */
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo de las opciones en el menú */
+.main-nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Media query para pantallas móviles y tabletas */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block; /* Mostrar el botón hamburguesa */
+  }
+
+  .main-nav ul {
+    display: none; /* Ocultar el menú por defecto en dispositivos pequeños */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Espaciado para no tapar el header */
+    right: 0;
+    background-color: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .main-nav.open ul {
+    display: flex; /* Mostrar el menú cuando está activo */
+  }
+
+  .main-nav ul li {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger-menu {
+    font-size: 25px;
+  }
+}

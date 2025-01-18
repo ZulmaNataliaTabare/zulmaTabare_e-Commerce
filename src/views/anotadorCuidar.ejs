@@ -1,61 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>e-commerce</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script
-    src="https://kit.fontawesome.com/95801be2e2.js"
-    crossorigin="anonymous"
-    ></script>
-</head>
+    <%-include('partial/head') %>
+
 <body>
-    <header>
-    <nav class="nav">
-        <div>
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-        </div>
-        <div>
-        <form>
-            <div class="input-group">
-            <span class="input-group-addon"
-                ><i class="fa-solid fa-magnifying-glass"></i
-            ></span>
-            <input class="placeholder" type="search" placeholder="Buscar" />
-            </div>
-        </form>
-        </div>
-        <div class="user">
-            <a href="/login" target="_blank"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
-            <a href="/register" target="_blank"><i class="fa-solid fa-user-plus user-icon"></i></a>
-            <a href="/cart" target="_blank"><i class="fa-solid fa-bag-shopping cart-icon"></i></a>
-        </div>
-    </nav>
-    <nav>
-        <ul>
-        <li><a href="/ambos" target="_blank">Ambos</a></li>
-        <li><a href="/zuecos" target="_blank">Zuecos</a></li>
-        <li><a href="/lanyard" target="_blank">Lanyard</a></li>
-        <li><a href="/anotadores" target="_blank">Anotadores</a></li>
-        <li><a href="/accesorios" target="_blank">Accesorios</a></li>
-        <li><a href="/bazar" target="_blank">Bazar</a></li>
-        </ul>
-    </nav>
-    </header>
+    <%-include('partial/header') %>
+
     <main>
     <div id="products" class="products-title">
-        <h5>Anotador Cuidar</h5>
+        <h4>Anotador Cuidar</h4>
     </div>
 
     <section class="articles" aria-label="Articles">
         <div class="contenedor-img">
-        <a href="/anotadorCuidar" target="_blank"
-            ><img
+        <div class="card">
+        <a href="/anotadorCuidar"><img
             src="/images/Products/anotadores/anotador-2.jpg"
             alt="anotador-Cuidar"
             class="products-img-ambos"
         /></a>
+        <div class="card-body">
         <div class="fav">
             <i class="fa-solid fa-heart"></i>
             <i class="fa-solid fa-bag-shopping"></i>
@@ -71,83 +32,20 @@
             y "CUIDARME", además de la frase "El trabajo de soñar es ser feliz."
             Es perfecto para profesionales de la salud o cualquier persona que
             desee agregar un toque de alegría a sus apuntes.
-        </p>
-        <p class="product-description">CARACTERÍSTICAS:</p>
+            CARACTERÍSTICAS:</p>
         <ol>
             <li>Tapa dura colorida y resistente.</li>
             <li>Encuadernación en espiral para fácil manejo.</li>
             <li>Banda elástica para mantenerla cerrada.</li>
             <li>Ilustraciones temáticas y alegres.</li>
         </ol>
+    </div>
+        </div>
         </div>
     </section>
     </main>
+    
+    <%-include('partial/footer')  %>
 
-    <footer>
-    <div class="part-footer">
-        <aside class="redes">
-        <form>
-            <div class="input-group">
-            <span class="input-group-addon"
-                ><i class="fa-regular fa-comment"></i
-            ></span>
-            <input
-                class="placeholder"
-                type="text"
-                placeholder="Dejanos tu comentario"
-            />
-            </div>
-        </form>
-        <div class="icons-redes">
-            <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-            <a href="#" target="_blank"
-            ><i class="fa-brands fa-facebook"></i
-            ></a>
-            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-        </aside>
-    </div>
-
-    <div class="part-footer">
-        <section class="footer">
-        <div class="icon-size"><i class="fa-solid fa-credit-card"></i></div>
-        <h4 class="title-footer">Pagá con tarjeta o en efectivo</h4>
-        <p>
-            tenés cuotas sin interés con tarjeta o efectivo en puntos de pago.
-            ¡Y siempre es seguro!
-        </p>
-        </section>
-
-        <section class="footer">
-        <div class="icon-size"><i class="fa-solid fa-gift"></i></div>
-        <h4 class="title-footer">Envío gratis desde $ 20.000</h4>
-        <p>
-            Solo por estar registrad@ en nuestra página tenés envíos gratis en
-            todos los productos. Es un beneficio de nuestra comunidad.
-        </p>
-        </section>
-
-        <section class="footer">
-        <div class="icon-size"><i class="fa-solid fa-user-shield"></i></div>
-        <h4 class="title-footer">Seguridad de principio a fin.</h4>
-        <p>
-            ¿No te gusta? ¡Devolvelo! en nuestra página, no hay nada que no
-            puedas hacer, porque estás siempre protegid@.
-        </p>
-        </section>
-
-        <div class="Copyright">
-        <p>© 2024 ZNTABARE, todos los derechos reservados.</p>
-        </div>
-    </div>
-
-    <button onclick="scrollToTop()">Volver al principio</button>
-
-    <script>
-        function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-    </script>
-    </footer>
 </body>
 </html>
