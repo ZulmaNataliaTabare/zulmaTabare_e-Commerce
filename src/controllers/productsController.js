@@ -12,7 +12,7 @@ const productsController = {
     // Crear un nuevo producto
     create: (req, res) => {
         const newProduct = {
-            id: products.length ? products[products.length - 1].id + 1 : 1,
+            id: products.length ? parseInt(products[products.length - 1].id) + 1 : 1,
             name: req.body.name,
             description: req.body.description,
             image: req.file ? req.file.filename : 'default-image.png',
@@ -73,28 +73,24 @@ const productsController = {
     delete: (req, res) => {
         const productId = parseInt(req.params.id);
         products = products.filter(product => product.id !== productId);
-
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
         res.redirect('/products/admin');
+    },
+
+    // Detalle de un producto
+    getProductDetail: (req, res) => {
+        const productId = parseInt(req.params.id);
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            res.render('products/productDetail', { product });
+        } else {
+            res.status(404).send('Producto no encontrado');
+        }
     }
 };
 
-
-// Leer los productos
-const getProducts = () => {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(data);
-};
-
-// Guardar los productos
-const saveProducts = (products) => {
-    fs.writeFileSync(filePath, JSON.stringify(products, null, 4));
-};
-
-
-
-module.exports = { getProducts, saveProducts };
-
-
+// Exportar los controladores
 module.exports = productsController;
+
 

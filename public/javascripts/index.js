@@ -16,8 +16,6 @@ app.listen(3001, () => {
 });
 
 
-
-
 // controla el menú hamburguesa
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const navMenu = document.querySelector('.main-nav');

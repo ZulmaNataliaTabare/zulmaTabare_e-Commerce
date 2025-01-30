@@ -1,7 +1,9 @@
 [
     {
+        "id": "1",
         "name": "Blusón Microfibra – Mariquitas",
         "price": 10000,
+        "image": "/images/Products/ambos/bluson-microfibra-mariquitas.jpg",
         "description": "¿Por qué elegir esta prenda de microfibra? ¡¡Porque son todo ventajas!! Es un tejido antibacterias, repele los líquidos (las salpicaduras en la parte exterior le 'resbalan'), su especial tratamiento lo convierte en un tejido muy transpirable, no necesita plancha, seca muy rápido, lavable a 90ºC (no se alteran los colores ni dibujos), tiene tolerancia a las salpicaduras de lejía. Esto desmonta casi todas tus creencias sobre la microfibra, ¿verdad?... Quizá creías que era un tejido poco transpirable o muy delicado... Todas estas características han sido probadas y certificadas para estas prendas por AITEX (Instituto Tecnológico Textil). ¿Necesitas más razones para decidirte a probarlo? Se trata de prendas confeccionadas en España, por una empresa nacional que cuida de todos los detalles a lo largo de todo el proceso de producción, para garantizarte la mayor satisfacción con la calidad del producto.",
         "features": [
             "Diseño unisex",
@@ -12,8 +14,10 @@
         ]
     },
     {
+        "id": "2",
         "name": "Blusón Unisex Microfibra Estampado – Veterinario",
         "price": 10000,
+        "image": "/images/Products/ambos/bluson-microfibra-veterinario.jpg",
         "description": "Amantes de los animales, aquí tienes tu nuevo blusón repelente al pelo de las mascotas, y sobre todo cómodo. Vamos a mimar un poquito nuestro cuerpo que bien merecido lo tiene. Muy cómodo, de microfibra y repelente de líquidos. Elige este uniforme de veterinario de microfibra y descubrirás que todo son ventajas: Es un tejido antibacterias, repele los líquidos (las salpicaduras en la parte exterior le 'resbalan'), su especial tratamiento lo convierte en un tejido muy transpirable, no necesita plancha, seca muy rápido, lavable a 90ºC (no se alteran los colores ni dibujos), tiene tolerancia a las salpicaduras de lejía. Esto desmonta casi todas tus creencias sobre la microfibra, ¿verdad? Quizá creías que era un tejido poco transpirable o muy delicado... Todas estas características han sido probadas y certificadas para estas prendas por AITEX (Instituto Tecnológico Textil). ¿Necesitas más razones para decidirte a probarlo? Se trata de prendas confeccionadas en España, por una empresa nacional que cuida de todos los detalles a lo largo de todo el proceso de producción, para garantizarte la mayor satisfacción con la calidad del producto.",
         "features": [
             "Diseño unisex",
@@ -23,20 +27,26 @@
         ]
     },
     {
+        "id": "3",
         "name": "Elegance Fire",
         "price": 15000,
+        "image": "/images/Products/ambos/elegance-fire.jpg",
         "description": "Ambo escote V confeccionado en tela ARCIEL (65% polyester – 35% Viscosa). EL ARCIEL es una tela resistente al cloro. Negro con vivos rojos. Pantalón recto liso para que combines con cualquier chaqueta que tengas vos.",
         "features": []
     },
     {
+        "id": "4",
         "name": "Guardapolvo – Pinky",
         "price": 15000,
+        "image":"/images/Products/ambos/guardapolvo-mujer.jpg",
         "description": "Confeccionado en tela Arciel (65% Polyester, 35% Viscosa) con vivo ROSA FUERTE. 3/4 Manga. Puño reversible a elección. Aberturas controladas laterales para que estés cómoda en cualquier posición aunque tengas el delantal cerrado, inclusive sentada. 5 Botones. 3 Bolsilleros (1 superior pequeño y 2 inferiores muy amplios para poder llevar todo con vos).",
         "features": []
     },
     {
+        "id": "5",
         "name": "Lanyard Cosas de Hospi",
         "price": 5000,
+        "image":"/images/Products/lanyard/LANYARD-_COSAS-scaled.jpg",
         "description": "Hemos creado este lanyard de cosas de Hospi al estilo de la enfermera al rescate. Lo hemos diseñado pensando en tí, para que lo luzcas y te diferencies con este lanyard único y especial. Con hebilla delantera para separar las tijeras fácilmente y con enganche de seguridad atrás en color rosa palo. Lo podrás utilizar colgado del cuello con tu tarjeta identificativa, o para tus tijeritas, pinzas, llaves o lo que te apetezca.",
         "features": [
             "Hebilla en la parte delantera en plástico de color lila para poder separar las tijeras de forma fácil",
@@ -45,8 +55,10 @@
         ]
     },
     {
+        "id": "6",
         "name": "Lanyard Happiness",
         "price": 5000,
+        "image":"/images/Products/lanyard/LANYARD_HAPPINESS.jpg",
         "description": "Para alcanzar la felicidad… ¡estos medicamentos son los que mejor funcionan! 😊 Hemos creado este lanyard con esos 'medicamentos' que tan felices, y tan saludables son. Lo hemos diseñado pensando en tí, para que lo luzcas y te diferencies con este lanyard único y especial. Con hebilla delantera para separar las tijeras fácilmente y con enganche de seguridad atrás en color rosa palo. Lo podrás utilizar colgado del cuello con tu tarjeta identificativa, o para tus tijeritas, pinzas, llaves o lo que te apetezca.",
         "features": [
             "Hebilla en la parte delantera en plástico de color rosa palo para poder separar las tijeras de forma fácil",
@@ -55,16 +67,20 @@
         ]
     },
     {
+        "id": "7",
         "name": "Lanyard pro enfermería",
         "price": 5000,
+        "image":"/images/Products/lanyard/lanyard-pro-enfermeria.jpg",
         "description": "¿Hay algo más útil en el día a día de los enfermeros que un lanyard? Este Lanyard PRO está dirigido a estudiantes y profesionales de la Enfermería. La profesión más bonita del mundo. Guardián de nuestras tijeras y portador del esparadrapo multiusos. Y si además es bonito… Se llevan mejor los turnos.",
         "features": [
             "Lanyard 50 x 2 cm. Con mosquetón para colgar las tijeras y clip para la identificación. Con enganche delantero para liberar las tijeras fácilmente."
         ]
     },
     {
+        "id": 8,
         "name": "Tijera Azul",
         "price": 5000,
+        "image": "/images/Products/accesorios/tijera-azul.jpg",
         "description": "Toda enfermera que se preste debe contar con unas tijeras de pico de pato para proteger a sus pacientes (y evitar horribles accidentes). ¡Desecha las tijeras de plástica del colegio y hazte con ellas!",
         "features": [
             "Tijeras de pico de pato de 14 cm",
@@ -72,16 +88,20 @@
         ]
     },
     {
+        "id": "9",
         "name": "Compresor Bichón",
         "price": 5000,
+        "image":"/images/Products/accesorios/compresor-bichon.jpg",
         "description": "Esas venas que se resisten... ¡Con estos compresores se resistirán menos! O tal vez no... Pero ¿a quién no le alegra la vista un compresor así?",
         "features": [
             "Compresor de tela elástica, fácil de lavar. Con cierre de clic y ajustable. Botón para liberar rápidamente el brazo de los pacientes."
         ]
     },
     {
+        "id": "10",
         "name": "Scrunchies Mariquitas",
         "price": 5000,
+        "images":"/images/Products/accesorios/coletero-mariquitas.jpg",
         "description": "Lo primero que te dijeron al llegar al hospital fue: 'Tienes que llevar el pelo recogido'. Al principio no te hacía ninguna gracia... Pero luego te diste cuenta que cuando hacías malabares para curar una úlcera en el talón de un paciente era mejor tener todo tu pelo bien recogido. Por esas veces en las que estabas sondando a un paciente y la 'mechita' del flequillo se te ponía en medio de la cara y soplabas a ver si la apartabas... ¡Pero no! Por todas esas anécdotas y con el fin de retirar el crepé anudado en nuestros pelos... ¡les traemos estos scrunchies!",
         "features": [
             "Coletero de goma elástica con tela fruncida",
@@ -89,10 +109,24 @@
             "Hecho a mano"
         ]
     },
+    {
+        "id": "11",
+        "name": "Salvabolsillos Cigüeña",
+        "price": 5000,
+        "image":"/images/Products/accesorios/salvabolsillos-ciguena.jpg",
+        "description": "Si hay algo típico en nuestra profesión es agacharse para coger algo que se nos ha caído al suelo y que al inclinarnos caigan todos y cada uno de los bolis que hay en nuestro bolsillo, además de las horribles manchas que producen en nuestro pijama esos bolis “traviesos” que deciden destintar y darle un toque de color rojo/verde/azul/negro a nuestro impoluto ambo blanco.",
+        "features": [
+            "Salvabolsillos de PVC de 16 x 9 cm",
+            "Fácil limpieza"
+        ]
+    },
+    
     [
         {
+            "id": "12",
             "name": "Zueco Sanitario Piel Vegana – Colorful",
             "price": 15000,
+            "image":"/images/Products/zuecos/zueco-sanitario-piel-vegana-colorful.jpg",
             "description": "Descubre la combinación perfecta de estilo y funcionalidad con nuestros nuevos zuecos sanitarios Colorful. ¡Tu comodidad es nuestra prioridad! Olvídate de los zuecos que no se ajustan correctamente. Nuestro diseño incluye un sistema de ajuste seguro para garantizar que tus pies se sientan cómodos y protegidos. Conoce la comodidad que mereces durante largas jornadas. Nuestros zuecos están elaborados para adaptarse a las exigencias de tu trabajo. La plantilla ergonómica y la tecnología de amortiguación garantizan un soporte excepcional para tus pies, reduciendo la fatiga incluso en las jornadas más intensas.",
             "features": [
                 "Suela de EVA Comfortlight Antideslizante, especialmente diseñada para permitir una perfecta anatomía, flexión y un óptimo agarre.",
@@ -108,8 +142,10 @@
             ]
         },
         {
+            "id": "13",
             "name": "Zapato Piel Vegana Velcro - Virus Collection",
             "price": 15000,
+            "image":"/images/Products/zuecos/zapato-piel-vegana-velcro-virus-collection.jpg",
             "description": "El zapato sanitario cerrado más ligero, cómodo y bonito del mercado. Zapatos cerrados para enfermeras con el estampado más fresco, a juegos con otros productos de la misma colección. Los nuevos zuecos con estampado divertido de virus para enfermeras son una forma de añadir un toque de personalidad y humor a los uniformes de trabajo. Estos zuecos tienen un diseño único que presenta virus de diferentes formas y colores, lo que los convierte en una excelente opción para aquellos profesionales de la salud que quieren destacar entre la multitud. Además de su aspecto llamativo, estos zuecos están diseñados pensando en la comodidad y la seguridad de los trabajadores de la salud. Están fabricados con materiales de alta calidad que proporcionan una excelente amortiguación y soporte para los pies durante largas jornadas de trabajo.",
             "features": [
                 "Suela de EVA Comfortlight Antideslizante, especialmente diseñada para permitir una perfecta anatomía, flexión y un óptimo agarre.",
@@ -125,14 +161,18 @@
             ]
         },
         {
+            "id": "14",
             "name": "Zueco Sanitario Piel Lavable Wash'Go – Azul",
             "price": 15000,
+            "image":"/images/Products/zuecos/zueco-sanitario-piel-lavable-wash-go-azul.jpg",
             "description": "El zueco Wash'Go es la solución perfecta para las que estáis hartas de la goma, o preferís la comodidad y suavidad de la piel. Porque aúna lo mejor de ambos materiales: suave como sólo la piel natural puede serlo, y fácil de limpiar como los materiales plásticos (a la lavadora, y punto). Todo ello sin renunciar a los requisitos más exigentes para el calzado laboral: Antiestáticos, Antideslizantes, Absorción de impactos, Anatómicos, Con correa ajustable. Fabricados en suave piel natural, con forro de microfibra y suela de PU (poliuretano, muy ligero, flexible y resistente). Son suaves, ligeros y con plantilla extraíble. Aseguran un perfecto ajuste gracias a sus presillas elásticas (sientan como un guante sea como sea tu empeine). Pala estanca para mayor seguridad anti-fluidos, pero 100% transpirables gracias a la piel natural. Con un tacto muy agradable por su forro de microfibra. Has leído bien...puedes lavarlos en lavadora hasta 30ºC y te quedarán perfectos!!! Aprovéchate y calza los zuecos más innovadores, porque AHORA LA PIEL YA TIENE LO QUE LE FALTABA. Hechos en Portugal.",
             "features": []
         },
         {
+            "id": "15",
             "name": "Zueco Sanitario EVA Antiestático – Blanco",
             "price": 15000,
+            "image":"/images/Products/zuecos/zueco-sanitario-eva-antiestatico-blanco.jpg",
             "description": "Todas las ventajas del zueco EVA, ahora también antiestático. Lleva incorporada una pieza especial en el talón, que le otorga funciones antiestáticas. Evita las molestas descargas (chispazos) producidos por la acumulación de energía estática. Recomendado para servicios que exijan un contacto directo con aparatos eléctricos y electrónicos (bloques quirúrgicos, UCI, esterilización...).",
             "features": [
                 "Fabricado en EVA, superligeros (sólo 125 grs)",

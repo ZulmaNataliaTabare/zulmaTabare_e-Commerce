@@ -1,10 +1,10 @@
+
 require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 
 // Importar rutas
 var indexRouter = require('./src/routes/index');
@@ -48,14 +48,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// Puerto
-const port = process.env.PORT || 3001;
-
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-});
-
 module.exports = app;
-
-

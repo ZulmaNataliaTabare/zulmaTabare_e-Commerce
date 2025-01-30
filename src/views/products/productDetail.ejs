@@ -1,0 +1,19 @@
+<%-include('../partial/head') %>
+
+<body>
+    <%-include('../partial/header') %>
+    <main>
+        <h4 id="products" class="products-title"><%= product.name %></h4>
+    <%-include('../partial/images') %>
+        <p><%= product.description %></p>
+        <p class="article-text">Precio: $<%= product.price %></p>
+        <h4>Características:</h4>
+        <ul>
+            <% product.features.forEach(feature => { %>
+                <li class="product-description"><%= feature %></li>
+            <% }) %>
+        </ul>
+    </main>
+    <%-include('../partial/footer') %>
+</body>
+</html>
