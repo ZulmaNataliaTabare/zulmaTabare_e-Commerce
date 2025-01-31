@@ -27,30 +27,38 @@ const productsController = {
 
     // Formulario para editar un producto
     editForm: (req, res) => {
-        const product = products.find(p => p.id === parseInt(req.params.id));
+        const productId = parseInt(req.params.id);
+        console.log('ID del producto:', productId); // Log para depuración
+        const product = products.find(p => p.id === productId);
         if (product) {
-            res.render('products/productEdit', { product });
+          console.log('Producto encontrado:', product); // Log para depuración
+        res.render('products/productEdit', { product });
         } else {
-            res.status(404).send('Producto no encontrado');
+          console.log('Producto no encontrado'); // Log para depuración
+        res.status(404).send('Producto no encontrado');
         }
     },
 
     // Actualizar un producto existente
     update: (req, res) => {
-        const product = products.find(p => p.id === parseInt(req.params.id));
+        const productId = parseInt(req.params.id);
+        console.log('ID del producto:', productId); // Log para depuración
+        const product = products.find(p => p.id === productId);
         if (product) {
+            console.log('Producto antes de la actualización:', product); // Log para depuración
             product.name = req.body.name;
             product.description = req.body.description;
             if (req.file) product.image = req.file.filename;
-            product.category = req.body.category;
-            product.colors = req.body.colors;
             product.price = req.body.price;
             fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+            console.log('Producto después de la actualización:', product); // Log para depuración
             res.redirect('/products');
         } else {
+            console.log('Producto no encontrado'); // Log para depuración
             res.status(404).send('Producto no encontrado');
         }
     },
+    
 
     // Vista de administración de productos
     admin: (req, res) => {

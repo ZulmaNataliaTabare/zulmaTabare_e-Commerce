@@ -1,8 +1,17 @@
-<div class="contenedor-img">
+<div class="contenedor-img-ambos">
+    <a href="/products/product/<%= id %>">
     <div class="card">
         <img src="<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos">
-    <div class="card-body">
-    <div class="fav">
-    <i class="fa-solid fa-heart"></i>
-    <i class="fa-solid fa-bag-shopping"></i>
+        <div class="card-body">
+        <div class="fav">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div class="article-text">$<%= price %></div>
+        <div class="article-text"><%= name %></div>
+        </div>
+    </div>
+    </a>
 </div>
+
+

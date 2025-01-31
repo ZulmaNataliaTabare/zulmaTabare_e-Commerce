@@ -1,0 +1,25 @@
+<%- include('../partial/head') %>
+<body>
+<%- include('../partial/header') %>
+<main>
+    <div id="products" class="products-title">
+    <h5>Accesorios</h5>
+    </div>
+    <section class="articles-ambos" aria-label="Articles">
+    <% if (products && products.length) { %>
+        <% products.forEach(product => { %>
+        <%- include('../partial/images', {
+            id: product.id,
+            product: { image: product.image, name: product.name || 'Producto sin nombre' },
+            price: product.price || 'Precio no disponible',
+            name: product.name || 'Producto sin nombre'
+        }) %>
+        <% }) %>
+    <% } else { %>
+        <p>No hay productos disponibles.</p>
+    <% } %>
+    </section>
+</main>
+<%- include('../partial/footer') %>
+</body>
+</html>
