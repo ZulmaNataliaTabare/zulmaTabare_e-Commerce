@@ -1,8 +1,6 @@
 <%- include('partial/head') %>
-
 <body>
-    <%- include('partial/header') %>
-
+<%- include('partial/header') %>
 <main>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -43,52 +41,26 @@
     
     <section class="offers">
         <!-- Productos -->
-        <div class="products">
-            <img class="article" src="/images/Products/bazar/taza-pediatra.jpg" alt="taza-pediatra">
-            <div class="flex-container">
-                <div class="fav">
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-bag-shopping"></i>
+        <% products.forEach(product => { %>
+            <div class="products">
+                <a href="/products/product/<%= product.id %>"><img class="article" src="<%= product.image %>" alt="<%= product.name %>"></a>
+                <div class="flex-container">
+                    <div class="fav">
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <div class="precio">$<%= product.price %></div>
+                    <div class="descr"><%= product.name %></div>
                 </div>
-                <div class="precio">$3500</div>
-                <div class="descr">Taza de cerámica</div>
             </div>
-        </div>
-
-        <div class="products">
-            <img class="article" src="/images/Products/anotadores/anotador-3.png" alt="anotador">
-            <div class="flex-container">
-                <div class="fav">
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
-                <div class="precio">$4200</div>
-                <div class="descr">Anotador</div>
-            </div>
-        </div>
-
-        <div class="products">
-            <img class="article" src="/images/Products/accesorios/salvabolsillos-ciguena.jpg" alt="salvabolsillos">
-            <div class="flex-container">
-                <div class="fav">
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
-                <div class="precio">$6000</div>
-                <div class="descr">Salvabolsillos</div>
-            </div>
-        </div>
+        <% }) %>
     </section>
-
 </main>
-
 <%- include('partial/footer') %>
-
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/javascripts/carousel.js"></script>
 <script src="/javascripts/index.js"></script> 
+
 </body>
-
 </html>
-

@@ -1,14 +1,16 @@
+var express = require('express');
+const {admin, detail, add, create, edit, remove, update } = require('../controllers/productsController'); // Importa el controlador correcto
+var router = express.Router();
 
-const express = require('express');
-const router = express.Router();
-const productsController = require('../controllers/productsController'); // Importa el controlador correcto
-
-router.get('/add', productsController.addForm);
-router.post('/add', productsController.create);
-router.get('/edit/:id', productsController.editForm);
-router.post('/edit/:id', productsController.update);
-router.get('/admin', productsController.admin);
-router.post('/delete/:id', productsController.delete);
-router.get('/product/:id', productsController.getProductDetail);
+// Definí la ruta y el método que se debe ejecutar en cada caso
+router
+    .get('/', admin)
+    .get('/detail/:id', detail)
+    .get('/add', add)
+    .post('/add', create)
+    .get('/edit/:id', edit)
+    .put('/edit/:id', update)
+    .delete('/delete/:id', remove);
 
 module.exports = router;
+

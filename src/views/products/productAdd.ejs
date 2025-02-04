@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Producto</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+<%-include('../partial/head') %>
+
 <body>
-    <h1>Agregar Producto</h1>
+    <%-include('../partial/header') %>
+    
+    <div class="products-title">
+        <h1>Agregar producto</h1>
+    </div>
+    <div class="login-register">
     <form action="/products/add" method="POST" enctype="multipart/form-data">
         <label for="name">Nombre del Producto:</label>
         <input type="text" id="name" name="name" required>
@@ -29,5 +28,6 @@
         
         <button type="submit">Agregar Producto</button>
     </form>
+    </div>
 </body>
 </html>

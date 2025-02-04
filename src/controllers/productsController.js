@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+
 const productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const productsController = {
+    
     // Formulario para agregar un producto
-    addForm: (req, res) => {
+    add: (req, res) => {
         res.render('products/productAdd');
     },
 
@@ -26,43 +28,35 @@ const productsController = {
     },
 
     // Formulario para editar un producto
-    editForm: (req, res) => {
+    edit: (req, res) => {
         const productId = parseInt(req.params.id);
-        console.log('ID del producto:', productId); // Log para depuración
         const product = products.find(p => p.id === productId);
         if (product) {
-          console.log('Producto encontrado:', product); // Log para depuración
-        res.render('products/productEdit', { product });
+            res.render('products/productEdit', { product });
         } else {
-          console.log('Producto no encontrado'); // Log para depuración
-        res.status(404).send('Producto no encontrado');
+            res.status(404).send('Producto no encontrado');
         }
     },
 
-    // Actualizar un producto existente
+    // Actualizar un producto existente usando PUT
     update: (req, res) => {
         const productId = parseInt(req.params.id);
-        console.log('ID del producto:', productId); // Log para depuración
         const product = products.find(p => p.id === productId);
         if (product) {
-            console.log('Producto antes de la actualización:', product); // Log para depuración
             product.name = req.body.name;
             product.description = req.body.description;
             if (req.file) product.image = req.file.filename;
             product.price = req.body.price;
             fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-            console.log('Producto después de la actualización:', product); // Log para depuración
             res.redirect('/products');
         } else {
-            console.log('Producto no encontrado'); // Log para depuración
             res.status(404).send('Producto no encontrado');
         }
     },
-    
 
     // Vista de administración de productos
     admin: (req, res) => {
-        const perPage = 5; // Productos por página
+        const perPage = 4; // Productos por página
         const page = parseInt(req.query.page) || 1;
         const start = (page - 1) * perPage;
         const end = start + perPage;
@@ -77,8 +71,8 @@ const productsController = {
         });
     },
 
-    // Eliminar un producto
-    delete: (req, res) => {
+    // Eliminar un producto usando DELETE
+    remove: (req, res) => {
         const productId = parseInt(req.params.id);
         products = products.filter(product => product.id !== productId);
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
@@ -86,7 +80,7 @@ const productsController = {
     },
 
     // Detalle de un producto
-    getProductDetail: (req, res) => {
+    detail: (req, res) => {
         const productId = parseInt(req.params.id);
         const product = products.find(p => p.id === productId);
 
@@ -100,5 +94,4 @@ const productsController = {
 
 // Exportar los controladores
 module.exports = productsController;
-
 
