@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Definí la ruta y el método que se debe ejecutar en cada caso
 router
-    .get('/', admin)
+    .get('/admin', admin)
     .get('/detail/:id', detail)
     .get('/add', add)
     .post('/add', create)

@@ -64,7 +64,7 @@ const productsController = {
         const paginatedProducts = products.slice(start, end);
         const totalPages = Math.ceil(products.length / perPage);
 
-        res.render('admin', {
+        res.render('products/admin', {
             products: paginatedProducts,
             currentPage: page,
             totalPages: totalPages
