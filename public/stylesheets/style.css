@@ -15,6 +15,26 @@
   --text-color: #333333; /* Gris Oscuro */
 }
 
+
+.cl-pr {
+  color: var(--primary-color); /* Lila Claro */
+}
+.cl-sc {
+  color: var(--secondary-color); /* Azul Claro */
+}
+.gold {
+  color: var(--accent-color-1); /* Dorado */
+}
+.bg-blue {
+  background-color: var(--background-color) !important; /* Fondo Azul Claro */
+}
+.grey {
+  color:var(--light-gray-color) ; /* Gris Claro */
+}
+.grey-2 {
+  color: var(--text-color); /* Gris Oscuro */ 
+}
+
 /* NORMALIZACIÓN */
 
 

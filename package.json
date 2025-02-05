@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www localhost 3001"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "constantinople": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
