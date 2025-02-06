@@ -81,7 +81,7 @@ const productsController = {
 
     // Detalle de un producto
     detail: (req, res) => {
-        const productId = parseInt(req.params.id);
+        const productId = parseInt(req.params.id, 10);
         const product = products.find(p => p.id === productId);
 
         if (product) {
@@ -89,6 +89,8 @@ const productsController = {
         } else {
             res.status(404).send('Producto no encontrado');
         }
+        console.log("ID del producto:", productId);
+console.log("Producto encontrado:", product);
     }
 };
 

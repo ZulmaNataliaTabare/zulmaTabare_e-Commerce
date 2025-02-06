@@ -328,14 +328,14 @@ html, body {
   font-size: 14px;
 }
 
-/* SECCION DE GRAL DE PRODUCTOS */
+/* SECCION  GRAL DE PRODUCTOS */
 
 .articles {
   width: 90%;
 }
 
 .card {
-  max-width: 100%;
+  max-width: 40%;
   padding: 10px;
 }
 
@@ -416,10 +416,13 @@ ol {
 }
 
 .contenedor-img-ambos {
+  position: relative; /* Para que el contenedor relativo funcione */
+  display: inline-block; /* O el tipo de display que necesites */
   width: 100%;
   margin: 5px auto;
 }
 
+s
 .products-img-ambos {
   width: 100%;
 }
@@ -642,6 +645,7 @@ table tr:hover {
 }
 
 a {
+
   text-decoration: none;
   color: #007bff;
 }

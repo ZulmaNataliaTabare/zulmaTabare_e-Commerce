@@ -99,7 +99,7 @@
     "id": 10,
     "name": "Scrunchies Mariquitas",
     "price": 5000,
-    "images": "/images/Products/accesorios/coletero-mariquitas.jpg",
+    "image": "/images/Products/accesorios/coletero-mariquitas.jpg",
     "description": "Lo primero que te dijeron al llegar al hospital fue: 'Tienes que llevar el pelo recogido'. Al principio no te hacía ninguna gracia... Pero luego te diste cuenta que cuando hacías malabares para curar una úlcera en el talón de un paciente era mejor tener todo tu pelo bien recogido. Por esas veces en las que estabas sondando a un paciente y la 'mechita' del flequillo se te ponía en medio de la cara y soplabas a ver si la apartabas... ¡Pero no! Por todas esas anécdotas y con el fin de retirar el crepé anudado en nuestros pelos... ¡les traemos estos scrunchies!",
     "features": [
       "Coletero de goma elástica con tela fruncida",

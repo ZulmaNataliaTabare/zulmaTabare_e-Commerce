@@ -323,12 +323,13 @@ h5{
     }
     
     .newsletter button {
-        background-color: var(--accent-color-1);
+        background-color: rgb(33, 183, 243);
         border: none;
         color: var(--text-color);
-        padding: 10px;
+        padding: 10px, 0, 10px, 17px;
         border-radius: 4px;
         cursor: pointer;
+        
     }
     
     .newsletter div {

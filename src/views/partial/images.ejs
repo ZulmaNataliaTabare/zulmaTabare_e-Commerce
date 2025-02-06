@@ -1,5 +1,6 @@
 <div class="contenedor-img-ambos">
-    <a href="/products/product/<%= id %>">
+    <a href="/products/detail/<%= id %>">
+        <% console.log("ID del producto en images.ejs:", id); %>
     <div class="card">
         <img src="<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos">
         <div class="card-body">

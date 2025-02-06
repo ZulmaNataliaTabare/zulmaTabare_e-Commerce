@@ -5,27 +5,17 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
-    <!-- Sección del Carrusel -->
-    <section class="carousel">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <!-- Cada slide del carrusel -->
+<!-- Sección del Carrusel -->
+<section class="carousel">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <% carouselItems.forEach(product => { %>
                 <div class="swiper-slide">
-                    <a href="/accesoriosScrunchies"><img src="/images/Products/accesorios/coletero-mariquitas.jpg" alt="scrunchie-mariquitas" class="products-img-ambos"></a>
+                    <a href="/products/product/<%= product.id %>"><img src="<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos"></a>
                 </div>
-                <div class="swiper-slide">
-                    <a href="/bazarCorazon"><img src="/images/Products/bazar/jarro-corazon.jpg" alt="jarro-corazon" class="products-img-ambos"></a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="/blusonMariquitas"><img src="/images/Products/ambos/bluson-microfibra-mariquitas.jpg" alt="bluson-mariquitas" class="products-img-ambos"></a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="/lanyardEnfermeria"><img src="/images/Products/lanyard/lanyard-pro-enfermeria.jpg" alt="lanyard-enfermeria" class="products-img-ambos"></a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="/zuecoColorful"><img src="/images/Products/zuecos/zueco-sanitario-piel-vegana-colorful.jpg" alt="zueco-colorful" class="products-img"></a>
-                </div>
-            </div>
+            <% }) %>
+        </div>
+
 
             <!-- Paginación -->
             <div class="swiper-pagination"></div>
