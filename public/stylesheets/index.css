@@ -326,10 +326,9 @@ h5{
         background-color: rgb(33, 183, 243);
         border: none;
         color: var(--text-color);
-        padding: 10px, 0, 10px, 17px;
+        padding: 10px;
         border-radius: 4px;
         cursor: pointer;
-        
     }
     
     .newsletter div {
@@ -355,7 +354,7 @@ footer button {
     margin-right: auto;
 }
 
-button {
+.button {
     position: fixed;
     bottom: 20px;
     right: 20px;

@@ -4,53 +4,43 @@
     "name": "Blusón Microfibra Mariquitas",
     "price": 15000,
     "image": "/images/Products/ambos/bluson-microfibra-mariquitas.jpg",
-    "features": [
-      "Diseño unisex",
-      "Cuello pico",
-      "Dos bolsillos",
-      "Aberturas laterales para mayor libertad de movimientos",
-      "Disponible desde la talla XS hasta la 3XL"
-    ]
+    "features": [],
+    "category": "Ambos"
   },
   {
     "id": 2,
     "name": "Blusón Microfibra Veterinario",
     "price": 15000,
     "image": "/images/Products/ambos/bluson-veterinario.jpg",
-    "features": [
-      "Diseño unisex",
-      "Cuello pico",
-      "Dos bolsillos",
-      "Aberturas laterales para mayor libertad de movimientos"
-    ]
+    "features": [],
+    "category": "Ambos"
   },
   {
     "id": 3,
     "name": "Elegance Fire",
     "price": 15000,
     "image": "/images/Products/ambos/ambo-hombre.jpg",
-    "description": "Ambo escote V confeccionado en tela ARCIEL (65% polyester – 35% Viscosa). EL ARCIEL es una tela resistente al cloro. Negro con vivos rojos. Pantalón recto liso para que combines con cualquier chaqueta que tengas vos.",
-    "features": []
+    "description": "...",
+    "features": [],
+    "category": "Ambos"
   },
   {
     "id": 4,
     "name": "Guardapolvo – Pinky",
     "price": 15000,
     "image": "/images/Products/ambos/guardapolvo-mujer.jpg",
-    "description": "Confeccionado en tela Arciel (65% Polyester, 35% Viscosa) con vivo ROSA FUERTE. 3/4 Manga. Puño reversible a elección. Aberturas controladas laterales para que estés cómoda en cualquier posición aunque tengas el delantal cerrado, inclusive sentada. 5 Botones. 3 Bolsilleros (1 superior pequeño y 2 inferiores muy amplios para poder llevar todo con vos).",
-    "features": []
+    "description": "...",
+    "features": [],
+    "category": "Ambos"
   },
   {
     "id": 5,
     "name": "Lanyard Cosas de Hospi",
     "price": 5000,
     "image": "/images/Products/lanyard/LANYARD-_COSAS-scaled.jpg",
-    "description": "Hemos creado este lanyard de cosas de Hospi al estilo de la enfermera al rescate. Lo hemos diseñado pensando en tí, para que lo luzcas y te diferencies con este lanyard único y especial. Con hebilla delantera para separar las tijeras fácilmente y con enganche de seguridad atrás en color rosa palo. Lo podrás utilizar colgado del cuello con tu tarjeta identificativa, o para tus tijeritas, pinzas, llaves o lo que te apetezca.",
-    "features": [
-      "Hebilla en la parte delantera en plástico de color lila para poder separar las tijeras de forma fácil",
-      "Separador de seguridad en la parte trasera en plástico de color lila para que se retire fácilmente del cuello si se da un tirón.",
-      "Mini gancho para llevar las tijeras o lo que más necesites"
-    ]
+    "description": "...",
+    "features": [],
+    "category": "Lanyard"
   },
   {
     "id": 6,
@@ -62,7 +52,8 @@
       "Hebilla en la parte delantera en plástico de color rosa palo para poder separar las tijeras de forma fácil",
       "Separador de seguridad en la parte trasera en plástico de color rosa palo para que se retire fácilmente del cuello si se da un tirón.",
       "Mini gancho para llevar las tijeras o lo que más necesites"
-    ]
+    ],
+    "category": "Lanyard"
   },
   {
     "id": 7,
@@ -72,7 +63,8 @@
     "description": "¿Hay algo más útil en el día a día de los enfermeros que un lanyard? Este Lanyard PRO está dirigido a estudiantes y profesionales de la Enfermería. La profesión más bonita del mundo. Guardián de nuestras tijeras y portador del esparadrapo multiusos. Y si además es bonito… Se llevan mejor los turnos.",
     "features": [
       "Lanyard 50 x 2 cm. Con mosquetón para colgar las tijeras y clip para la identificación. Con enganche delantero para liberar las tijeras fácilmente."
-    ]
+    ],
+    "category": "Lanyard"
   },
   {
     "id": 8,
@@ -83,7 +75,8 @@
     "features": [
       "Tijeras de pico de pato de 14 cm",
       "Fabricadas en acero inoxidable"
-    ]
+    ],
+    "category": "Accesorios"
   },
   {
     "id": 9,
@@ -93,7 +86,8 @@
     "description": "Esas venas que se resisten... ¡Con estos compresores se resistirán menos! O tal vez no... Pero ¿a quién no le alegra la vista un compresor así?",
     "features": [
       "Compresor de tela elástica, fácil de lavar. Con cierre de clic y ajustable. Botón para liberar rápidamente el brazo de los pacientes."
-    ]
+    ],
+    "category": "Accesorios"
   },
   {
     "id": 10,
@@ -105,7 +99,8 @@
       "Coletero de goma elástica con tela fruncida",
       "Fácil lavado en lavadora",
       "Hecho a mano"
-    ]
+    ],
+    "category": "Accesorios"
   },
   {
     "id": 11,
@@ -116,7 +111,8 @@
     "features": [
       "Salvabolsillos de PVC de 16 x 9 cm",
       "Fácil limpieza"
-    ]
+    ],
+    "category": "Accesorios"
   },
   {
     "id": 12,
@@ -135,7 +131,8 @@
       "Sello VEGANO de INESCOP (asegura que en la fabricación del zueco no se utilizan materiales de origen animal)",
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
-    ]
+    ],
+    "category": "Zueco"
   },
   {
     "id": 13,
@@ -154,7 +151,8 @@
       "Sello VEGANO de INESCOP (asegura que en la fabricación del zueco no se utilizan materiales de origen animal)",
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
-    ]
+    ],
+    "category": "Zueco"
   },
   {
     "id": 14,
@@ -162,7 +160,8 @@
     "price": 15000,
     "image": "/images/Products/zuecos/zueco-sanitario-piel-lavable-wash-go-azul.jpg",
     "description": "El zueco Wash'Go es la solución perfecta para las que estáis hartas de la goma, o preferís la comodidad y suavidad de la piel. Porque aúna lo mejor de ambos materiales: suave como sólo la piel natural puede serlo, y fácil de limpiar como los materiales plásticos (a la lavadora, y punto). Todo ello sin renunciar a los requisitos más exigentes para el calzado laboral: Antiestáticos, Antideslizantes, Absorción de impactos, Anatómicos, Con correa ajustable. Fabricados en suave piel natural, con forro de microfibra y suela de PU (poliuretano, muy ligero, flexible y resistente). Son suaves, ligeros y con plantilla extraíble. Aseguran un perfecto ajuste gracias a sus presillas elásticas (sientan como un guante sea como sea tu empeine). Pala estanca para mayor seguridad anti-fluidos, pero 100% transpirables gracias a la piel natural. Con un tacto muy agradable por su forro de microfibra. Has leído bien...puedes lavarlos en lavadora hasta 30ºC y te quedarán perfectos!!! Aprovéchate y calza los zuecos más innovadores, porque AHORA LA PIEL YA TIENE LO QUE LE FALTABA. Hechos en Portugal.",
-    "features": []
+    "features": [],
+    "category": "Zueco"
   },
   {
     "id": 15,
@@ -183,7 +182,8 @@
       "Desinfectables con agua y lejía",
       "Correa abatible",
       "Disponibles en color blanco"
-    ]
+    ],
+    "category": "Zueco"
   },
   {
     "id": 16,
@@ -197,7 +197,8 @@
       "Portada dura",
       "Papel reciclado",
       "Banda elástica para cerrar"
-    ]
+    ],
+    "category": "Anotadores"
   },
   {
     "id": 17,
@@ -211,7 +212,8 @@
       "Portada dura",
       "Papel reciclado",
       "Banda elástica para cerrar"
-    ]
+    ],
+    "category": "Anotadores"
   },
   {
     "id": 18,
@@ -225,7 +227,8 @@
       "Portada dura",
       "Papel reciclado",
       "Banda elástica para cerrar"
-    ]
+    ],
+    "category": "Anotadores"
   },
   {
     "id": 19,
@@ -239,7 +242,8 @@
       "Portada dura",
       "Papel reciclado",
       "Banda elástica para cerrar"
-    ]
+    ],
+    "category": "Anotadores"
   },
   {
     "id": 20,
@@ -252,7 +256,8 @@
       "Material: Plástico",
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
-    ]
+    ],
+    "category": "Bazar"
   },
   {
     "id": 21,
@@ -265,7 +270,8 @@
       "Material: Plástico",
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
-    ]
+    ],
+    "category": "Bazar"
   },
   {
     "id": 22,
@@ -278,7 +284,8 @@
       "Material: Cerámica",
       "Apta para microondas y lavavajillas",
       "Diseño resistente al desgaste"
-    ]
+    ],
+    "category": "Bazar"
   },
   {
     "id": 23,
@@ -291,6 +298,7 @@
       "Material: Cerámica",
       "Apta para microondas y lavavajillas",
       "Diseño resistente al desgaste"
-    ]
+    ],
+    "category": "Bazar"
   }
 ]

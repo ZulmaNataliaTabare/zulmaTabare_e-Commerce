@@ -588,33 +588,21 @@ h1 {
   margin: 20px 0;
 }
 
-/* Filtro */
+
 #filterForm {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
-#filterForm input {
+/* #filterForm input {
   padding: 8px;
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-right: 10px;
-}
+} */ 
 
-#filterForm button {
-  padding: 8px 12px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#filterForm button:hover {
-  background-color: #0056b3;
-}
 
 /* Tabla */
 table {
@@ -645,7 +633,6 @@ table tr:hover {
 }
 
 a {
-
   text-decoration: none;
   color: #007bff;
 }
