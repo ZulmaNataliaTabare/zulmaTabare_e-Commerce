@@ -1,8 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-
 const productsFilePath = path.join(__dirname, '../data/products.json');
-let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const { filterProducts } = require('../utils/utils.js'); 
+
+
+
 
 const productsController = {
     
@@ -56,19 +59,25 @@ const productsController = {
 
     // Vista de administración de productos
     admin: (req, res) => {
-        const perPage = 4; // Productos por página
-        const page = parseInt(req.query.page) || 1;
-        const start = (page - 1) * perPage;
-        const end = start + perPage;
-
-        const paginatedProducts = products.slice(start, end);
-        const totalPages = Math.ceil(products.length / perPage);
-
-        res.render('products/admin', {
-            products: paginatedProducts,
-            currentPage: page,
-            totalPages: totalPages
-        });
+        try {
+            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Leer el archivo AQUÍ
+            const perPage = 4; // Productos por página
+            const page = parseInt(req.query.page) || 1;
+            const start = (page - 1) * perPage;
+            const end = start + perPage;
+    
+            const paginatedProducts = products.slice(start, end);
+            const totalPages = Math.ceil(products.length / perPage);
+    
+            res.render('products/admin', {
+                products: paginatedProducts,
+                currentPage: page,
+                totalPages: totalPages
+            });
+        } catch (error) {
+            console.error("Error al leer products.json:", error);
+            res.status(500).send("Error interno del servidor"); // O renderiza una página de error
+        }
     },
 
     // Eliminar un producto usando DELETE
@@ -91,7 +100,16 @@ const productsController = {
         }
         console.log("ID del producto:", productId);
 console.log("Producto encontrado:", product);
-    }
+    },
+
+        // *** NUEVO MÉTODO PARA CATEGORIAS ***
+    category: (req, res) => {
+    const category = req.query.category;
+    const filteredProducts = filterProducts(products, product => product.category.toLowerCase() === category.toLowerCase());
+    res.render('products/category', { category, products: filteredProducts });
+},
+
+
 };
 
 // Exportar los controladores

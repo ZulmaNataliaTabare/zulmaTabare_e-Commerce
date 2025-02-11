@@ -7,16 +7,14 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 
-const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
-
-
-const filterProducts = (ids) => myFilterProducts(app.locals.products, ids);
-
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
 
-// Cargar productos desde el archivo JSON
+
+const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
+
+// Cargar productos desde el archivo JSON (SIN CAMBIOS)
 const productsFilePath = path.join(__dirname, 'src', 'data', 'products.json');
 let products = [];
 try {
@@ -26,14 +24,24 @@ try {
     console.error('Error al cargar el archivo de productos:', err);
 }
 
-
 app
     .set('views', path.join(__dirname, 'src', 'views'))
     .set('view engine', 'ejs');
 
-// Función para filtrar productos para el carrusel
-const carouselProducts = () => filterProducts([1, 7, 12, 10, 20]); 
-app.locals.carouselProducts = carouselProducts;
+// *** Productos destacados ***
+function getFeaturedProducts() { // No recibe 'products' como argumento
+    const featuredIds = [1, 7, 12, 10, 20];
+    return myFilterProducts(app.locals.products, featuredIds); // Usar app.locals.products
+}
+
+app.locals.featuredProducts = getFeaturedProducts; // Asignar la función directamente
+
+// *** Productos para el carrusel ***
+function getCarouselProducts() { // No recibe 'products' como argumento
+    return myFilterProducts(app.locals.products, [1, 7, 12, 10, 20]); // Usar app.locals.products
+}
+
+app.locals.carouselProducts = getCarouselProducts; // Asignar la función directamente
 
 
 app
@@ -51,7 +59,7 @@ app
     // Rutas principales
     .use('/', indexRouter)
     .use('/users', usersRouter)
-    .use('/products', productsRouter) // Configuración de la ruta de productos
+    .use('/products', productsRouter)
 
     // Manejo de errores 404
     .use((req, res, next) => {
@@ -66,4 +74,7 @@ app
         res.render('error');
     });
 
-    module.exports = app; 
+module.exports = app;
+
+
+

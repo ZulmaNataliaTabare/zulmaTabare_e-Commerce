@@ -1,24 +1,36 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const indexController = require('../controllers/indexController');
 
-router.get('/users', userController.getAllUsers);
+router.get('/', indexController.home);
 
-// Función para obtener tres productos aleatorios (se mantiene igual)
-const getRandomProducts = (products, num) => {
-    const shuffled = products.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num);
-};
+router.get('/',  (req, res) => {
+    const featuredProducts = req.app.locals.featuredProducts(); 
+    const carouselItems = req.app.locals.carouselProducts(); 
+    const randomProducts = getRandomProducts(req.app.locals.products, 3); 
 
-router.get('/', (req, res) => {
-    const products = req.app.locals.products; // Obtén products desde app.locals
-    const carouselItems = req.app.locals.carouselProducts(); // Obtén carouselItems
-    const randomProducts = getRandomProducts(products, 3); // Llama a getRandomProducts *aquí*
-    res.render('index', { title: 'Inicio', products: randomProducts, carouselItems }); // Pasa randomProducts a la vista
+    if (!req.app.locals.products || !carouselItems) { 
+        console.error("Error: products o carouselItems no están definidos. Revisa app.js");
+        return res.status(500).send("Error interno del servidor");
+    }
+
+    const uniqueRandomProducts = [];
+    while (uniqueRandomProducts.length < 3 && randomProducts.length > 0) {
+        const product = randomProducts.pop();
+        if (!uniqueRandomProducts.includes(product)) {
+            uniqueRandomProducts.push(product);
+        }
+    }
+
+    res.render('index', {
+        title: 'Inicio',
+        products: uniqueRandomProducts,
+        carouselItems
+    });
 });
 
 
-// Rutas para "Registro", "Login" y "Carrito" (se mantienen igual)
+// Rutas para "Registro", "Login" y "Carrito" 
 router.get('/register', (req, res) => {
     res.render('users/register', { title: 'Registro' });
 });
