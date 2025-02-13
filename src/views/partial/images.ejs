@@ -3,7 +3,8 @@
         <a href="/products/detail/<%= id %>">
             <% console.log("ID del producto en images.ejs:", id); %>
             <div class="card">
-                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">                <div class="card-body">
+                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">                
+                <div class="card-body">
                     <div class="fav">
                         <i class="fa-solid fa-heart"></i>
                         <i class="fa-solid fa-bag-shopping"></i>
