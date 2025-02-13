@@ -3,23 +3,26 @@
 <%- include('../partial/header') %>
 <main>
     <div id="products" class="products-title">
-    <h5><%= category %></h5>
+        <h5><%= category %></h5>
     </div>
     <section class="articles-ambos" aria-label="Articles">
     <% if (products && products.length) { %>
         <% products.forEach(product => { %>
-        <%- include('../partial/images', {
-            id: product.id,
-            product: { image: product.image, name: product.name || 'Producto sin nombre' },
-            price: product.price || 'Precio no disponible',
-            name: product.name || 'Producto sin nombre'
-        }) %>
-        <% }) %>
-    <% } else { %>
-        <p>No hay productos disponibles.</p>
+            <% try { %>
+                <%- include('../partial/images', {
+                    id: product.id,
+                    product: { image: product.image, name: product.name || 'Sin nombre' },
+                    price: product.price || 'Sin precio',
+                    name: product.name || 'Sin nombre'
+                }) %>
+            <% } catch (error) { %>
+                <p>Error al incluir imagen: <%= error.message %></p>
+            <% } %>
+        <% }); %>
     <% } %>
-    </section>
 </main>
 <%- include('../partial/footer') %>
 </body>
 </html>
+
+

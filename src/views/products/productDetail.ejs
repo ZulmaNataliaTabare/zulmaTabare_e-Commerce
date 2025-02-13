@@ -4,8 +4,7 @@
 <%- include('../partial/header') %> 
 <main> 
     <h4 id="products" class="products-title"><%= product.name %></h4> 
-    <%- include('../partial/images', { id: product.id, product: { image: product.image, name: product.name }, price: product.price, name: product.name }) %> 
-    <p><%= product.description %></p> 
+    <%- include('../partial/images', { id: product.id, product: product, price: product.price }) %><p><%= product.description %></p> 
     <h4>Características:</h4> 
     <ul> 
     <% product.features.forEach(feature => { %> 

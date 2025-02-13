@@ -1,4 +1,14 @@
-// Función auxiliar para filtrar productos
-const filterProducts = (products, ids) => products.filter(product => ids.includes(product.id)); // Recibe products como argumento
+const filterProducts = (products, ids) => products.filter(product => ids.includes(product.id)); // Filtra por IDs
 
-module.exports = { filterProducts };
+function filterProductsByCategory(products, category) {
+    if (!category) { 
+        return products; 
+    }
+
+    return products.filter(product => product.category?.toLowerCase() === category.toLowerCase());
+}
+
+module.exports = { 
+    filterProducts, 
+    filterProductsByCategory 
+};

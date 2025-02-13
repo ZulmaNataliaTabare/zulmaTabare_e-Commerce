@@ -1,15 +1,22 @@
-require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
+const methodOverride = require('method-override');
 const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 
+
+app.use(express.urlencoded({ extended: true })); // Middleware para parsear el body de las solicitudes
+app.use(methodOverride('_method')); // Middleware para habilitar PUT y DELETE
+
+
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
+
 
 
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
@@ -72,7 +79,8 @@ app
         res.locals.error = req.app.get('env') === 'development' ? err : {};
         res.status(err.status || 500);
         res.render('error');
-    });
+    })
+
 
 module.exports = app;
 
