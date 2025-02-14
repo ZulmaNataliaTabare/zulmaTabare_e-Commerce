@@ -1,8 +1,10 @@
-<%- include('../partial/head') %> 
+<%-include('../partial/head') %>
 
-<body> 
-<%- include('../partial/header') %> 
-<main> 
+<body>
+    <%-include('../partial/header') %>
+
+
+    <main>
     <h4 id="products" class="products-title"><%= product.name %></h4> 
     <%- include('../partial/images', { id: product.id, product: product, price: product.price }) %><p><%= product.description %></p> 
     <h4>Características:</h4> 

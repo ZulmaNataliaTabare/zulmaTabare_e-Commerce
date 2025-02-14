@@ -1,4 +1,3 @@
-
 const createError = require('http-errors');
 const express = require('express');
 const methodOverride = require('method-override');
@@ -6,22 +5,24 @@ const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
 const app = express();
 
-
-app.use(express.urlencoded({ extended: true })); // Middleware para parsear el body de las solicitudes
-app.use(methodOverride('_method')); // Middleware para habilitar PUT y DELETE
+// Importa los middlewares
+const errorLogger = require('./src/middlewares/errorLogger');
+const notFoundHandler = require('./src/middlewares/notFoundHandler');
+const requestLogger = require('./src/middlewares/requestLogger');
+const sessionMiddleware = require('./src/middlewares/sessionMiddleware');
+const rememberMeMiddleware = require('./src/middlewares/rememberMeMiddleware'); // Nuevo middleware
 
 
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
 
-
-
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
 
-// Cargar productos desde el archivo JSON (SIN CAMBIOS)
+// Cargar productos desde el archivo JSON
 const productsFilePath = path.join(__dirname, 'src', 'data', 'products.json');
 let products = [];
 try {
@@ -33,54 +34,47 @@ try {
 
 app
     .set('views', path.join(__dirname, 'src', 'views'))
-    .set('view engine', 'ejs');
+    .set('view engine', 'ejs')
 
-// *** Productos destacados ***
-function getFeaturedProducts() { // No recibe 'products' como argumento
-    const featuredIds = [1, 7, 12, 10, 20];
-    return myFilterProducts(app.locals.products, featuredIds); // Usar app.locals.products
-}
+    .use(express.urlencoded({ extended: true })) // Middleware para parsear el body
+    .use(methodOverride('_method'))         // Middleware para habilitar PUT y DELETE
 
-app.locals.featuredProducts = getFeaturedProducts; // Asignar la función directamente
+    // Middleware de sesión (¡antes de las rutas!)
+    .use(sessionMiddleware)
 
-// *** Productos para el carrusel ***
-function getCarouselProducts() { // No recibe 'products' como argumento
-    return myFilterProducts(app.locals.products, [1, 7, 12, 10, 20]); // Usar app.locals.products
-}
-
-app.locals.carouselProducts = getCarouselProducts; // Asignar la función directamente
+    // Middlewares de la aplicación
+    .use(logger('dev'))                     // Middleware para log de requests
+    .use(express.json())                    // Middleware para parsear JSON
+    .use(cookieParser())                   // Middleware para parsear cookies
+    .use(express.static(path.join(__dirname, 'public'))) // Middleware para archivos estáticos
+    .use(requestLogger)                     // Middleware para log de requests (nuestro log personalizado)
 
 
-app
-    .use(logger('dev'))
-    .use(express.json())
-    .use(express.urlencoded({ extended: true }))
-    .use(cookieParser())
-    .use(express.static(path.join(__dirname, 'public')))
-
+    // *** Productos destacados y carrusel (Middleware) ***
     .use((req, res, next) => {
-        console.log(`Archivo solicitado: ${req.originalUrl}`);
+        function getFeaturedProducts() {
+            const featuredIds = [1, 7, 12, 10, 20];
+            return myFilterProducts(app.locals.products, featuredIds);
+        }
+
+        app.locals.featuredProducts = getFeaturedProducts;
+
+        function getCarouselProducts() {
+            return myFilterProducts(app.locals.products, [1, 7, 12, 10, 20]);
+        }
+
+        app.locals.carouselProducts = getCarouselProducts;
         next();
     })
 
-    // Rutas principales
+    // Rutas
     .use('/', indexRouter)
     .use('/users', usersRouter)
     .use('/products', productsRouter)
 
-    // Manejo de errores 404
-    .use((req, res, next) => {
-        next(createError(404));
-    })
-
-    // Manejo de otros errores
-    .use((err, req, res, next) => {
-        res.locals.message = err.message;
-        res.locals.error = req.app.get('env') === 'development' ? err : {};
-        res.status(err.status || 500);
-        res.render('error');
-    })
-
+    // Manejo de errores
+    .use(notFoundHandler) // Middleware para error 404
+    .use(errorLogger);     // Middleware para log de errores
 
 module.exports = app;
 
