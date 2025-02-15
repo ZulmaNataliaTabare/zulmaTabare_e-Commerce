@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.swiper-container', {
+        
         // Opciones del carrusel
         loop: true,
         pagination: {

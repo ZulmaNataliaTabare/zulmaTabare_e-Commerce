@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const usersFilePath = path.join(__dirname, '../data/users.json'); // Ruta al archivo users.json
+const User = require('../models/users');
+const usersFilePath = path.join(__dirname, './src/data/users.json'); // Ruta al archivo users.json
 const bcrypt = require('bcrypt'); // Importa bcrypt
+const { profile } = require('console');
 
 const userController = {
     registerUser: async (req, res) => {
@@ -49,24 +51,23 @@ const userController = {
 
         try {
             const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-            const user = users.find(u => u.NombreUsuario === usuario || u.Email === usuario);
+            const user = users.find(u => u.nombreusuario === usuario || u.Email === usuario);
 
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
 
-            bcrypt.compare(Contrasena, user.Contrasena, (err, result) => {
+            bcrypt.compare(Contrasena, user.contrasena, (err, result) => {
                 if (err || !result) {
                     return res.render('users/login', { error: "Contraseña incorrecta." });
                 }
 
-                if (remember) { // Ahora remember está definida
+                if (remember) { // Si remember es true, crea una cookie con el usuario
                     res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Cookie por 30 días
                 }
 
-                req.session.user = user;
-                const redirectPath = user.profile ? `/users/profile/${user.id}` : '/';
-                res.redirect(redirectPath);
+                req.session.user = user; // Guarda el usuario en la sesión
+                res.redirect('/users/profile'); // Redirige al perfil
             });
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
@@ -75,10 +76,55 @@ const userController = {
     },
 
     logout: (req, res) => {
-        // ... (código para cerrar sesión - sin cambios)
+        req.session.destroy((err) => { // Callback para manejar errores
+            if (err) {
+                console.error("Error al destruir la sesión:", err);
+                return res.redirect('/profile'); // O a donde quieras redirigir en caso de error
+            }
+            res.clearCookie('remember');
+            res.redirect('/users/login');
+        });
     },
+
+    profileUser: (req, res) => {
+        if (!req.session.user) {
+            return res.redirect('/users/login'); // Redirige si no hay usuario en la sesión
+        }
+    
+        const user = req.session.user; // Obtiene el usuario de la sesión
+        res.render('users/profile', { user }); // Renderiza la vista
+    },
+
+    updateProfile: async (req, res) => {
+        try {
+            const user = req.session.user; // Obtén el usuario de la sesión
+            if (!user) {
+                return res.redirect('/users/login'); // Redirige al login si no hay usuario
+            }
+
+            const { nombre, NombreUsuario, Email, Contrasena } = req.body;
+            const updatedUser = {
+                nombre: nombre || user.nombre, // Usa el valor actual si no se proporciona uno nuevo
+                NombreUsuario: NombreUsuario || user.NombreUsuario,
+                Email: Email || user.Email,
+            };
+
+            if (Contrasena) {
+                updatedUser.Contrasena = await bcrypt.hash(Contrasena, 10);
+            }
+
+            if (req.file) {
+                updatedUser.image = req.file.filename;
+            }
+
+            await User.update(user.id, updatedUser); // Actualiza el usuario usando el ID
+            req.session.user = { ...user, ...updatedUser }; // Actualiza la sesión con los nuevos datos
+            res.redirect('/users/profile'); // Redirige al perfil actualizado
+        } catch (error) {
+            console.error("Error al actualizar perfil:", error);
+            res.redirect('/users/profile'); // Redirige al perfil en caso de error
+        }
+    },     
 };
-
-
 
 module.exports = userController;

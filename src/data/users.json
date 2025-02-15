@@ -1,114 +1,129 @@
 [
-  {
+{
     "id": 1,
-    "first_name": "Zulma",
-    "last_name": "Tabare",
+    "nombre": "zulma natalia",
+    "apellido": "tabare",
+    "nombreusuario": "zulma",
     "email": "sulmatabare@gmail.com",
-    "password": "12341234",
-    "rol": "Admin"
-  },
-  {
+    "password": "123123123",
+    "rol": "admin",
+    "image": ""
+},
+{
     "id": 2,
-    "first_name": "Emelyne",
-    "last_name": "Eliet",
-    "email": "eeliet1@whitehouse.gov",
-    "password": "dpdfP09%'wpWMq_H",
-    "category": "Sitework & Site Utilities"
-  },
-  {
+    "nombre": "nulla justo",
+    "apellido": "diam erat",
+    "email": "labramski1@weather.com",
+    "password": "ybeaeP2,P1TO",
+    "rol": "customer",
+    "image": "https://robohash.org/impeditautquo.jpg?size=50x50&set=set1"
+},
+{
     "id": 3,
-    "first_name": "Kesley",
-    "last_name": "Ollenbuttel",
-    "email": "kollenbuttel2@deliciousdays.com",
-    "password": "wvgwG40~2p",
-    "category": "Framing (Wood)"
-  },
-  {
+    "nombre": "eros",
+    "apellido": "ut massa",
+    "email": "lkoba2@skype.com",
+    "password": "xyfcgM8\\iRospmp",
+    "rol": "customer",
+    "image": "https://robohash.org/magnitemporeconsequatur.jpg?size=50x50&set=set1"
+},
+{
     "id": 4,
-    "first_name": "Enid",
-    "last_name": "Burgh",
-    "email": "eburgh3@chronoengine.com",
-    "password": "pnwxQ43\\=\"",
-    "category": "Soft Flooring and Base"
-  },
-  {
+    "nombre": "lobortis convallis",
+    "apellido": "nunc",
+    "email": "vflye3@com.com",
+    "password": "kzvdlD4<A",
+    "rol": "customer",
+    "image": "https://robohash.org/quaevelitharum.jpg?size=50x50&set=set1"
+},
+{
     "id": 5,
-    "first_name": "Dag",
-    "last_name": "Tucker",
-    "email": "dtucker4@tiny.cc",
-    "password": "hyidE43#",
-    "category": "Drilled Shafts"
-  },
-  {
+    "nombre": "rhoncus",
+    "apellido": "suscipit",
+    "email": "kpetts4@mayoclinic.com",
+    "password": "itglmT1@+Ki,~Lx",
+    "rol": "admin",
+    "image": "https://robohash.org/beataesimiliquefuga.jpg?size=50x50&set=set1"
+},
+{
     "id": 6,
-    "first_name": "Pasquale",
-    "last_name": "Cleverley",
-    "email": "pcleverley5@wisc.edu",
-    "password": "thmhK77@Qcm$4N",
-    "category": "Site Furnishings"
-  },
-  {
+    "nombre": "dui",
+    "apellido": "augue luctus",
+    "email": "cbarby5@arizona.edu",
+    "password": "ntxizG8.MPe7Sbp",
+    "rol": "admin",
+    "image": "https://robohash.org/sapienteconsequaturaut.jpg?size=50x50&set=set1"
+},
+{
     "id": 7,
-    "first_name": "Dickie",
-    "last_name": "Weatherdon",
-    "email": "dweatherdon6@chicagotribune.com",
-    "password": "srwsD01,",
-    "category": "Masonry & Precast"
-  },
-  {
+    "nombre": "dui luctus",
+    "apellido": "mauris non",
+    "email": "akeavy6@npr.org",
+    "password": "zwwmdP0\\8,y*B8",
+    "rol": "customer",
+    "image": "https://robohash.org/liberodolormagni.jpg?size=50x50&set=set1"
+},
+{
     "id": 8,
-    "first_name": "Elfrieda",
-    "last_name": "Eberst",
-    "email": "eeberst7@shinystat.com",
-    "password": "izptX81>W",
-    "category": "Curb & Gutter"
-  },
-  {
+    "nombre": "luctus rutrum",
+    "apellido": "in",
+    "email": "jtullett7@sfgate.com",
+    "password": "hlxpkW9~?gT#9z",
+    "rol": "customer",
+    "image": "https://robohash.org/consequatursedquibusdam.jpg?size=50x50&set=set1"
+},
+{
     "id": 9,
-    "first_name": "Constantino",
-    "last_name": "Dalziell",
-    "email": "cdalziell8@guardian.co.uk",
-    "password": "ddibQ88(/",
-    "category": "Marlite Panels (FED)"
-  },
-  {
+    "nombre": "porta",
+    "apellido": "sollicitudin",
+    "email": "mboundley8@unblog.fr",
+    "password": "dimdfO4@qu",
+    "rol": "customer",
+    "image": "https://robohash.org/laborumaliassed.jpg?size=50x50&set=set1"
+},
+{
     "id": 10,
-    "first_name": "Carmel",
-    "last_name": "Carlile",
-    "email": "ccarlile9@delicious.com",
-    "password": "vnicR50<B+1oU",
-    "category": "Masonry"
-  },
-  {
+    "nombre": "in ante",
+    "apellido": "felis ut",
+    "email": "epennycook9@cloudflare.com",
+    "password": "zdxseW9')GJ|$K}{",
+    "rol": "admin",
+    "image": "https://robohash.org/magniimpeditquibusdam.jpg?size=50x50&set=set1"
+},
+{
     "id": 11,
-    "nombre": "Jorge Aravena",
-    "NombreUsuario": "Jor-Aravena",
-    "Email": "Jor-Aravena@gmail.com",
+    "nombre": "jorge aravena",
+    "apellido": "aravena",
+    "nombreusuario": "jor-aravena",
+    "email": "jor-aravena@gmail.com",
     "image": "image-1739472756938.jpg",
-    "Contrasena": "$2b$10$LZD1q.G3zg76Rr52MVgwruHXsPmurrGxC/CzB1EzsSQ41dt627VYC"
-  },
-  {
+    "contrasena": "$2b$10$LZD1q.G3zg76Rr52MVgwruHXsPmurrGxC/CzB1EzsSQ41dt627VYC"
+},
+{
     "id": 12,
-    "nombre": "Jorge Aravena",
-    "NombreUsuario": "Jorge",
-    "Email": "jor-Aravena@gmail.com",
+    "nombre": "jorge aravena",
+    "apellido": "aravena",
+    "nombreusuario": "jorge",
+    "email": "jor-aravena@gmail.com",
     "image": "image-1739472851805.jpg",
-    "Contrasena": "$2b$10$djQ3jWHqGYBje2MR3HRmE.lCTpuE1K8jz3Fd1eKWHZgzXV1cnKnQi"
-  },
-  {
+    "contrasena": "$2b$10$djQ3jWHqGYBje2MR3HRmE.lCTpuE1K8jz3Fd1eKWHZgzXV1cnKnQi"
+},
+{
     "id": 13,
-    "nombre": "Jorge Aravena",
-    "NombreUsuario": "Jor-Aravena",
-    "Email": "Jor-Aravena@gmail.com",
+    "nombre": "jorge aravena",
+    "apellido": "aravena",
+    "nombreusuario": "jor-aravena",
+    "email": "jor-aravena@gmail.com",
     "image": "image-1739473661779.jpg",
-    "Contrasena": "$2b$10$8iHC4pDmIkRTpmCjAitRG.lkAKxo1ixSQzzFhaNlrtgDuhdzIg8oy"
-  },
-  {
+    "contrasena": "$2b$10$8iHC4pDmIkRTpmCjAitRG.lkAKxo1ixSQzzFhaNlrtgDuhdzIg8oy"
+},
+{
     "id": 14,
-    "nombre": "Florencia Brizuela",
-    "NombreUsuario": "flor.Bri",
-    "Email": "bri@gmail.com",
+    "nombre": "florencia brizuela",
+    "apellido": "brizuela",
+    "nombreusuario": "flor.bri",
+    "email": "bri@gmail.com",
     "image": "image-1739473888794.jpg",
-    "Contrasena": "$2b$10$.DApkzWaN7QKTc9vnf9A7.qLv1UMwIkwl1v9sBbP5EgDj1396dd4y"
-  }
+    "contrasena": "$2b$10$.DApkzWaN7QKTc9vnf9A7.qLv1UMwIkwl1v9sBbP5EgDj1396dd4y"
+}
 ]

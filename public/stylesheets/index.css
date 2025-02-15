@@ -1,10 +1,23 @@
 
+
+.logo-user {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
 .logo {
     width: 58px;
     height: auto;
     border-radius: 1em;
     padding-left: 20px;
+    margin-right: 10px;
 }
+
+
 
 header {
     background-color: var(--primary-color);
@@ -55,11 +68,26 @@ nav.nav {
     z-index: 10;
 }
 
-
-.user-icon, .cart-icon, .login-icon {
-    font-size: 30px;
+/* .user-greeting { 
     color: var(--text-color--); 
+} */
+
+/* .user-icons { 
+    display: flex;
+    align-items: center;
+} */
+
+.user-icon, .cart-icon, .login-icon, .logout-icon { 
+    font-size: 30px;
+    color: var(--text-color--);
     margin-right: 15px;
+}
+
+.register-icon { 
+    font-size: 30px; 
+    color: var(--text-color--); 
+    margin-right: 15px; 
+    
 }
 
 ul {

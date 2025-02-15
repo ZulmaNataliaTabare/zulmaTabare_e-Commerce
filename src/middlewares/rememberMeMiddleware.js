@@ -1,16 +1,17 @@
+const User = require('../models/users'); // Importa el modelo de usuarios
 
-module.exports = async (req, res, next) => {
-    if (!req.session.user && req.cookies.remember) {
+module.exports = async (req, res, next) => { // Usando async/await
+    if (req.cookies.remember) {
+        const usuarioRecordado = req.cookies.remember;
+
         try {
-            const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8')); // Ajusta la ruta si es necesario
-            const user = users.find(u => u.NombreUsuario === req.cookies.remember);
-
+            const user = await User.findByUsername(usuarioRecordado); // Usando await
             if (user) {
                 req.session.user = user;
             }
         } catch (error) {
-            console.error("Error al verificar la cookie:", error);
+            console.error("Error al recordar usuario:", error);
         }
     }
-    next();
+    next(); // Llama al siguiente middleware
 };
