@@ -138,7 +138,56 @@ const userController = {
             console.error("Error al actualizar perfil:", error);
             res.redirect('/users/profile'); // Redirige al perfil en caso de error
         }
-    },     
+    },
+    
+    
+    getPreguntaSeguridad: async (req, res) => {
+        const { usuario } = req.body;
+
+        try {
+            const users = await User.getAll();
+            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
+
+            if(user){
+                res.json({ pregunta: user.preguntaSeguridad });
+            }else{
+                res.json({ pregunta: null });
+            }
+        } catch (error) {
+            console.error("Error al obtener pregunta de seguridad:", error);
+            res.status(500).json({ pregunta: null });
+        }
+    },
+
+    forgotPassword: async (req, res) => {
+        const { usuario, respuesta, contrasena } = req.body;
+
+        try {
+            const users = await User.getAll();
+            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
+
+            if (!user || user. respuestaSeguridad !== respuesta) {
+                return res.render('users/forgotPassword', { error: "Respuesta incorrecta." });
+            }
+
+            if (respuesta !== user.respuestaSeguridad) {
+                return res.status(400).send("Respuesta incorrecta.");
+            }
+
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
+            
+            await User.update(user.id, { contrasena: hashedPassword });
+
+            res.redirect('/users/login');
+        } catch (error) {
+            console.error("Error al cambiar contraseña:", error);
+            res.status(500).send("Error interno del servidor.");
+        }
+    },
+
+
+
 };
 
 module.exports = userController;

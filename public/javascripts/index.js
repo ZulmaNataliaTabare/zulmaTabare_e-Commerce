@@ -7,7 +7,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Ruta para servir el archivo HTML
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.ejs'));
 });
 
 

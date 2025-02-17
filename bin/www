@@ -5,7 +5,7 @@ var http = require('http');
 
 const { filterProducts } = require('../app'); // Requiere app desde app.js
 
-const port = normalizePort(process.env.PORT || '3002');
+const port = normalizePort(process.env.PORT || '3006');
   
 app.set('port', port);
 
