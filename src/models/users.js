@@ -1,7 +1,7 @@
 
 const fs = require('fs/promises');
 const path = require('path');
-const usersFilePath = path.join(__dirname, './src/data/users.json');
+const usersFilePath = path.join(__dirname, '../data/users.json');
 
 console.log("Ruta users.json:", usersFilePath); // Imprime la ruta
 
@@ -9,11 +9,11 @@ console.log("Ruta users.json:", usersFilePath); // Imprime la ruta
 const User = {
     getAll: async () => {
         try {
-            const data = await fs.readFile('./src/data/users.json', 'utf8');
+            const data = await fs.readFile(usersFilePath, 'utf8');
             return JSON.parse(data);
         } catch (error) {
-            console.error('Error al leer Users.json:', error);
-            return []; // Devuelve un array vacío en caso de error
+            console.error('Error al leer users.json (users.js):', error);
+            return [];
         }
     },
 
@@ -37,14 +37,14 @@ const User = {
         const userIndex = users.findIndex(user => user.id === id);
 
         if (userIndex !== -1) {
-            users[userIndex] = { ...users[userIndex], ...data }; // Actualiza los datos
+            users[userIndex] = { ...users[userIndex], ...data };
             try {
-                await fs.writeFile('./src/data/users.json', JSON.stringify(users, null, 2), 'utf8'); // Escribe los cambios en el archivo
+                await fs.writeFile(usersFilePath, JSON.stringify(users, null, 2));
             } catch (error) {
                 console.error('Error al escribir users.json:', error);
             }
         }
-    }
+    },
 };
 
 module.exports = User;

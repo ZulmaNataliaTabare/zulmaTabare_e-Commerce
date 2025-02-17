@@ -17,6 +17,8 @@ const upload = multer({ storage: storage });
 
 router
     .post('/register', upload.single('image'), registerUser)
+    .get('/register', (req, res) => res.render('users/register'))
+    .get('/cart', (req, res) => res.render('users/cart'))
     .get('/login', (req, res) => res.render('users/login'))
     .post('/login', loginUser)
     .get('/logout', logout) // Ruta para cerrar sesión

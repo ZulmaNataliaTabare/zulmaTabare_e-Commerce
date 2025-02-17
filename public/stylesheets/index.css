@@ -68,14 +68,6 @@ nav.nav {
     z-index: 10;
 }
 
-/* .user-greeting { 
-    color: var(--text-color--); 
-} */
-
-/* .user-icons { 
-    display: flex;
-    align-items: center;
-} */
 
 .user-icon, .cart-icon, .login-icon, .logout-icon { 
     font-size: 30px;

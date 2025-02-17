@@ -30,17 +30,4 @@ router.get('/',  (req, res) => {
 });
 
 
-// Rutas para "Registro", "Login" y "Carrito" 
-router.get('/register', (req, res) => {
-    res.render('users/register', { title: 'Registro' });
-});
-
-router.get('/login', (req, res) => {
-    res.render('users/login', { title: 'Login' });
-});
-
-router.get('/cart', (req, res) => {
-    res.render('users/cart', { title: 'Carrito' });
-});
-
 module.exports = router;

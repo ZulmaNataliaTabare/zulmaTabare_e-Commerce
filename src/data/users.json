@@ -1,129 +1,37 @@
 [
-{
+  {
     "id": 1,
-    "nombre": "zulma natalia",
-    "apellido": "tabare",
-    "nombreusuario": "zulma",
-    "email": "sulmatabare@gmail.com",
-    "password": "123123123",
-    "rol": "admin",
-    "image": ""
-},
-{
-    "id": 2,
-    "nombre": "nulla justo",
-    "apellido": "diam erat",
-    "email": "labramski1@weather.com",
-    "password": "ybeaeP2,P1TO",
-    "rol": "customer",
-    "image": "https://robohash.org/impeditautquo.jpg?size=50x50&set=set1"
-},
-{
-    "id": 3,
-    "nombre": "eros",
-    "apellido": "ut massa",
-    "email": "lkoba2@skype.com",
-    "password": "xyfcgM8\\iRospmp",
-    "rol": "customer",
-    "image": "https://robohash.org/magnitemporeconsequatur.jpg?size=50x50&set=set1"
-},
-{
-    "id": 4,
-    "nombre": "lobortis convallis",
-    "apellido": "nunc",
-    "email": "vflye3@com.com",
-    "password": "kzvdlD4<A",
-    "rol": "customer",
-    "image": "https://robohash.org/quaevelitharum.jpg?size=50x50&set=set1"
-},
-{
-    "id": 5,
-    "nombre": "rhoncus",
-    "apellido": "suscipit",
-    "email": "kpetts4@mayoclinic.com",
-    "password": "itglmT1@+Ki,~Lx",
-    "rol": "admin",
-    "image": "https://robohash.org/beataesimiliquefuga.jpg?size=50x50&set=set1"
-},
-{
-    "id": 6,
-    "nombre": "dui",
-    "apellido": "augue luctus",
-    "email": "cbarby5@arizona.edu",
-    "password": "ntxizG8.MPe7Sbp",
-    "rol": "admin",
-    "image": "https://robohash.org/sapienteconsequaturaut.jpg?size=50x50&set=set1"
-},
-{
-    "id": 7,
-    "nombre": "dui luctus",
-    "apellido": "mauris non",
-    "email": "akeavy6@npr.org",
-    "password": "zwwmdP0\\8,y*B8",
-    "rol": "customer",
-    "image": "https://robohash.org/liberodolormagni.jpg?size=50x50&set=set1"
-},
-{
-    "id": 8,
-    "nombre": "luctus rutrum",
-    "apellido": "in",
-    "email": "jtullett7@sfgate.com",
-    "password": "hlxpkW9~?gT#9z",
-    "rol": "customer",
-    "image": "https://robohash.org/consequatursedquibusdam.jpg?size=50x50&set=set1"
-},
-{
-    "id": 9,
-    "nombre": "porta",
-    "apellido": "sollicitudin",
-    "email": "mboundley8@unblog.fr",
-    "password": "dimdfO4@qu",
-    "rol": "customer",
-    "image": "https://robohash.org/laborumaliassed.jpg?size=50x50&set=set1"
-},
-{
-    "id": 10,
-    "nombre": "in ante",
-    "apellido": "felis ut",
-    "email": "epennycook9@cloudflare.com",
-    "password": "zdxseW9')GJ|$K}{",
-    "rol": "admin",
-    "image": "https://robohash.org/magniimpeditquibusdam.jpg?size=50x50&set=set1"
-},
-{
-    "id": 11,
-    "nombre": "jorge aravena",
-    "apellido": "aravena",
-    "nombreusuario": "jor-aravena",
-    "email": "jor-aravena@gmail.com",
-    "image": "image-1739472756938.jpg",
-    "contrasena": "$2b$10$LZD1q.G3zg76Rr52MVgwruHXsPmurrGxC/CzB1EzsSQ41dt627VYC"
-},
-{
-    "id": 12,
-    "nombre": "jorge aravena",
-    "apellido": "aravena",
-    "nombreusuario": "jorge",
-    "email": "jor-aravena@gmail.com",
-    "image": "image-1739472851805.jpg",
-    "contrasena": "$2b$10$djQ3jWHqGYBje2MR3HRmE.lCTpuE1K8jz3Fd1eKWHZgzXV1cnKnQi"
-},
-{
-    "id": 13,
-    "nombre": "jorge aravena",
-    "apellido": "aravena",
-    "nombreusuario": "jor-aravena",
-    "email": "jor-aravena@gmail.com",
-    "image": "image-1739473661779.jpg",
-    "contrasena": "$2b$10$8iHC4pDmIkRTpmCjAitRG.lkAKxo1ixSQzzFhaNlrtgDuhdzIg8oy"
-},
-{
-    "id": 14,
     "nombre": "florencia brizuela",
     "apellido": "brizuela",
     "nombreusuario": "flor.bri",
     "email": "bri@gmail.com",
     "image": "image-1739473888794.jpg",
-    "contrasena": "$2b$10$.DApkzWaN7QKTc9vnf9A7.qLv1UMwIkwl1v9sBbP5EgDj1396dd4y"
-}
+    "contrasena": "$2b$10$.DApkzWaN7QKTc9vnf9A7.qLv1UMwIkwl1v9sBbP5EgDj1396dd4y",
+    "preguntaSeguridad": "¿Cuál es tu color favorito?",
+    "respuestaSeguridad": "azul",
+    "rol": "visitante"
+  },
+  {
+    "id": 2,
+    "nombre": "Jazmin",
+    "apellido": "Tabare",
+    "nombreusuario": "Jaz.Tabare",
+    "email": "jaz@gmail.com",
+    "image": "image-1739657684413.jpg",
+    "contrasena": "$2b$10$LpSX9AdjcwafJroJMCmo3.T6nMWTEA4SyZqbXnJXrBxXdCiI0n/4G",
+    "preguntaSeguridad": "¿Cuál es tu color favorito?",
+    "respuestaSeguridad": "rojo",
+    "rol": "visitante"
+  },
+  {
+    "id": 3,
+    "nombre": "Zulma",
+    "nombreusuario": "ZNT",
+    "email": "sulmatabare@gmail.com",
+    "image": "image-1739665249994.jpg",
+    "contrasena": "$2b$10$50x7L9yXJGHs8mky6PZkJeHQbfF3MMZXvJ8KixeapqSyDEL27HMfC",
+    "preguntaSeguridad": "¿Cuál es tu color favorito?",
+    "respuestaSeguridad": "rojo",
+    "rol": "admin"
+  }
 ]

@@ -137,20 +137,23 @@ const productsController = {
     // Detalle de un producto
     detail: (req, res) => {
         try {
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); // Leer el archivo aquí
-        const productId = parseInt(req.params.id, 10);
-        const product = products.find(p => p.id === productId);
+            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
+            const productId = parseInt(req.params.id, 10);
+            const product = products.find(p => p.id === productId);
 
-        if (product) {
-            res.render('products/productDetail', { product });
-        } else {
-            res.status(404).send('Producto no encontrado');
+            if (product) {
+                res.render('products/productDetail', {
+                    product
+                });
+            } else {
+                res.status(404).send('Producto no encontrado');
+            }
+        } catch (error) {
+            console.error("Error al leer products.json:", error);
+            res.status(500).send("Error interno del servidor"); 
         }
-    } catch (error) {
-        console.error("Error al leer products.json:", error);
-        res.status(500).send("Error interno del servidor"); // O renderiza una página de error
-    }
-}, 
+    },
+
 
         // *** NUEVO MÉTODO PARA CATEGORIAS ***
         category: (req, res) => {

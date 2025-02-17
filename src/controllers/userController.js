@@ -1,12 +1,13 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 const User = require('../models/users');
-const usersFilePath = path.join(__dirname, './src/data/users.json'); // Ruta al archivo users.json
+const usersFilePath = path.join(__dirname, '../data/users.json'); 
 const bcrypt = require('bcrypt'); // Importa bcrypt
-const { profile } = require('console');
 
 const userController = {
+    
     registerUser: async (req, res) => {
+        console.log("req.body:", req.body); // Imprime req.body
         try {
             console.log("req.file:", req.file);
 
@@ -14,31 +15,33 @@ const userController = {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
 
-            const { nombre, NombreUsuario, Email, Contrasena } = req.body;
+            const { nombre, nombreusuario, email, contrasena, preguntaSeguridad, respuestaSeguridad } = req.body;
+            
+            console.log("Contraseña recibida:", contrasena); // Imprime la contraseña
 
-            const saltRounds = 10; // Número de rondas para bcrypt
-            const hashedPassword = await bcrypt.hash(Contrasena, saltRounds); // Encripta la contraseña
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
 
-            const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+            const users = await User.getAll();
             const newUser = {
                 id: users.length ? parseInt(users[users.length - 1].id) + 1 : 1,
                 nombre,
-                NombreUsuario,
-                Email,
+                nombreusuario,
+                email,
                 image: req.file.filename,
-                Contrasena: hashedPassword // Guarda la contraseña encriptada
+                contrasena: hashedPassword,
+                preguntaSeguridad, // Guarda la pregunta de seguridad
+                respuestaSeguridad, // Guarda la respuesta de seguridad
             };
 
-            users.push(newUser);
-
             try {
-                fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+                await fs.writeFile(usersFilePath, JSON.stringify([...users, newUser], null, 2));
             } catch (writeError) {
                 console.error("Error al escribir users.json:", writeError);
                 return res.status(500).send("Error al guardar el usuario.");
             }
 
-            res.redirect('/users/login'); // Redirijo al login después del registro
+            res.redirect('/users/login');
 
         } catch (error) {
             console.error("Error al registrar usuario:", error);
@@ -46,40 +49,51 @@ const userController = {
         }
     },
 
-    loginUser: (req, res) => {
-        const { usuario, Contrasena, remember } = req.body; // Obtén remember desde req.body
+    loginUser: async (req, res) => { // async para usar await
+        const { usuario, contrasena, remember } = req.body;
 
         try {
-            const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-            const user = users.find(u => u.nombreusuario === usuario || u.Email === usuario);
+            const users = await User.getAll(); // Uso User.getAll() para leer los usuarios (asíncrono)
+            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
 
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
 
-            bcrypt.compare(Contrasena, user.contrasena, (err, result) => {
-                if (err || !result) {
-                    return res.render('users/login', { error: "Contraseña incorrecta." });
+            const result = await bcrypt.compare(contrasena, user.contrasena); // await para bcrypt.compare
+            if (!result) {
+                return res.render('users/login', { error: "Contraseña incorrecta." });
+            }
+
+            if (user) {
+                req.session.user = user;
+
+                if (remember) {
+                    res.cookie('remember', user.nombreusuario, { // Crea la cookie 'remember'
+                        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 días
+                        httpOnly: true,
+                        sameSite: 'strict',
+                        secure: process.env.NODE_ENV === 'production',
+                    });
+                }else{
+                    res.clearCookie('remember');
                 }
 
-                if (remember) { // Si remember es true, crea una cookie con el usuario
-                    res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Cookie por 30 días
-                }
-
-                req.session.user = user; // Guarda el usuario en la sesión
-                res.redirect('/users/profile'); // Redirige al perfil
-            });
+                return res.redirect('/'); // Redirige a la ruta principal ('/') que renderiza index.ejs
+            } else {
+                return res.render('users/login', { error: "Usuario o contraseña incorrectos." }); // Renderiza la vista de login con el error
+            } 
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
             res.status(500).send("Error interno del servidor.");
-        }
+        }   
     },
 
     logout: (req, res) => {
         req.session.destroy((err) => { // Callback para manejar errores
             if (err) {
                 console.error("Error al destruir la sesión:", err);
-                return res.redirect('/profile'); // O a donde quieras redirigir en caso de error
+                return res.redirect('/profile'); // Redirige al perfil en caso de error
             }
             res.clearCookie('remember');
             res.redirect('/users/login');
@@ -88,11 +102,11 @@ const userController = {
 
     profileUser: (req, res) => {
         if (!req.session.user) {
-            return res.redirect('/users/login'); // Redirige si no hay usuario en la sesión
+            return res.redirect('/users/login'); // Redirige al login si no hay sesión
         }
     
-        const user = req.session.user; // Obtiene el usuario de la sesión
-        res.render('users/profile', { user }); // Renderiza la vista
+        const user = req.session.user;
+        return res.render('users/profile', { user }); // Renderiza la vista users/profile
     },
 
     updateProfile: async (req, res) => {
@@ -102,15 +116,15 @@ const userController = {
                 return res.redirect('/users/login'); // Redirige al login si no hay usuario
             }
 
-            const { nombre, NombreUsuario, Email, Contrasena } = req.body;
+            const { nombre, nombreusuario, email, contrasena } = req.body;
             const updatedUser = {
                 nombre: nombre || user.nombre, // Usa el valor actual si no se proporciona uno nuevo
-                NombreUsuario: NombreUsuario || user.NombreUsuario,
-                Email: Email || user.Email,
+                nombreusuario: nombreusuario || user.nombreusuario,
+                email: email || user.email,
             };
 
-            if (Contrasena) {
-                updatedUser.Contrasena = await bcrypt.hash(Contrasena, 10);
+            if (contrasena) {
+                updatedUser.contrasena = await bcrypt.hash(contrasena, 10);
             }
 
             if (req.file) {

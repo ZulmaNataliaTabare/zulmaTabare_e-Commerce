@@ -4,8 +4,6 @@
 @import "register.css";
 @import "login.css";
 @import "cart.css";
-@import "profile.css";
-
 
 :root {
   --primary-color: #e6b0f6; /* Lila Claro */
@@ -340,6 +338,11 @@ html, body {
   padding: 10px;
 }
 
+.card-profile {
+  max-width: 100%;
+  padding: 10px;
+}
+
 .products-img {
   width: 100%;
 }
@@ -596,13 +599,6 @@ h1 {
   margin: 20px;
 }
 
-/* #filterForm input {
-  padding: 8px;
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 10px;
-} */ 
 
 
 /* Tabla */

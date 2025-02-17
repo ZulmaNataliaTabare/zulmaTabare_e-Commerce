@@ -7,7 +7,7 @@
             </div>
             <div class="user-greeting">
                 <% if (locals.user) { %>
-                    <span class="user-name text-primary fw-bold">Hola, <%= user.NombreUsuario %></span>
+                    <span class="user-name text-primary fw-bold">Hola, <%= user.nombreusuario %></span>
                 <% } %>
             </div>
         </div>
@@ -23,10 +23,10 @@
             <% if (locals.user) { %>
                 <a href="/users/logout"><i class="fa-solid fa-right-from-bracket logout-icon"></i></a>
             <% } else { %>
-                <a href="/login"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
-                <a href="/register"><i class="fa-solid fa-user-plus register-icon"></i></a> 
+                <a href="/users/login"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
+                <a href="/users/register"><i class="fa-solid fa-user-plus register-icon"></i></a> 
             <% } %> 
-            <a href="/cart"><i class="fa-solid fa-bag-shopping cart-icon"></i></a>
+            <a href="/users/cart"><i class="fa-solid fa-bag-shopping cart-icon"></i></a>
         </div>
 
         <div class="hamburger-menu" id="hamburger-menu">
@@ -59,7 +59,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Mi perfil</a>
+                    <a class="nav-link" href="/users/profile">Mi perfil</a>
                 </li>
             </ul>
         </div>

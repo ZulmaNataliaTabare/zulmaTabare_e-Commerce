@@ -10,6 +10,8 @@ const app = express();
 
 // Importa los middlewares
 const errorLogger = require('./src/middlewares/errorLogger');
+const adminErrorHandler = require('./src/middlewares/adminErrorHandler');
+const errorHandler = require('./src/middlewares/errorHandler');
 const notFoundHandler = require('./src/middlewares/notFoundHandler');
 const requestLogger = require('./src/middlewares/requestLogger');
 const sessionMiddleware = require('./src/middlewares/sessionMiddleware');
@@ -71,12 +73,15 @@ app
     })
 
     // Rutas
-    .use('/', indexRouter)
-    .use('/users', usersRouter)
-    .use('/products', productsRouter)
+    app
+        .use('/', indexRouter) // Ruta para el inicio (index.ejs)
+        .use('/users', usersRouter) // Rutas para usuarios (login, register, profile, etc.)
+        .use('/products', productsRouter)
 
     // Middlewares de manejo de errores 
     .use(errorLogger)
+    .use(adminErrorHandler)
+    .use(errorHandler)
     .use(notFoundHandler);
 
 module.exports = app;

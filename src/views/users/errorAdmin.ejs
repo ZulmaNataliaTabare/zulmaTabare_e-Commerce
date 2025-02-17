@@ -1,0 +1,27 @@
+<%-include('../partial/head') %>
+
+<body>
+    <%-include('../partial/header') %>
+
+    <main class="container mt-5 bg-blue d-flex justify-content-center align-items-center vh-100">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bg-light justify-content-center">
+                    <div class="card-body text-center">
+                        <h1 class="cl-pr mb-4">¡Error!</h1>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-*"> <img src="/uploads/ahahah.gif" alt="GIF de error" class="img-fluid" style="max-width: 100%;">
+                            </div>
+                        </div>
+                        <p class="mt-4 text-muted">Ah, Ah, Ah, No sos el Administrador!!!</p>
+                        <a href="/users/login" class="btn btn-primary mt-3">LOGUEATE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partial/footer') %>
+</body>
+
+</html>
