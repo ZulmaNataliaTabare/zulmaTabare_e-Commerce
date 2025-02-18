@@ -1,7 +1,7 @@
-<%-include('../partial/head') %>
+<%-include('../partials/head') %>
 
 <body>
-    <%-include('../partial/header') %>
+    <%-include('../partials/header') %>
 
 
     <main>
@@ -12,7 +12,7 @@
     <% if (products && products.length) { %>
         <% products.forEach(product => { %>
             <% try { %>
-                <%- include('../partial/images', {
+                <%- include('../partials/images', {
                     id: product.id,
                     product: { image: product.image, name: product.name || 'Sin nombre' },
                     price: product.price || 'Sin precio',
@@ -24,7 +24,7 @@
         <% }); %>
     <% } %>
 </main>
-<%- include('../partial/footer') %>
+<%- include('../partials/footer') %>
 </body>
 </html>
 

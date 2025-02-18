@@ -45,6 +45,12 @@ const User = {
             }
         }
     },
+
+    getById: async (id) => {
+        const users = await User.getAll();
+        return users.find(user => user.id === id);
+    },
+    
 };
 
 module.exports = User;

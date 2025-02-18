@@ -294,5 +294,14 @@
     "category": "bazar",
     "colors": "Blanca ",
     "price": "5000"
+  },
+  {
+    "id": 24,
+    "name": "Ambo",
+    "description": "Negro",
+    "image": "image-1739848951963.png",
+    "category": "ambos",
+    "colors": "negro",
+    "price": "25000"
   }
 ]

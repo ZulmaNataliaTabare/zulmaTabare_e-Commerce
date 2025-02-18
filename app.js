@@ -7,13 +7,19 @@ const logger = require('morgan');
 
 const app = express();
 
+const port = process.env.PORT || 3002;
+app.set('port', port);
+
+
+
+
 // Importa los middlewares
 const errorLogger = require('./src/middlewares/errorLogger');
 const adminErrorHandler = require('./src/middlewares/adminErrorHandler');
 const errorHandler = require('./src/middlewares/errorHandler');
 const notFoundHandler = require('./src/middlewares/notFoundHandler');
 const requestLogger = require('./src/middlewares/requestLogger');
-const sessionMiddleware = require('./src/middlewares/sessionMiddleware'); // ¡Este es el que configura la sesión!
+const sessionMiddleware = require('./src/middlewares/sessionMiddleware');
 const rememberMeMiddleware = require('./src/middlewares/rememberMeMiddleware');
 const checkUserSession = require('./src/middlewares/checkUserSession');
 
@@ -41,15 +47,11 @@ app
     .use(express.urlencoded({ extended: true }))
     .use(methodOverride('_method'))
 
-    // Middleware de sesión (¡ANTES de cualquier ruta o middleware que dependa de la sesión!)
-    .use(cookieParser()) // Para analizar las cookies
-    .use(sessionMiddleware) // ¡Aquí se configura la sesión correctamente!
-
-    // Middlewares que dependen de la sesión (¡en este orden!)
-    .use(rememberMeMiddleware) // Para recordar al usuario a través de cookies
-    .use(checkUserSession) // Para guardar el usuario en res.locals
-
-    // Middlewares generales
+    // Middlewares
+    .use(cookieParser())
+    .use(sessionMiddleware)
+    .use(rememberMeMiddleware)
+    .use(checkUserSession)
     .use(logger('dev'))
     .use(express.json())
     .use(express.static(path.join(__dirname, 'public')))
@@ -73,8 +75,8 @@ app
     })
 
     // Rutas
-    .use('/', indexRouter) // Ruta para el inicio (index.ejs)
-    .use('/users', usersRouter) // Rutas para usuarios (login, register, profile, etc.)
+    .use('/', indexRouter)
+    .use('/', usersRouter)
     .use('/products', productsRouter)
 
     // Middlewares de manejo de errores 

@@ -1,12 +1,12 @@
-<%-include('../partial/head') %>
+<%-include('../partials/head') %>
 
 <body>
-    <%-include('../partial/header') %>
+    <%-include('../partials/header') %>
 
 
     <main>
     <h4 id="products" class="products-title"><%= product.name %></h4> 
-    <%- include('../partial/images', { id: product.id, product: product, price: product.price }) %><p><%= product.description %></p> 
+    <%- include('../partials/images', { id: product.id, product: product, price: product.price }) %><p><%= product.description %></p> 
     <h4>Características:</h4> 
     <ul> 
     <% product.features.forEach(feature => { %> 
@@ -14,7 +14,7 @@
     <% }) %> 
     </ul> 
 </main> 
-<%- include('../partial/footer') %> 
+<%- include('../partials/footer') %> 
 </body> 
 </html>
 

@@ -1,7 +1,7 @@
-<%-include('../partial/head') %>
+<%-include('../partials/head') %>
 
 <body>
-    <%-include('../partial/header') %>
+    <%-include('../partials/header') %>
 
 
     <main>
@@ -11,7 +11,7 @@
         <% products.forEach(product => { %>
             <div class="product-container">
                 <h4 id="products" class="products-title"><%= product.name %></h4>
-                <%- include('../partial/images.ejs', { id: product.id, product: product, price: product.price }) %>
+                <%- include('../partials/images.ejs', { id: product.id, product: product, price: product.price }) %>
                 <p><%= product.description %></p>
                 <% if (product.features) { %>
                     <h4>Características:</h4>
@@ -28,6 +28,6 @@
     <% } %>
 </main>
 
-<%- include('../partial/footer') %>
+<%- include('../partials/footer') %>
 </body>
 </html>

@@ -1,0 +1,56 @@
+
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+
+    <main>
+        <h1>Administrar Usuarios</h1>
+
+        <form id="filterForm">
+            <div class="d-flex">
+                <input type="text" id="searchInput" class="form-control me-2" placeholder="Buscar por nombre o nombre de usuario">
+                <button type="button" class="btn btn-primary" onclick="filterTable()">Filtrar</button>
+            </div>
+        </form>
+
+        <table id="usersTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.nombre %></td>
+                        <td><%= user.nombreusuario %></td>
+                        <td><%= user.email %></td>
+                        <td>
+                            <a href="/users/edit/<%= user.id %>" class="btn btn-sm btn-warning">Editar</a>
+                            <form action="/users/delete/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <div id="pagination">
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <a href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+        </div>
+
+    </main>
+
+    <%- include('../partials/footer') %>
+    <script src="/javascripts/adminUsers.js"></script>
+</body>
+</html>
