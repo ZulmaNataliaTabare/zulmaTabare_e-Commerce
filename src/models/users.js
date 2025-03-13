@@ -7,7 +7,11 @@ console.log("Ruta users.json:", usersFilePath); // Imprime la ruta
 
 
 const User = {
-    getAll: async () => {
+    constructor() {
+        this.usersFilePath = path.join(__dirname, '../data/users.json');
+    },
+
+    async getAll () {
         try {
             const data = await fs.readFile(usersFilePath, 'utf8');
             return JSON.parse(data);
@@ -17,12 +21,12 @@ const User = {
         }
     },
 
-    findById: async (id) => {
+    async findById (id) {
         const users = await User.getAll();
         return users.find(user => user.id === id);
     },
 
-    findByUsername: async (username) => {
+    async findByUsername (username)  {
         try {
             const users = await User.getAll();
             return users.find(user => user.nombreusuario === username); // Usar nombreusuario
@@ -32,7 +36,7 @@ const User = {
         }
     },
 
-    update: async (id, data) => {
+    async update (id, data) {
         let users = await User.getAll();
         const userIndex = users.findIndex(user => user.id === id);
 
@@ -46,7 +50,7 @@ const User = {
         }
     },
 
-    getById: async (id) => {
+    async getById(id) {
         const users = await User.getAll();
         return users.find(user => user.id === id);
     },

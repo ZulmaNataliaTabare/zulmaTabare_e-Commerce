@@ -20,7 +20,7 @@ const productsController = {
 
             if (!req.file) { // Verifica si req.file existe
                 console.error("No se subió ningún archivo.");
-                return res.status(400).send("Debes seleccionar una imagen para el producto."); // Envía un error 400
+                return res.render('products/productAdd', { error: "Debes seleccionar una imagen para el producto.", ...req.body }); // Renderiza con error
             }
 
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -40,14 +40,14 @@ const productsController = {
                 fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
             } catch (writeError) {
                 console.error("Error al escribir products.json:", writeError);
-                return res.status(500).send("Error interno del servidor al guardar el producto.");
+                return res.render('products/productAdd', { error: "Error interno del servidor al guardar el producto.", ...req.body }); // Renderiza con error
             }
 
             res.redirect('/products');
 
         } catch (error) {
             console.error("Error al crear producto:", error);
-            res.status(500).send("Error interno del servidor al crear el producto.");
+            res.render('products/productAdd', { error: "Error interno del servidor al crear el producto.", ...req.body }); // Renderiza con error
         }
     },
 
@@ -62,13 +62,13 @@ const productsController = {
         if (product) {
             res.render('products/productEdit', { product });
         } else {
-            res.status(404).send('Producto no encontrado');
+            return res.render('products/admin', { error: 'Producto no encontrado' }); // Renderiza con error
+            }
+        } catch (error) {
+            console.error("Error al leer products.json:", error);
+            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
         }
-    } catch (error) {
-        console.error("Error al leer products.json:", error);
-        res.status(500).send("Error interno del servidor"); 
-    }  
-},
+    },
 
     // Actualizar un producto existente usando PUT
     update: (req, res) => {
@@ -88,13 +88,13 @@ const productsController = {
                 fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
                 res.redirect('/products');
             } else {
-                res.status(404).send('Producto no encontrado');
+                return res.render('products/admin', { error: 'Producto no encontrado' }); // Renderiza con error
             }
-    } catch (error) {
-        console.error("Error al leer products.json:", error);
-        res.status(500).send("Error interno del servidor"); 
-    }
-},
+        } catch (error) {
+            console.error("Error al leer products.json:", error);
+            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
+        }
+    },
 
     // Vista de administración de productos
     admin: (req, res) => {
@@ -115,7 +115,7 @@ const productsController = {
             });
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.status(500).send("Error interno del servidor"); 
+            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
         }
     },
 
@@ -130,7 +130,7 @@ const productsController = {
             res.redirect('/products/'); 
         } catch (error) {
             console.error("Error al eliminar producto:", error);
-            res.status(500).send("Error interno del servidor");
+            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
         }
     },
 
@@ -146,11 +146,11 @@ const productsController = {
                     product
                 });
             } else {
-                res.status(404).send('Producto no encontrado');
+                return res.render('products/admin', { error: 'Producto no encontrado' }); // Renderiza con error
             }
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.status(500).send("Error interno del servidor"); 
+            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
         }
     },
 
@@ -167,7 +167,7 @@ const productsController = {
                 res.render('products/category', { category, products: filteredProducts });
             } catch (error) {
                 console.error("Error al ver la categoría:", error);
-                res.status(500).send("Error interno del servidor");
+                res.render('products/category', { error: "Error interno del servidor", category: req.query.category, ...req.body }); // Renderiza con error
             }
         },
         
@@ -177,9 +177,9 @@ const productsController = {
             res.render('products/allProducts', { products }); 
             } catch (error) {
             console.error(error);
-            res.status(500).send('Error al obtener los productos');
-            }
+            res.render('products/allProducts', { error: 'Error al obtener los productos' }); // Renderiza con error
         }
+    }
 };
 
 

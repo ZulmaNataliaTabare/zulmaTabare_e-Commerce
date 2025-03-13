@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nombre": "florencia brizuela",
+    "nombre": "florencia",
     "apellido": "brizuela",
     "nombreusuario": "flor.bri",
     "email": "bri@gmail.com",
@@ -26,6 +26,7 @@
   {
     "id": 3,
     "nombre": "Zulma",
+    "apellido": "Tabare",
     "nombreusuario": "ZNT",
     "email": "sulmatabare@gmail.com",
     "image": "image-1739665249994.jpg",
@@ -33,5 +34,27 @@
     "preguntaSeguridad": "¿Cuál es tu color favorito?",
     "respuestaSeguridad": "rojo",
     "rol": "admin"
+  },
+  {
+    "id": 4,
+    "nombre": "Jorge",
+    "apellido": "Aravena",
+    "nombreusuario": "Jor.Aravena",
+    "email": "joraravena@gmail.com",
+    "image": "image-1741808669433.jpg",
+    "contrasena": "$2b$10$trucwZu.nnMM2gFJcHdbPuefHfI42QbpSo40Xuvj6lXw5CbCB9r4y",
+    "preguntaSeguridad": "¿Cuál es tu color favorito?",
+    "respuestaSeguridad": "azul"
+  },
+  {
+    "id": 5,
+    "nombre": "Nélida",
+    "apellido": "Ibarra",
+    "nombreusuario": "Neli.Ibarra",
+    "email": "nelidaibarra@gmail.com",
+    "image": "image-1741809313690.jpg",
+    "contrasena": "$2b$10$gKyZBPzgZIIcSawc/RAi3.zbOO6jZgwssuNZsRZISKvqIH3BhFbjm",
+    "preguntaSeguridad": "¿Cuál es tu color favorito?",
+    "respuestaSeguridad": "rojo"
   }
 ]
