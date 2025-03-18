@@ -7,7 +7,7 @@
             </div>
             <div class="user-greeting">
                 <% if (locals.user) { %>
-                    <span class="user-name text-primary fw-bold">Hola, <%= user.nombreusuario %></span>
+                    <span class="user-name text-primary fw-bold">Hola, <%= user.user_name %></span>
                 <% } %>
             </div>
         </div>
@@ -36,12 +36,12 @@
 
     <nav class="main-nav">
         <ul id="nav-list">
-            <li><a href="/products/category?category=Ambos">Ambos</a></li>
-            <li><a href="/products/category?category=Zuecos">Zuecos</a></li>
-            <li><a href="/products/category?category=Lanyard">Lanyard</a></li>
-            <li><a href="/products/category?category=Anotadores">Anotadores</a></li>
-            <li><a href="/products/category?category=Accesorios">Accesorios</a></li>
-            <li><a href="/products/category?category=Bazar">Bazar</a></li>
+            <li><a href="/products/category?category_id=Ambos">Ambos</a></li>
+            <li><a href="/products/category?category_id=Zuecos">Zuecos</a></li>
+            <li><a href="/products/category?category_id=Lanyard">Lanyard</a></li>
+            <li><a href="/products/category?category_id=Anotadores">Anotadores</a></li>
+            <li><a href="/products/category?category_id=Accesorios">Accesorios</a></li>
+            <li><a href="/products/category?category_id=Bazar">Bazar</a></li>
         </ul>
     </nav>
 

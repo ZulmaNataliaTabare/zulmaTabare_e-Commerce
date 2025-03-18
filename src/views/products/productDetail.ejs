@@ -5,10 +5,10 @@
 
 
     <main>
-    <h4 id="products" class="products-title"><%= product.name %></h4> 
-    <%- include('../partials/images', { id: product.id, product: product, price: product.price }) %><p><%= product.description %></p> 
-    <h4>Características:</h4> 
-    <ul> 
+    <ul> <h4 id="products" class="products-title"><%= product.product_name %></h4> 
+    <%- include('../partials/images', { id: product.product_id, product: product, price: product.price }) %><p><%= product.product_description %></p>
+    <h3>Características:</h3> 
+
     <% product.features.forEach(feature => { %> 
         <li class="product-description"><%= feature %></li> 
     <% }) %> 

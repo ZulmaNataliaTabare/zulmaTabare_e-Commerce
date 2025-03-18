@@ -1,21 +1,23 @@
 <div class="contenedor-img-ambos">
-    <% if (id && product && product.image && product.name && price) { %>
-        <a href="/products/detail/<%= id %>">
-            <% console.log("ID del producto en images.ejs:", id); %>
-            <div class="card" data-product-id="<%= id %>">
-                <img src="/uploads/<%= product.image %>" alt="<%= product.name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">                
+    <% if (product_id && product && product.image && product.product_name && price) { %>
+        <% console.log("Datos en images.ejs - ID:", product_id, "Producto:", product, "Precio:", price); %>
+        <a href="/products/detail/<%= product_id %>">
+            <div class="card" data-product-id="<%= product_id %>">
+                <img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">
                 <div class="card-body">
                     <div class="fav">
                         <i class="fa-solid fa-heart"></i>
                         <i class="fa-solid fa-bag-shopping agregarAlCart"></i>
                     </div>
                     <div class="article-text">$<%= price %></div>
-                    <div class="article-text"><%= product.name %></div>
+                    <div class="article-text"><%= product.product_name %></div>
                 </div>
             </div>
         </a>
     <% } else { %>
         <p>Error: Datos de producto incompletos.</p>
+                <% console.log("Datos INCOMPLETOS en images.ejs - ID:", product_id, "Producto:", product && product.name, "Precio:", price, "Tipo de Precio:", typeof price); %>
+
     <% } %>
 </div>
 

@@ -15,7 +15,7 @@ const userController = {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
 
-            const { nombre, apellido, nombreusuario, email, contrasena, preguntaSeguridad, respuestaSeguridad } = req.body;
+            const { first_name, last_name, user_name, email, user_password, security_question, security_answer } = req.body;
 
             console.log("Contraseña recibida:", contrasena);
 
@@ -24,15 +24,15 @@ const userController = {
 
             const users = await User.getAll();
             const newUser = {
-                id: users.length ? parseInt(users[users.length - 1].id) + 1 : 1,
-                nombre,
-                apellido,
-                nombreusuario,
+                user_id: users.length ? parseInt(users[users.length - 1].user.id) + 1 : 1,
+                first_name,
+                last_name,
+                user_name,
                 email,
                 image: req.file.filename,
-                contrasena: hashedPassword,
-                preguntaSeguridad,
-                respuestaSeguridad,
+                user_password: hashedPassword,
+                security_question,
+                security_answer,
             };
 
             try {
@@ -56,13 +56,13 @@ const userController = {
 
         try {
             const users = await User.getAll();
-            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
+            const user = users.find(u => u.user_name === usuario || u.email === usuario);
 
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
 
-            const result = await bcrypt.compare(contrasena, user.contrasena);
+            const result = await bcrypt.compare(contrasena, user.user_password);
             if (!result) {
                 return res.render('users/login', { error: "Contraseña incorrecta." });
             }
@@ -71,7 +71,7 @@ const userController = {
                 req.session.user = user;
 
                 if (remember) {
-                    res.cookie('remember', user.nombreusuario, {
+                    res.cookie('remember', user.user_name, {
                         maxAge: 30 * 24 * 60 * 60 * 1000,
                         httpOnly: true,
                         sameSite: 'strict',
@@ -118,16 +118,16 @@ const userController = {
                 return res.redirect('/users/login');
             }
 
-            const { nombre, apellido, nombreusuario, email, contrasena } = req.body;
+            const { first_name, last_name, user_name, email, user_password } = req.body;
             const updatedUser = {
-                nombre: nombre || user.nombre,
-                apellido: apellido || user.apellido,
-                nombreusuario: nombreusuario || user.nombreusuario,
+                first_name: first_name || user.first_name,
+                last_name: last_name || user.last_name,
+                user_name: user_name || user.user_name,
                 email: email || user.email,
             };
 
-            if (contrasena) {
-                updatedUser.contrasena = await bcrypt.hash(contrasena, 10);
+            if (user_password) {
+                updatedUser.user_password = await bcrypt.hash(user_password, 10);
             }
 
             if (req.file) {
@@ -155,10 +155,10 @@ const userController = {
 
         try {
             const users = await User.getAll();
-            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
+            const user = users.find(u => u.user_name === usuario || u.email === usuario);
 
             if (user) {
-                res.json({ pregunta: user.preguntaSeguridad });
+                res.json({ pregunta: user.security_question });
             } else {
                 res.json({ pregunta: null });
             }
@@ -173,13 +173,13 @@ const userController = {
 
         try {
             const users = await User.getAll();
-            const user = users.find(u => u.nombreusuario === usuario || u.email === usuario);
+            const user = users.find(u => u.user_name === usuario || u.email === usuario);
 
             if (!user) {
                 return res.render('users/forgotPassword', { error: "Usuario no encontrado." });
             }
 
-            const respuestaSeguridadAlmacenada = user.respuestaSeguridad ? user.respuestaSeguridad.trim().toLowerCase() : "";
+            const respuestaSeguridadAlmacenada = user.security_answer ? user.security_answer.trim().toLowerCase() : "";
             const respuestaIngresada = respuesta ? respuesta.trim().toLowerCase() : "";
 
             if (respuestaSeguridadAlmacenada !== respuestaIngresada) {
@@ -189,7 +189,7 @@ const userController = {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
 
-            await User.update(user.id, { contrasena: hashedPassword });
+            await User.update(user.user_id, { user_password: hashedPassword });
 
             res.redirect('/users/login');
         } catch (error) {
@@ -210,7 +210,7 @@ const userController = {
     },
 
     editUser: async (req, res) => {
-        const { id } = parseInt(req.params.id);
+        const { id } = parseInt(req.params.user_id);
         try {
             const user = await User.findById(id);
             if (!user) {
@@ -232,18 +232,18 @@ const userController = {
                 return res.redirect('/users/login');
             }
 
-            const { nombre, apellido, nombreusuario, email, contrasena, preguntaSeguridad, respuestaSeguridad } = req.body;
+            const { first_name, last_name, user_name, email, user_password, security_question, security_answer } = req.body;
             const updatedUser = {
-                nombre: nombre || user.nombre,
-                apellido: apellido || user.apellido,
-                nombreusuario: nombreusuario || user.nombreusuario,
+                first_name: first_name || user.first_name,
+                last_name: last_name || user.last_name,
+                user_name: user_name || user.user_name,
                 email: email || user.email,
-                preguntaSeguridad: preguntaSeguridad || user.preguntaSeguridad,
-                respuestaSeguridad: respuestaSeguridad || user.respuestaSeguridad
+                security_question: security_question || user.security_question,
+                security_answer: security_answer || user.security_answer
             };
 
             if (contrasena) {
-                updatedUser.contrasena = await bcrypt.hash(contrasena, 10);
+                updatedUser.constrasena = await bcrypt.hash(user_password, 10);
             }
 
             if (req.file) {

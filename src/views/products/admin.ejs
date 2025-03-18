@@ -25,13 +25,13 @@
         <tbody>
             <% products.forEach(product => { %>
                 <tr>
-                    <td><%= product.id %></td>
-                    <td><%= product.name %></td>
-                    <td><%= product.category %></td>
+                    <td><%= product.product_id %></td>
+                    <td><%= product.product_name %></td>
+                    <td><%= product.category_id %></td>
                     <td>$<%= product.price %></td>
                     <td>
-                        <a href="/products/edit/<%= product.id %>" class="btn btn-sm btn-warning">Editar</a> 
-                        <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <a href="/products/edit/<%= product.product_id %>" class="btn btn-sm btn-warning">Editar</a> 
+                        <form action="/products/delete/<%= product.product_id %>?_method=DELETE" method="POST" style="display:inline;">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
                         </form>
                     </td>

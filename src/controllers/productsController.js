@@ -24,12 +24,26 @@ const productsController = {
             }
 
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+            
+            let features = req.body.features;
+
+            // Procesa features si es una cadena
+            if (typeof features === 'string') {
+            features = features.split(',').map(feature => feature.trim()); // Divide por comas y elimina espacios en blanco
+            }
+
+            // Asegura que features sea un array, si no lo es, inicializarlo como array vacio.
+            if (!Array.isArray(features)) {
+            features = [];
+            }
+            
             const newProduct = {
-                id: products.length ? parseInt(products[products.length - 1].id) + 1 : 1,
-                name: req.body.name,
-                description: req.body.description,
+                product_id: products.length ? parseInt(products[products.length - 1].id) + 1 : 1,
+                product_name: req.body.name,
+                product_description: req.body.description,
                 image: req.file.filename, // Usa req.file.filename (ya que se verificó que existe)
                 category: req.body.category,
+                features: req.body.features,
                 colors: req.body.colors,
                 price: req.body.price
             };
@@ -79,9 +93,9 @@ const productsController = {
     
             if (index !== -1) {
                 products[index] = { // Actualiza el producto en el array
-                    id: productId, //  mantener el ID
-                    name: req.body.name,
-                    description: req.body.description,
+                    product_id: productId, //  mantener el ID
+                    product_name: req.body.name,
+                    product_description: req.body.description,
                     image: req.file?.filename || products[index]?.image || 'default-image.png',                    
                     price: req.body.price
                 };
@@ -115,7 +129,12 @@ const productsController = {
             });
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
+            res.render('products/admin', { 
+                error: "Error interno del servidor", 
+                products: [],
+                currentPage: 1,
+                totalPages: 1
+            }); // Renderiza con error
         }
     },
 
@@ -137,51 +156,74 @@ const productsController = {
     // Detalle de un producto
     detail: (req, res) => {
         try {
-            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
-            const productId = parseInt(req.params.id, 10);
-            const product = products.find(p => p.id === productId);
-
+            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+            const productId = parseInt(req.params.product_id, 10);
+            const product = products.find(p => p.product_id === productId);
+    
             if (product) {
+                if (!product.features || !Array.isArray(product.features)) {
+                    product.features = []; 
+                }
+                console.log(product); 
                 res.render('products/productDetail', {
                     product
                 });
             } else {
-                return res.render('products/admin', { error: 'Producto no encontrado' }); // Renderiza con error
+                return res.render('products/admin', { error: 'Producto no encontrado' });
             }
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.render('products/admin', { error: "Error interno del servidor" }); // Renderiza con error
+            res.render('products/admin', { error: "Error interno del servidor" });
         }
     },
 
 
         // *** NUEVO MÉTODO PARA CATEGORIAS ***
-        category: (req, res) => {
+        category: async (req, res) => {
             try {
+                const category_id = req.query.category_id; 
+                if (!category_id) {
+                    return res.status(400).render('products/category', {
+                        error: 'Categoría no especificada',
+                        category_id: null, 
+                        products: []
+                    });
+                }
+    
                 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-                const category = req.query.category;
+                const filteredProducts = filterProductsByCategory(products, category_id);
     
-                
-                const filteredProducts = filterProductsByCategory(products, category);
+                console.log('category_id:', category_id); 
+                console.log('filteredProducts:', filteredProducts);
     
-                res.render('products/category', { category, products: filteredProducts });
+                res.render('products/category', {
+                    category_id: category_id, 
+                    products: filteredProducts,
+                    error: null
+                });
             } catch (error) {
                 console.error("Error al ver la categoría:", error);
-                res.render('products/category', { error: "Error interno del servidor", category: req.query.category, ...req.body }); // Renderiza con error
+                res.status(500).render('products/category', {
+                    error: "Error interno del servidor",
+                    category_id: req.query.category_id, 
+                    products: []
+                });
             }
         },
-        
+    
         getAllProducts: async (req, res) => {
             try {
-            const products = require('../data/products.json');
-            res.render('products/allProducts', { products }); 
+                const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+                res.render('products/allProducts', { products });
             } catch (error) {
-            console.error(error);
-            res.render('products/allProducts', { error: 'Error al obtener los productos' }); // Renderiza con error
+                console.error(error);
+                res.render('products/allProducts', { 
+                    error: 'Error al obtener los productos',
+                    products: []
+                });
+            }
         }
-    }
-};
-
+    };
 
 module.exports = productsController;
 

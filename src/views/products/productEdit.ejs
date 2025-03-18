@@ -10,17 +10,17 @@
     <div class="container">
     
         <h1 class="text-center mb-4">Editar producto</h1>
-        <form class="w-50 mx-auto" action="/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <form class="w-50 mx-auto" action="/products/edit/<%= product.product_id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT">
     
         <div class="form-group mb-3">
         <label for="name">Nombre del Producto:</label>
-        <input class="form-control" type="text" id="name" name="name" value="<%= product.name %>" required>
+        <input class="form-control" type="text" id="name" name="name" value="<%= product.product_name %>" required>
         </div>
         
         <div class="form-group mb-3">
         <label for="description">Descripción:</label>
-        <textarea class="form-control" id="description" name="description" required><%= product.description %></textarea>
+        <textarea class="form-control" id="description" name="description" required><%= product.product_description %></textarea>
         </div>
         
         <div class="form-group mb-3">

@@ -1,124 +1,126 @@
 [
   {
-    "id": 1,
-    "name": "Blusón Microfibra Mariquitas",
+    "product_id": 1,
+    "product_name": "Blusón Microfibra Mariquitas",
     "price": 15000,
     "image": "bluson-microfibra-mariquitas.jpg",
+    "product_description": "Blusón de microfibra con estampado de mariquitas. Ideal para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category": "Ambos"
+    "category_id": "Ambos"
   },
   {
-    "id": 2,
-    "name": "Blusón Microfibra Veterinario",
+    "product_id": 2,
+    "product_name": "Blusón Microfibra Veterinario",
     "price": 15000,
     "image": "bluson-veterinario.jpg",
+    "product_description": "Blusón de microfibra para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category": "Ambos"
+    "category_id": "Ambos"
   },
   {
-    "id": 3,
-    "name": "Elegance Fire",
+    "product_id": 3,
+    "product_name": "Elegance Fire",
     "price": 15000,
     "image": "ambo-hombre.jpg",
-    "description": "...",
+    "product_description": "Ambo de hombre con estampado de fuego. Ideal para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category": "Ambos"
+    "category_id": "Ambos"
   },
   {
-    "id": 4,
-    "name": "Guardapolvo – Pinky",
-    "description": "Guardapolvo Blanco, tela resistente antimanchas. ",
+    "product_id": 4,
+    "product_name": "Guardapolvo – Pinky",
+    "product_description": "Guardapolvo Blanco, tela resistente antimanchas. ",
     "image": "guardapolvo-mujer.jpg",
-    "price": "15000",
-    "category": "Ambos"
+    "price": 15000,
+    "category_id": "Ambos"
   },
   {
-    "id": 5,
-    "name": "Lanyard Cosas de Hospi",
+    "product_id": 5,
+    "product_name": "Lanyard Cosas de Hospi",
     "price": 5000,
     "image": "LANYARD-_COSAS-scaled.jpg",
-    "description": "...",
+    "product_description": "...",
     "features": [],
-    "category": "Lanyard"
+    "category_id": "Lanyard"
   },
   {
-    "id": 6,
-    "name": "Lanyard Happiness",
+    "product_id": 6,
+    "product_name": "Lanyard Happiness",
     "price": 5000,
     "image": "LANYARD_HAPPINESS.jpg",
-    "description": "Para alcanzar la felicidad… ¡estos medicamentos son los que mejor funcionan! 😊 Hemos creado este lanyard con esos 'medicamentos' que tan felices, y tan saludables son. Lo hemos diseñado pensando en tí, para que lo luzcas y te diferencies con este lanyard único y especial. Con hebilla delantera para separar las tijeras fácilmente y con enganche de seguridad atrás en color rosa palo. Lo podrás utilizar colgado del cuello con tu tarjeta identificativa, o para tus tijeritas, pinzas, llaves o lo que te apetezca.",
+    "product_description": "Para alcanzar la felicidad… ¡estos medicamentos son los que mejor funcionan! 😊 Hemos creado este lanyard con esos 'medicamentos' que tan felices, y tan saludables son. Lo hemos diseñado pensando en tí, para que lo luzcas y te diferencies con este lanyard único y especial. Con hebilla delantera para separar las tijeras fácilmente y con enganche de seguridad atrás en color rosa palo. Lo podrás utilizar colgado del cuello con tu tarjeta identificativa, o para tus tijeritas, pinzas, llaves o lo que te apetezca.",
     "features": [
       "Hebilla en la parte delantera en plástico de color rosa palo para poder separar las tijeras de forma fácil",
       "Separador de seguridad en la parte trasera en plástico de color rosa palo para que se retire fácilmente del cuello si se da un tirón.",
       "Mini gancho para llevar las tijeras o lo que más necesites"
     ],
-    "category": "Lanyard"
+    "category_id": "Lanyard"
   },
   {
-    "id": 7,
-    "name": "Lanyard pro enfermería",
+    "product_id": 7,
+    "product_name": "Lanyard pro enfermería",
     "price": 5000,
     "image": "lanyard-pro-enfermeria.jpg",
-    "description": "¿Hay algo más útil en el día a día de los enfermeros que un lanyard? Este Lanyard PRO está dirigido a estudiantes y profesionales de la Enfermería. La profesión más bonita del mundo. Guardián de nuestras tijeras y portador del esparadrapo multiusos. Y si además es bonito… Se llevan mejor los turnos.",
+    "product_description": "¿Hay algo más útil en el día a día de los enfermeros que un lanyard? Este Lanyard PRO está dirigido a estudiantes y profesionales de la Enfermería. La profesión más bonita del mundo. Guardián de nuestras tijeras y portador del esparadrapo multiusos. Y si además es bonito… Se llevan mejor los turnos.",
     "features": [
       "Lanyard 50 x 2 cm. Con mosquetón para colgar las tijeras y clip para la identificación. Con enganche delantero para liberar las tijeras fácilmente."
     ],
-    "category": "Lanyard"
+    "category_id": "Lanyard"
   },
   {
-    "id": 8,
-    "name": "Tijera Azul",
+    "product_id": 8,
+    "product_name": "Tijera Azul",
     "price": 5000,
     "image": "tijera-azul.jpg",
-    "description": "Toda enfermera que se preste debe contar con unas tijeras de pico de pato para proteger a sus pacientes (y evitar horribles accidentes). ¡Desecha las tijeras de plástica del colegio y hazte con ellas!",
+    "product_description": "Toda enfermera que se preste debe contar con unas tijeras de pico de pato para proteger a sus pacientes (y evitar horribles accidentes). ¡Desecha las tijeras de plástica del colegio y hazte con ellas!",
     "features": [
       "Tijeras de pico de pato de 14 cm",
       "Fabricadas en acero inoxidable"
     ],
-    "category": "Accesorios"
+    "category_id": "Accesorios"
   },
   {
-    "id": 9,
-    "name": "Compresor Bichón",
+    "product_id": 9,
+    "product_name": "Compresor Bichón",
     "price": 5000,
     "image": "compresor-bichon.jpg",
-    "description": "Esas venas que se resisten... ¡Con estos compresores se resistirán menos! O tal vez no... Pero ¿a quién no le alegra la vista un compresor así?",
+    "product_description": "Esas venas que se resisten... ¡Con estos compresores se resistirán menos! O tal vez no... Pero ¿a quién no le alegra la vista un compresor así?",
     "features": [
       "Compresor de tela elástica, fácil de lavar. Con cierre de clic y ajustable. Botón para liberar rápidamente el brazo de los pacientes."
     ],
-    "category": "Accesorios"
+    "category_id": "Accesorios"
   },
   {
-    "id": 10,
-    "name": "Scrunchies Mariquitas",
+    "product_id": 10,
+    "product_name": "Scrunchies Mariquitas",
     "price": 5000,
     "image": "coletero-mariquitas.jpg",
-    "description": "Lo primero que te dijeron al llegar al hospital fue: 'Tienes que llevar el pelo recogido'. Al principio no te hacía ninguna gracia... Pero luego te diste cuenta que cuando hacías malabares para curar una úlcera en el talón de un paciente era mejor tener todo tu pelo bien recogido. Por esas veces en las que estabas sondando a un paciente y la 'mechita' del flequillo se te ponía en medio de la cara y soplabas a ver si la apartabas... ¡Pero no! Por todas esas anécdotas y con el fin de retirar el crepé anudado en nuestros pelos... ¡les traemos estos scrunchies!",
+    "product_description": "Lo primero que te dijeron al llegar al hospital fue: 'Tienes que llevar el pelo recogido'. Al principio no te hacía ninguna gracia... Pero luego te diste cuenta que cuando hacías malabares para curar una úlcera en el talón de un paciente era mejor tener todo tu pelo bien recogido. Por esas veces en las que estabas sondando a un paciente y la 'mechita' del flequillo se te ponía en medio de la cara y soplabas a ver si la apartabas... ¡Pero no! Por todas esas anécdotas y con el fin de retirar el crepé anudado en nuestros pelos... ¡les traemos estos scrunchies!",
     "features": [
       "Coletero de goma elástica con tela fruncida",
       "Fácil lavado en lavadora",
       "Hecho a mano"
     ],
-    "category": "Accesorios"
+    "category_id": "Accesorios"
   },
   {
-    "id": 11,
-    "name": "Salvabolsillos Cigüeña",
+    "product_id": 11,
+    "product_name": "Salvabolsillos Cigüeña",
     "price": 5000,
     "image": "salvabolsillos-ciguena.jpg",
-    "description": "Si hay algo típico en nuestra profesión es agacharse para coger algo que se nos ha caído al suelo y que al inclinarnos caigan todos y cada uno de los bolis que hay en nuestro bolsillo, además de las horribles manchas que producen en nuestro pijama esos bolis “traviesos” que deciden destintar y darle un toque de color rojo/verde/azul/negro a nuestro impoluto ambo blanco.",
+    "product_description": "Si hay algo típico en nuestra profesión es agacharse para coger algo que se nos ha caído al suelo y que al inclinarnos caigan todos y cada uno de los bolis que hay en nuestro bolsillo, además de las horribles manchas que producen en nuestro pijama esos bolis “traviesos” que deciden destintar y darle un toque de color rojo/verde/azul/negro a nuestro impoluto ambo blanco.",
     "features": [
       "Salvabolsillos de PVC de 16 x 9 cm",
       "Fácil limpieza"
     ],
-    "category": "Accesorios"
+    "category_id": "Accesorios"
   },
   {
-    "id": 12,
-    "name": "Zueco Sanitario Piel Vegana – Colorful",
+    "product_id": 12,
+    "product_name": "Zueco Sanitario Piel Vegana – Colorful",
     "price": 15000,
     "image": "zueco-sanitario-piel-vegana-colorful.jpg",
-    "description": "Descubre la combinación perfecta de estilo y funcionalidad con nuestros nuevos zuecos sanitarios Colorful. ¡Tu comodidad es nuestra prioridad! Olvídate de los zuecos que no se ajustan correctamente. Nuestro diseño incluye un sistema de ajuste seguro para garantizar que tus pies se sientan cómodos y protegidos. Conoce la comodidad que mereces durante largas jornadas. Nuestros zuecos están elaborados para adaptarse a las exigencias de tu trabajo. La plantilla ergonómica y la tecnología de amortiguación garantizan un soporte excepcional para tus pies, reduciendo la fatiga incluso en las jornadas más intensas.",
+    "product_description": "Descubre la combinación perfecta de estilo y funcionalidad con nuestros nuevos zuecos sanitarios Colorful. ¡Tu comodidad es nuestra prioridad! Olvídate de los zuecos que no se ajustan correctamente. Nuestro diseño incluye un sistema de ajuste seguro para garantizar que tus pies se sientan cómodos y protegidos. Conoce la comodidad que mereces durante largas jornadas. Nuestros zuecos están elaborados para adaptarse a las exigencias de tu trabajo. La plantilla ergonómica y la tecnología de amortiguación garantizan un soporte excepcional para tus pies, reduciendo la fatiga incluso en las jornadas más intensas.",
     "features": [
       "Suela de EVA Comfortlight Antideslizante, especialmente diseñada para permitir una perfecta anatomía, flexión y un óptimo agarre.",
       "Plantillas de piel-EVA forradas en piel, antibacterianas, transpirables y recambiables.",
@@ -131,14 +133,14 @@
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
     ],
-    "category": "Zuecos"
+    "category_id": "Zuecos"
   },
   {
-    "id": 13,
-    "name": "Zapato Piel Vegana Velcro - Virus Collection",
+    "product_id": 13,
+    "product_name": "Zapato Piel Vegana Velcro - Virus Collection",
     "price": 15000,
     "image": "zapato-piel-vegana-velcro-virus-collection.jpg",
-    "description": "El zapato sanitario cerrado más ligero, cómodo y bonito del mercado. Zapatos cerrados para enfermeras con el estampado más fresco, a juegos con otros productos de la misma colección. Los nuevos zuecos con estampado divertido de virus para enfermeras son una forma de añadir un toque de personalidad y humor a los uniformes de trabajo. Estos zuecos tienen un diseño único que presenta virus de diferentes formas y colores, lo que los convierte en una excelente opción para aquellos profesionales de la salud que quieren destacar entre la multitud. Además de su aspecto llamativo, estos zuecos están diseñados pensando en la comodidad y la seguridad de los trabajadores de la salud. Están fabricados con materiales de alta calidad que proporcionan una excelente amortiguación y soporte para los pies durante largas jornadas de trabajo.",
+    "product_description": "El zapato sanitario cerrado más ligero, cómodo y bonito del mercado. Zapatos cerrados para enfermeras con el estampado más fresco, a juegos con otros productos de la misma colección. Los nuevos zuecos con estampado divertido de virus para enfermeras son una forma de añadir un toque de personalidad y humor a los uniformes de trabajo. Estos zuecos tienen un diseño único que presenta virus de diferentes formas y colores, lo que los convierte en una excelente opción para aquellos profesionales de la salud que quieren destacar entre la multitud. Además de su aspecto llamativo, estos zuecos están diseñados pensando en la comodidad y la seguridad de los trabajadores de la salud. Están fabricados con materiales de alta calidad que proporcionan una excelente amortiguación y soporte para los pies durante largas jornadas de trabajo.",
     "features": [
       "Suela de EVA Comfortlight Antideslizante, especialmente diseñada para permitir una perfecta anatomía, flexión y un óptimo agarre.",
       "Plantillas de piel-EVA forradas en piel, antibacterianas, transpirables y recambiables.",
@@ -151,23 +153,23 @@
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
     ],
-    "category": "Zuecos"
+    "category_id": "Zuecos"
   },
   {
-    "id": 14,
-    "name": "Zueco Sanitario Piel Lavable Wash'Go – Azul",
+    "product_id": 14,
+    "product_name": "Zueco Sanitario Piel Lavable Wash'Go – Azul",
     "price": 15000,
     "image": "zueco-sanitario-piel-lavable-wash-go-azul.jpg",
-    "description": "El zueco Wash'Go es la solución perfecta para las que estáis hartas de la goma, o preferís la comodidad y suavidad de la piel. Porque aúna lo mejor de ambos materiales: suave como sólo la piel natural puede serlo, y fácil de limpiar como los materiales plásticos (a la lavadora, y punto). Todo ello sin renunciar a los requisitos más exigentes para el calzado laboral: Antiestáticos, Antideslizantes, Absorción de impactos, Anatómicos, Con correa ajustable. Fabricados en suave piel natural, con forro de microfibra y suela de PU (poliuretano, muy ligero, flexible y resistente). Son suaves, ligeros y con plantilla extraíble. Aseguran un perfecto ajuste gracias a sus presillas elásticas (sientan como un guante sea como sea tu empeine). Pala estanca para mayor seguridad anti-fluidos, pero 100% transpirables gracias a la piel natural. Con un tacto muy agradable por su forro de microfibra. Has leído bien...puedes lavarlos en lavadora hasta 30ºC y te quedarán perfectos!!! Aprovéchate y calza los zuecos más innovadores, porque AHORA LA PIEL YA TIENE LO QUE LE FALTABA. Hechos en Portugal.",
+    "product_description": "El zueco Wash'Go es la solución perfecta para las que estáis hartas de la goma, o preferís la comodidad y suavidad de la piel. Porque aúna lo mejor de ambos materiales: suave como sólo la piel natural puede serlo, y fácil de limpiar como los materiales plásticos (a la lavadora, y punto). Todo ello sin renunciar a los requisitos más exigentes para el calzado laboral: Antiestáticos, Antideslizantes, Absorción de impactos, Anatómicos, Con correa ajustable. Fabricados en suave piel natural, con forro de microfibra y suela de PU (poliuretano, muy ligero, flexible y resistente). Son suaves, ligeros y con plantilla extraíble. Aseguran un perfecto ajuste gracias a sus presillas elásticas (sientan como un guante sea como sea tu empeine). Pala estanca para mayor seguridad anti-fluidos, pero 100% transpirables gracias a la piel natural. Con un tacto muy agradable por su forro de microfibra. Has leído bien...puedes lavarlos en lavadora hasta 30ºC y te quedarán perfectos!!! Aprovéchate y calza los zuecos más innovadores, porque AHORA LA PIEL YA TIENE LO QUE LE FALTABA. Hechos en Portugal.",
     "features": [],
-    "category": "Zuecos"
+    "category_id": "Zuecos"
   },
   {
-    "id": 15,
-    "name": "Zueco Sanitario EVA Antiestático – Blanco",
+    "product_id": 15,
+    "product_name": "Zueco Sanitario EVA Antiestático – Blanco",
     "price": 15000,
     "image": "zueco-sanitario-eva-antiestatico-blanco.jpg",
-    "description": "Todas las ventajas del zueco EVA, ahora también antiestático. Lleva incorporada una pieza especial en el talón, que le otorga funciones antiestáticas. Evita las molestas descargas (chispazos) producidos por la acumulación de energía estática. Recomendado para servicios que exijan un contacto directo con aparatos eléctricos y electrónicos (bloques quirúrgicos, UCI, esterilización...).",
+    "product_description": "Todas las ventajas del zueco EVA, ahora también antiestático. Lleva incorporada una pieza especial en el talón, que le otorga funciones antiestáticas. Evita las molestas descargas (chispazos) producidos por la acumulación de energía estática. Recomendado para servicios que exijan un contacto directo con aparatos eléctricos y electrónicos (bloques quirúrgicos, UCI, esterilización...).",
     "features": [
       "Fabricado en EVA, superligeros (sólo 125 grs)",
       "Antiestáticos",
@@ -182,14 +184,14 @@
       "Correa abatible",
       "Disponibles en color blanco"
     ],
-    "category": "Zuecos"
+    "category_id": "Zuecos"
   },
   {
-    "id": 16,
-    "name": "Cuaderno de Enfermería - Motiva",
+    "product_id": 16,
+    "product_name": "Cuaderno de Enfermería - Motiva",
     "price": 1500,
     "image": "anotador-1.jpg",
-    "description": "Cuaderno ideal para profesionales de la salud, con ilustraciones inspiradoras y un diseño práctico para tomar notas durante las jornadas laborales.",
+    "product_description": "Cuaderno ideal para profesionales de la salud, con ilustraciones inspiradoras y un diseño práctico para tomar notas durante las jornadas laborales.",
     "features": [
       "Tamaño A5",
       "100 páginas",
@@ -197,14 +199,14 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category": "Anotadores"
+    "category_id": "Anotadores"
   },
   {
-    "id": 17,
-    "name": "Cuaderno de Enfermería - Cuidar",
+    "product_id": 17,
+    "product_name": "Cuaderno de Enfermería - Cuidar",
     "price": 1500,
     "image": "anotador-2.jpg",
-    "description": "Cuaderno motivacional para enfermeros, con frases inspiradoras y espacio para anotaciones personales y profesionales.",
+    "product_description": "Cuaderno motivacional para enfermeros, con frases inspiradoras y espacio para anotaciones personales y profesionales.",
     "features": [
       "Tamaño A5",
       "100 páginas",
@@ -212,14 +214,14 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category": "Anotadores"
+    "category_id": "Anotadores"
   },
   {
-    "id": 18,
-    "name": "Cuaderno de Enfermería - Gatos",
+    "product_id": 18,
+    "product_name": "Cuaderno de Enfermería - Gatos",
     "price": 1500,
     "image": "anotador-3.png",
-    "description": "Cuaderno diseñado para ayudar a los enfermeros a organizar sus tareas diarias y mantener un registro detallado de sus actividades.",
+    "product_description": "Cuaderno diseñado para ayudar a los enfermeros a organizar sus tareas diarias y mantener un registro detallado de sus actividades.",
     "features": [
       "Tamaño A5",
       "100 páginas",
@@ -227,14 +229,14 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category": "Anotadores"
+    "category_id": "Anotadores"
   },
   {
-    "id": 19,
-    "name": "Cuaderno de Enfermería - Valiente",
+    "product_id": 19,
+    "product_name": "Cuaderno de Enfermería - Valiente",
     "price": 1500,
     "image": "anotador-4.jpg",
-    "description": "Cuaderno con diseños relajantes y espacio para colorear, ideal para reducir el estrés y mejorar la concentración durante el trabajo.",
+    "product_description": "Cuaderno con diseños relajantes y espacio para colorear, ideal para reducir el estrés y mejorar la concentración durante el trabajo.",
     "features": [
       "Tamaño A5",
       "100 páginas",
@@ -242,66 +244,70 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category": "Anotadores"
+    "category_id": "Anotadores"
   },
   {
-    "id": 20,
-    "name": "Jarro Térmico de Enfermería - Corazón",
+    "product_id": 20,
+    "product_name": "Jarro Térmico de Enfermería - Corazón",
     "price": 1000,
     "image": "jarro-corazon.jpg",
-    "description": "Jarro térmico con diseño de corazón, ideal para mantener tus bebidas calientes durante largas jornadas laborales.",
+    "product_description": "Jarro térmico con diseño de corazón, ideal para mantener tus bebidas calientes durante largas jornadas laborales.",
     "features": [
       "Capacidad: 450 ml",
       "Material: Plástico",
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
     ],
-    "category": "Bazar"
+    "category_id": "Bazar"
   },
   {
-    "id": 21,
-    "name": "Jarro Térmico de Enfermería - Oftalmología",
+    "product_id": 21,
+    "product_name": "Jarro Térmico de Enfermería - Oftalmología",
     "price": 1000,
     "image": "jarro-oftalmologo.jpg",
-    "description": "Jarro térmico con diseño de oftalmología, perfecto para profesionales de la salud visual.",
+    "product_description": "Jarro térmico con diseño de oftalmología, perfecto para profesionales de la salud visual.",
     "features": [
       "Capacidad: 450 ml",
       "Material: Plástico",
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
     ],
-    "category": "Bazar"
+    "category_id": "Bazar"
   },
   {
-    "id": 22,
-    "name": "Taza de Cerámica - Camillero",
+    "product_id": 22,
+    "product_name": "Taza de Cerámica - Camillero",
     "price": 800,
     "image": "taza-camillero.jpg",
-    "description": "Taza de cerámica con diseño especial para camilleros, ideal para disfrutar de tus bebidas favoritas.",
+    "product_description": "Taza de cerámica con diseño especial para camilleros, ideal para disfrutar de tus bebidas favoritas.",
     "features": [
       "Capacidad: 350 ml",
       "Material: Cerámica",
       "Apta para microondas y lavavajillas",
       "Diseño resistente al desgaste"
     ],
-    "category": "Bazar"
+    "category_id": "Bazar"
   },
   {
-    "id": 23,
-    "name": "Taza de cerámica",
-    "description": "Taza de cerámica con dibujo de Pediatra",
+    "product_id": 23,
+    "product_name": "Taza de cerámica",
+    "product_description": "Taza de cerámica con dibujo de Pediatra",
     "image": "taza-pediatra.jpg",
-    "category": "bazar",
+    "category_id": "Bazar",
     "colors": "Blanca ",
-    "price": "5000"
+    "price": 5000,
+    "features": []
   },
   {
-    "id": 24,
-    "name": "Ambo",
-    "description": "Negro",
-    "image": "image-1739848951963.png",
-    "category": "ambos",
-    "colors": "negro",
-    "price": "25000"
+    "product_id": 25,
+    "product_name": "Taza personalizable",
+    "product_description": "Taza de cerámica personalizable son nombre y color. ",
+    "image": "image-1742223258888.jpg",
+    "category_id": "Bazar",
+    "features": [
+      "Apto microondas, Taza de cerámica. "
+    ],
+    "colors": "rojo, azul, verde, celeste, rosado.",
+    "price": 6000
   }
 ]

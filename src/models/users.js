@@ -23,13 +23,13 @@ const User = {
 
     async findById (id) {
         const users = await User.getAll();
-        return users.find(user => user.id === id);
+        return users.find(user => user.user_id === id);
     },
 
     async findByUsername (username)  {
         try {
             const users = await User.getAll();
-            return users.find(user => user.nombreusuario === username); // Usar nombreusuario
+            return users.find(user => user.user_name === username); // Usar user_name
         } catch (error) {
             console.error("Error en findByUsername:", error);
             return null; // Devuelve null en caso de error
@@ -38,7 +38,7 @@ const User = {
 
     async update (id, data) {
         let users = await User.getAll();
-        const userIndex = users.findIndex(user => user.id === id);
+        const userIndex = users.findIndex(user => user.user_id === id);
 
         if (userIndex !== -1) {
             users[userIndex] = { ...users[userIndex], ...data };
@@ -52,7 +52,7 @@ const User = {
 
     async getById(id) {
         const users = await User.getAll();
-        return users.find(user => user.id === id);
+        return users.find(user => user.user_id === id);
     },
     
 };

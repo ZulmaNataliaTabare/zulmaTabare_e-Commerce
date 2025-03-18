@@ -6,17 +6,16 @@
 
     <main>
     <div id="products" class="products-title">
-        <h5><%= category %></h5>
+        <h5><%=  category_id  %></h5>
     </div>
     <section class="articles-ambos" aria-label="Articles">
     <% if (products && products.length) { %>
         <% products.forEach(product => { %>
             <% try { %>
                 <%- include('../partials/images', {
-                    id: product.id,
-                    product: { image: product.image, name: product.name || 'Sin nombre' },
-                    price: product.price || 'Sin precio',
-                    name: product.name || 'Sin nombre'
+                    product_id: product.product_id,
+                    product: product,
+                    price: product.price
                 }) %>
             <% } catch (error) { %>
                 <p>Error al incluir imagen: <%= error.message %></p>
