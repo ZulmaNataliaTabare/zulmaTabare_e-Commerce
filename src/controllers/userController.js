@@ -134,12 +134,12 @@ const userController = {
                 updatedUser.image = req.file.filename;
             }
 
-            if (user.id === req.params.id) {
-                await User.update(user.id, updatedUser);
+            if (user.user_id === req.params.user_id) {
+                await User.update(user.user_id, updatedUser);
                 req.session.user = { ...user, ...updatedUser };
                 res.redirect('/users/profile');
             } else if (user.isAdmin) {
-                await User.update(req.params.id, updatedUser);
+                await User.update(req.params.user_id, updatedUser);
                 res.redirect('/users/adminUsers');
             } else {
                 return res.render('users/profile', { error: "No tienes permisos para realizar esta acción.", user: req.session.user }); // Devuelve a la vista profile con error

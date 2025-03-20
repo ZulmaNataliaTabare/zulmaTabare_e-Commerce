@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     user_id: DataTypes.INTEGER,
@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function(models) {
-    User.hasMany(models.Cart, { 
+    User.hasMany(models.cart, { 
       foreignKey: 'user_id',
       as: 'cart'
     });
-    User.belongsTo(models.Rol, { 
+    User.belongsTo(models.rol, { 
       foreignKey: 'rol_id', 
       as: 'rol'
     });

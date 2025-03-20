@@ -71,8 +71,8 @@ const productsController = {
     edit: (req, res) => {
         try {
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
-        const productId = parseInt(req.params.id);
-        const product = products.find(p => p.id === productId);
+        const productId = parseInt(req.params.product_id);
+        const product = products.find(p => p.product_id === productId);
         if (product) {
             res.render('products/productEdit', { product });
         } else {
@@ -88,8 +88,8 @@ const productsController = {
     update: (req, res) => {
         try {
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-            const productId = parseInt(req.params.id);
-            const index = products.findIndex(p => p.id === productId); // Encuentra el índice del producto
+            const productId = parseInt(req.params.product_id);
+            const index = products.findIndex(p => p.product_id === productId); // Encuentra el índice del producto
     
             if (index !== -1) {
                 products[index] = { // Actualiza el producto en el array
@@ -142,8 +142,8 @@ const productsController = {
     remove: (req, res) => {
         try {
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-            const productId = parseInt(req.params.id);
-            const updatedProducts = products.filter(product => product.id !== productId); 
+            const productId = parseInt(req.params.product_id);
+            const updatedProducts = products.filter(product => product.product_id !== productId); 
     
             fs.writeFileSync(productsFilePath, JSON.stringify(updatedProducts, null, 2)); 
             res.redirect('/products/'); 
