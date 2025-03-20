@@ -1,7 +1,7 @@
 <div class="contenedor-img-ambos">
     <% if (product_id && product && product.image && product.product_name && price) { %>
         <% console.log("Datos en images.ejs - ID:", product_id, "Producto:", product, "Precio:", price); %>
-        <a href="/products/detail/<%= product_id %>">
+        <a href="/productDetail/<%= product_id %>">
             <div class="card" data-product-id="<%= product_id %>">
                 <img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">
                 <div class="card-body">

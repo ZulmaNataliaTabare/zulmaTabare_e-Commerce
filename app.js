@@ -44,18 +44,16 @@ app
     .set('views', path.join(__dirname, 'src', 'views'))
     .set('view engine', 'ejs')
 
-    .use(express.urlencoded({ extended: true }))
-    .use(methodOverride('_method'))
-
-    // Middlewares
-    .use(cookieParser())
-    .use(sessionMiddleware)
-    .use(rememberMeMiddleware)
-    .use(checkUserSession)
-    .use(logger('dev'))
-    .use(express.json())
     .use(express.static(path.join(__dirname, 'public')))
-    .use(requestLogger)
+.use(express.json())
+.use(express.urlencoded({ extended: true }))
+.use(methodOverride('_method'))
+.use(cookieParser())
+.use(sessionMiddleware)
+.use(rememberMeMiddleware)
+.use(checkUserSession)
+.use(logger('dev'))
+.use(requestLogger)
 
     // Middleware para productos destacados y carrusel
     .use((req, res, next) => {
@@ -83,6 +81,7 @@ app
     .use(errorLogger)
     .use(adminErrorHandler)
     .use(errorHandler)
-    .use(notFoundHandler);
+    .use(notFoundHandler)
+
 
 module.exports = app;

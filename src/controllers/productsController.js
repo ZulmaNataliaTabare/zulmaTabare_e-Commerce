@@ -113,15 +113,15 @@ const productsController = {
     // Vista de administración de productos
     admin: (req, res) => {
         try {
-            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')); 
+            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
             const perPage = 6; // Productos por página
             const page = parseInt(req.query.page) || 1;
             const start = (page - 1) * perPage;
             const end = start + perPage;
-    
+
             const paginatedProducts = products.slice(start, end);
             const totalPages = Math.ceil(products.length / perPage);
-    
+
             res.render('products/admin', {
                 products: paginatedProducts,
                 currentPage: page,
@@ -129,12 +129,12 @@ const productsController = {
             });
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.render('products/admin', { 
-                error: "Error interno del servidor", 
+            res.render('products/admin', {
+                error: "Error interno del servidor",
                 products: [],
                 currentPage: 1,
-                totalPages: 1
-            }); // Renderiza con error
+                totalPages: 1 // Asegura que totalPages se pasa incluso en caso de error
+            });
         }
     },
 
@@ -158,14 +158,17 @@ const productsController = {
         try {
             const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
             const productId = parseInt(req.params.product_id, 10);
+            console.log('Buscando producto con ID:', productId);
             const product = products.find(p => p.product_id === productId);
+            console.log('Producto encontrado:', product);
+
     
             if (product) {
                 if (!product.features || !Array.isArray(product.features)) {
-                    product.features = []; 
+                    product.features = [];
                 }
-                console.log(product); 
-                res.render('products/productDetail', {
+                console.log(product);
+                res.render('products/productDetail', { 
                     product
                 });
             } else {
@@ -174,6 +177,8 @@ const productsController = {
         } catch (error) {
             console.error("Error al leer products.json:", error);
             res.render('products/admin', { error: "Error interno del servidor" });
+            console.log("product_id:", product_id);
+            console.log("product:", product);
         }
     },
 

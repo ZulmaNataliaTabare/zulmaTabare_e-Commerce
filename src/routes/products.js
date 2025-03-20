@@ -25,11 +25,11 @@ router
         .get('/', isAdmin, admin) 
 
 // Rutas públicas (sin protección)
-        .get('/detail/:id', detail)
+        .get('/productDetail/:id', detail)
         .get('/allProducts', getAllProducts)
 
 // Ruta para categorías 
-    .get('/category', productsController.category)
+    .get('/category', category) 
 
 // Rutas para editar y eliminar (protegidas con isAdmin)
     .get('/edit/:id', isAdmin, edit)
@@ -43,9 +43,9 @@ router
 
 
 // *** UNA SOLA RUTA PARA CATEGORIAS ***
-//     .get('/category', (req, res) => {
-//     const category = req.query.category_id;
-//     res.render('products/category', { category_id: category });
-// });
+    .get('/category', (req, res) => {
+    const category = req.query.category;
+    res.render('products/category', { category });
+});
 
 module.exports = router;

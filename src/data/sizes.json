@@ -1,0 +1,67 @@
+[
+    {
+        "size_id": 1,
+        "size_name": "small",
+        "size_description": ""
+    },
+    {
+        "size_id": 2,
+        "size_name": "medium",
+        "size_description": ""
+    },
+    {
+        "size_id": 3,
+        "size_name": "large",
+        "size_description": ""
+    },
+    {
+        "size_id": 4,
+        "size_name": "extra large",
+        "size_description": ""
+    },
+    {
+        "size_id": 5,
+        "size_name": "2xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 6,
+        "size_name": "3xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 7,
+        "size_name": "4xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 8,
+        "size_name": "5xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 9,
+        "size_name": "6xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 10,
+        "size_name": "7xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 11,
+        "size_name": "8xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 12,
+        "size_name": "9xLarge",
+        "size_description": ""
+    },
+    {
+        "size_id": 13,
+        "size_name": "10xLarge",
+        "size_description": ""
+    }
+]

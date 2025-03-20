@@ -17,10 +17,10 @@ const userController = {
 
             const { first_name, last_name, user_name, email, user_password, security_question, security_answer } = req.body;
 
-            console.log("Contraseña recibida:", contrasena);
+            console.log("Contraseña recibida:", user_password);
 
             const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
+            const hashedPassword = await bcrypt.hash(user_password, saltRounds);
 
             const users = await User.getAll();
             const newUser = {
