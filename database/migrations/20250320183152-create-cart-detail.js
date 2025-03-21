@@ -2,14 +2,11 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Cart_details', {
-      id: {
+    await queryInterface.createTable('cart_details', {
+      cart_item_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      cart_item_id: {
         type: Sequelize.INTEGER
       },
       cart_id: {
@@ -35,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Cart_details');
+    await queryInterface.dropTable('cart_details');
   }
 };

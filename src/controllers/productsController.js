@@ -181,35 +181,6 @@ detail: (req, res) => {
     },
 
 
-    // detail: (req, res) => {
-    //     try {
-    //         const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-    //         const productId = parseInt(req.params.product_id, 10);
-    //         console.log('Buscando producto con ID:', productId);
-    //         const product = products.find(p => p.product_id === productId);
-    //         console.log('Producto encontrado:', product);
-
-    
-    //         if (product) {
-    //             if (!product.features || !Array.isArray(product.features)) {
-    //                 product.features = [];
-    //             }
-    //             console.log(product);
-    //             res.render('/productDetail', { 
-    //                 product
-    //             });
-    //         } else {
-    //             return res.render('/admin', { error: 'Producto no encontrado' });
-    //         }
-    //     } catch (error) {
-    //         console.error("Error al leer products.json:", error);
-    //         res.render('/admin', { error: "Error interno del servidor" });
-    //         console.log("product_id:", product_id);
-    //         console.log("product:", product);
-    //     }
-    // },
-
-
         // *** NUEVO MÉTODO PARA CATEGORIAS ***
         category: async (req, res) => {
             try {

@@ -40,5 +40,5 @@ cart_detail.init ({
     
   
   
-  return Cart_detail;
+  return cart_detail;
 };
