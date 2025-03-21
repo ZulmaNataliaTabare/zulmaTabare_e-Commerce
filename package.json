@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node --env-file=.env --watch ./bin/www",
     "kill-port": "npx kill-port 3002",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "development": "npm run-script dev -- --watch"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

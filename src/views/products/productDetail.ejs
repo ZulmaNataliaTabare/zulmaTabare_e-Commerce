@@ -5,14 +5,24 @@
 
 
     <main>
-    <ul> <h4 id="products" class="products-title"><%= product.product_name %></h4> 
-    <%- include('../partials/images', { id: product.product_id, product: product, price: product.price }) %><p><%= product.product_description %></p>
-    <h3>Características:</h3> 
-
-    <% product.features.forEach(feature => { %> 
-        <li class="product-description"><%= feature %></li> 
-    <% }) %> 
-    </ul> 
+        <ul> 
+            <h4 id="products" class="products-title"><%= typeof product.product_name !== 'undefined' ? product.product_name : 'Producto sin nombre' %></h4>
+            <%- include('../partials/images', { 
+                id: product.product_id, 
+                product: product, 
+                price: product.price 
+            }) %>
+            <p><%= typeof product.product_description !== 'undefined' ? product.product_description : '' %></p>
+            
+            <h3>Características:</h3>
+            <% if (typeof product.features !== 'undefined' && Array.isArray(product.features)) { %>
+                <% product.features.forEach(feature => { %>
+                    <li class="product-description"><%= feature %></li>
+                <% }) %>
+            <% } else { %>
+                <p>No hay características disponibles</p>
+            <% } %>
+            </ul>
 </main> 
 <%- include('../partials/footer') %> 
 </body> 

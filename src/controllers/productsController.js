@@ -74,7 +74,7 @@ const productsController = {
         const productId = parseInt(req.params.product_id);
         const product = products.find(p => p.product_id === productId);
         if (product) {
-            res.render('products/productEdit', { product });
+            res.render('products/productEdit', { product, totalPages: 1 });
         } else {
             return res.render('products/admin', { error: 'Producto no encontrado' }); // Renderiza con error
             }
@@ -154,33 +154,60 @@ const productsController = {
     },
 
     // Detalle de un producto
-    detail: (req, res) => {
-        try {
-            const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-            const productId = parseInt(req.params.product_id, 10);
-            console.log('Buscando producto con ID:', productId);
-            const product = products.find(p => p.product_id === productId);
-            console.log('Producto encontrado:', product);
+
+detail: (req, res) => {
+
+    try {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+    const productId = Number(parseInt(req.params.id, 10));
+    console.log('Buscando producto con ID:', productId);
+    
+    const product = products.find(p => p.product_id === productId);
+    if (!product) {
+
+        
+    return res.status(404).render('products/admin', { error: 'Producto no encontrado' });
+    }
+    
+    console.log(product);
+    res.render('products/productDetail', {
+    product,
+    hasFeatures: Array.isArray(product.features) && product.features.length > 0
+    });
+    } catch (error) {
+    console.error("Error al leer products.json:", error);
+    res.status(500).render('products/admin', { error: "Error interno del servidor" });
+    }
+    },
+
+
+    // detail: (req, res) => {
+    //     try {
+    //         const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+    //         const productId = parseInt(req.params.product_id, 10);
+    //         console.log('Buscando producto con ID:', productId);
+    //         const product = products.find(p => p.product_id === productId);
+    //         console.log('Producto encontrado:', product);
 
     
-            if (product) {
-                if (!product.features || !Array.isArray(product.features)) {
-                    product.features = [];
-                }
-                console.log(product);
-                res.render('/productDetail', { 
-                    product
-                });
-            } else {
-                return res.render('/admin', { error: 'Producto no encontrado' });
-            }
-        } catch (error) {
-            console.error("Error al leer products.json:", error);
-            res.render('/admin', { error: "Error interno del servidor" });
-            console.log("product_id:", product_id);
-            console.log("product:", product);
-        }
-    },
+    //         if (product) {
+    //             if (!product.features || !Array.isArray(product.features)) {
+    //                 product.features = [];
+    //             }
+    //             console.log(product);
+    //             res.render('/productDetail', { 
+    //                 product
+    //             });
+    //         } else {
+    //             return res.render('/admin', { error: 'Producto no encontrado' });
+    //         }
+    //     } catch (error) {
+    //         console.error("Error al leer products.json:", error);
+    //         res.render('/admin', { error: "Error interno del servidor" });
+    //         console.log("product_id:", product_id);
+    //         console.log("product:", product);
+    //     }
+    // },
 
 
         // *** NUEVO MÉTODO PARA CATEGORIAS ***

@@ -10,7 +10,7 @@
         <div class="swiper-wrapper">
             <% carouselItems.forEach(product => { %>
                 <div class="swiper-slide">
-                    <a href="/productDetail/<%= product.product_id %>"><img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos"> </a>
+                    <a href="/products/productDetail/<%= product.product_id %>"><img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos"> </a>
                 </div>
             <% }) %>
         </div>
@@ -32,7 +32,7 @@
         <!-- Productos -->
         <% products.forEach(product => { %>
             <div class="products">
-                <a href="/productDetail/<%= product.product_id %>"><img class="article" src="/uploads/<%= product.image %>" alt="<%= product.product_name %>"></a>
+                <a href="/products/productDetail/<%= product.product_id %>"><img class="article" src="/uploads/<%= product.image %>" alt="<%= product.product_name %>"></a>
                 <div class="flex-container">
                     <div class="fav">
                         <i class="fa-solid fa-heart"></i>
