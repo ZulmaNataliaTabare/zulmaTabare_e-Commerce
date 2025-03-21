@@ -168,15 +168,15 @@ const productsController = {
                     product.features = [];
                 }
                 console.log(product);
-                res.render('products/productDetail', { 
+                res.render('/productDetail', { 
                     product
                 });
             } else {
-                return res.render('products/admin', { error: 'Producto no encontrado' });
+                return res.render('/admin', { error: 'Producto no encontrado' });
             }
         } catch (error) {
             console.error("Error al leer products.json:", error);
-            res.render('products/admin', { error: "Error interno del servidor" });
+            res.render('/admin', { error: "Error interno del servidor" });
             console.log("product_id:", product_id);
             console.log("product:", product);
         }
