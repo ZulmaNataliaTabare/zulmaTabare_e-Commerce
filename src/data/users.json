@@ -9,7 +9,7 @@
     "user_password": "$2b$10$.DApkzWaN7QKTc9vnf9A7.qLv1UMwIkwl1v9sBbP5EgDj1396dd4y",
     "security_question": "¿Cuál es tu color favorito?",
     "security_answer": "azul",
-    "rol_id": "2"
+    "rol_id": 2
   },
   {
     "user_id": 2,
@@ -21,7 +21,7 @@
     "user_password": "$2b$10$LpSX9AdjcwafJroJMCmo3.T6nMWTEA4SyZqbXnJXrBxXdCiI0n/4G",
     "security_question": "¿Cuál es tu color favorito?",
     "security_answer": "rojo",
-    "rol_id": "2"
+    "rol_id": 2
   },
   {
     "user_id": 3,
@@ -45,7 +45,7 @@
     "user_password": "$2b$10$trucwZu.nnMM2gFJcHdbPuefHfI42QbpSo40Xuvj6lXw5CbCB9r4y",
     "security_question": "¿Cuál es tu color favorito?",
     "security_answer": "azul",
-    "rol_id": "2"
+    "rol_id": 2
   },
   {
     "user_id": 5,
@@ -57,6 +57,6 @@
     "user_password": "$2b$10$gKyZBPzgZIIcSawc/RAi3.zbOO6jZgwssuNZsRZISKvqIH3BhFbjm",
     "security_question": "¿Cuál es tu color favorito?",
     "security_answer": "rojo",
-    "rol_id": "2"
+    "rol_id": 2
   }
 ]

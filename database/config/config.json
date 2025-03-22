@@ -5,6 +5,9 @@
     "database": "db_e-commerce_tabare",
     "host": "127.0.0.1",
     "dialect": "mysql",
+    "dialectOptions": {
+      "charset": "utf8mb4"
+    },
     "seederStoragePath": "../seeders",
     "migrationStoragePath": "../migrations"
   },

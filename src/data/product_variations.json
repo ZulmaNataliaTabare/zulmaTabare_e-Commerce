@@ -61,12 +61,5 @@
         "size_id_variations": 9,
         "color_id_variations": 9,
         "stock": 15
-    },
-    {
-        "product_variation_id": 10,
-        "product_id_variations": 10,
-        "size_id_variations": 10,
-        "color_id_variations": 10,
-        "stock": 30 
     }
 ]

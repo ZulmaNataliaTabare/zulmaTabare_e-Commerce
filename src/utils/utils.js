@@ -5,7 +5,7 @@ function filterProductsByCategory(products, category) {
     if (!category) {
         return products;
     }
-    return products.filter(product => product.category_id?.toLowerCase() === category.toLowerCase());
+    return products.filter(product => product.category_id  === category);
 }
 
 module.exports = {

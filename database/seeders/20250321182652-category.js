@@ -11,11 +11,13 @@ module.exports = {
       const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'category.json'), 'utf-8');
       const category = JSON.parse(rawData);
 
-      const categoryWithTimestamps = category.map((category) => ({...category,
+      const categoryWithTimestamps = category.map((item) => ({
+        category_id: item.category_id,
+        category_name: item.category_name,
         createdAt: new Date(),
         updatedAt: new Date()
       }));
-      await queryInterface.bulkInsert('Category', categoryWithTimestamps, {});
+      await queryInterface.bulkInsert('category', categoryWithTimestamps, {});
     } catch (error) {
       console.error('Error al leer o insertar datos desde JSON:', error);
         throw error;
@@ -23,6 +25,6 @@ module.exports = {
   },
 
     down: async (queryInterface) => {
-      await queryInterface.bulkDelete('Category', null, {});
+      await queryInterface.bulkDelete('category', null, {});
     },
 };

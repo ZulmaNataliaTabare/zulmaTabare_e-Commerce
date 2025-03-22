@@ -6,7 +6,7 @@
     "image": "bluson-microfibra-mariquitas.jpg",
     "product_description": "Blusón de microfibra con estampado de mariquitas. Ideal para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category_id": "Ambos"
+    "category_id": 2
   },
   {
     "product_id": 2,
@@ -15,7 +15,7 @@
     "image": "bluson-veterinario.jpg",
     "product_description": "Blusón de microfibra para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category_id": "Ambos"
+    "category_id": 2
   },
   {
     "product_id": 3,
@@ -24,7 +24,7 @@
     "image": "ambo-hombre.jpg",
     "product_description": "Ambo de hombre con estampado de fuego. Ideal para profesionales de la salud que buscan un toque de color en su uniforme.",
     "features": [],
-    "category_id": "Ambos"
+    "category_id": 2
   },
   {
     "product_id": 4,
@@ -32,7 +32,7 @@
     "product_description": "Guardapolvo Blanco, tela resistente antimanchas. ",
     "image": "guardapolvo-mujer.jpg",
     "price": 15000,
-    "category_id": "Ambos"
+    "category_id": 2
   },
   {
     "product_id": 5,
@@ -41,7 +41,7 @@
     "image": "LANYARD-_COSAS-scaled.jpg",
     "product_description": "...",
     "features": [],
-    "category_id": "Lanyard"
+    "category_id": 5
   },
   {
     "product_id": 6,
@@ -54,7 +54,7 @@
       "Separador de seguridad en la parte trasera en plástico de color rosa palo para que se retire fácilmente del cuello si se da un tirón.",
       "Mini gancho para llevar las tijeras o lo que más necesites"
     ],
-    "category_id": "Lanyard"
+    "category_id": 5
   },
   {
     "product_id": 7,
@@ -65,7 +65,7 @@
     "features": [
       "Lanyard 50 x 2 cm. Con mosquetón para colgar las tijeras y clip para la identificación. Con enganche delantero para liberar las tijeras fácilmente."
     ],
-    "category_id": "Lanyard"
+    "category_id": 5
   },
   {
     "product_id": 8,
@@ -77,7 +77,7 @@
       "Tijeras de pico de pato de 14 cm",
       "Fabricadas en acero inoxidable"
     ],
-    "category_id": "Accesorios"
+    "category_id": 1
   },
   {
     "product_id": 9,
@@ -88,7 +88,7 @@
     "features": [
       "Compresor de tela elástica, fácil de lavar. Con cierre de clic y ajustable. Botón para liberar rápidamente el brazo de los pacientes."
     ],
-    "category_id": "Accesorios"
+    "category_id": 1
   },
   {
     "product_id": 10,
@@ -101,7 +101,7 @@
       "Fácil lavado en lavadora",
       "Hecho a mano"
     ],
-    "category_id": "Accesorios"
+    "category_id": 1
   },
   {
     "product_id": 11,
@@ -113,7 +113,7 @@
       "Salvabolsillos de PVC de 16 x 9 cm",
       "Fácil limpieza"
     ],
-    "category_id": "Accesorios"
+    "category_id": 1
   },
   {
     "product_id": 12,
@@ -133,7 +133,7 @@
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
     ],
-    "category_id": "Zuecos"
+    "category_id": 6
   },
   {
     "product_id": 13,
@@ -153,7 +153,7 @@
       "Antideslizante según la normativa UNE-EN ISO 13287:2013.",
       "Fabricado en EcoT, material reciclado certificado por Global Recycled"
     ],
-    "category_id": "Zuecos"
+    "category_id": 6
   },
   {
     "product_id": 14,
@@ -162,7 +162,7 @@
     "image": "zueco-sanitario-piel-lavable-wash-go-azul.jpg",
     "product_description": "El zueco Wash'Go es la solución perfecta para las que estáis hartas de la goma, o preferís la comodidad y suavidad de la piel. Porque aúna lo mejor de ambos materiales: suave como sólo la piel natural puede serlo, y fácil de limpiar como los materiales plásticos (a la lavadora, y punto). Todo ello sin renunciar a los requisitos más exigentes para el calzado laboral: Antiestáticos, Antideslizantes, Absorción de impactos, Anatómicos, Con correa ajustable. Fabricados en suave piel natural, con forro de microfibra y suela de PU (poliuretano, muy ligero, flexible y resistente). Son suaves, ligeros y con plantilla extraíble. Aseguran un perfecto ajuste gracias a sus presillas elásticas (sientan como un guante sea como sea tu empeine). Pala estanca para mayor seguridad anti-fluidos, pero 100% transpirables gracias a la piel natural. Con un tacto muy agradable por su forro de microfibra. Has leído bien...puedes lavarlos en lavadora hasta 30ºC y te quedarán perfectos!!! Aprovéchate y calza los zuecos más innovadores, porque AHORA LA PIEL YA TIENE LO QUE LE FALTABA. Hechos en Portugal.",
     "features": [],
-    "category_id": "Zuecos"
+    "category_id": 6
   },
   {
     "product_id": 15,
@@ -184,7 +184,7 @@
       "Correa abatible",
       "Disponibles en color blanco"
     ],
-    "category_id": "Zuecos"
+    "category_id": 6
   },
   {
     "product_id": 16,
@@ -199,7 +199,7 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category_id": "Anotadores"
+    "category_id": 3
   },
   {
     "product_id": 17,
@@ -214,7 +214,7 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category_id": "Anotadores"
+    "category_id": 3
   },
   {
     "product_id": 18,
@@ -229,7 +229,7 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category_id": "Anotadores"
+    "category_id": 3
   },
   {
     "product_id": 19,
@@ -244,7 +244,7 @@
       "Papel reciclado",
       "Banda elástica para cerrar"
     ],
-    "category_id": "Anotadores"
+    "category_id": 3
   },
   {
     "product_id": 20,
@@ -258,7 +258,7 @@
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
     ],
-    "category_id": "Bazar"
+    "category_id": 4
   },
   {
     "product_id": 21,
@@ -272,7 +272,7 @@
       "Tapa a prueba de derrames",
       "Aislamiento térmico"
     ],
-    "category_id": "Bazar"
+    "category_id": 4
   },
   {
     "product_id": 22,
@@ -286,14 +286,14 @@
       "Apta para microondas y lavavajillas",
       "Diseño resistente al desgaste"
     ],
-    "category_id": "Bazar"
+    "category_id": 4
   },
   {
     "product_id": 23,
     "product_name": "Taza de cerámica",
     "product_description": "Taza de cerámica con dibujo de Pediatra",
     "image": "taza-pediatra.jpg",
-    "category_id": "Bazar",
+    "category_id": 4,
     "colors": "Blanca ",
     "price": 5000,
     "features": []
@@ -303,7 +303,7 @@
     "product_name": "Taza personalizable",
     "product_description": "Taza de cerámica personalizable son nombre y color. ",
     "image": "image-1742223258888.jpg",
-    "category_id": "Bazar",
+    "category_id": 4,
     "features": [
       "Apto microondas, Taza de cerámica. "
     ],
