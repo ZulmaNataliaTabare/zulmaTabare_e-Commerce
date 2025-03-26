@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
 
-    cart_detail.belongsTo(models.Cart, { 
+    cart_detail.belongsTo(models.cart, { 
       foreignKey: 'cart_id',
       as: 'cart'
     });
@@ -32,7 +32,7 @@ cart_detail.init ({
     product_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Cart_detail',
+    modelName: 'cart_detail',
     timestamps: true,
     underscored: true
   });
