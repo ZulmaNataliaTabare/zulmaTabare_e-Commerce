@@ -33,7 +33,7 @@
                         <td><%= user.email %></td>
                         <td>
                             <a href="/users/editUsers/<%= user.user_id %>" class="btn btn-sm btn-warning">Editar</a>
-                            <form action="/users/deleteUser/<%= user.user_id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <form action="/users/deleteUsers/<%= user.user_id %>?_method=DELETE" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</button>
                             </form>
                         </td>

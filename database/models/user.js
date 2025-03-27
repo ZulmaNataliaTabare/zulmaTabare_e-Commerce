@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 'use strict';
 const {
   Model
@@ -37,11 +38,15 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true,
     underscored: false,
     hooks: {
-    beforeCreate: async (user) => {
-      user.user_password = await bcrypt.hash(user.user_password, saltRounds);
-    }
-    }
-    });
+      beforeCreate: async (user) => {
+        console.log('Contraseña antes del hash:', user.user_password);
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(user.user_password, saltRounds);
+        console.log('Contraseña hasheada:', hashedPassword);
+        user.user_password = hashedPassword;
+      },
+    },
+  });
 
   User.associate = function(models) {
     User.hasMany(models.Cart, { 

@@ -10,42 +10,39 @@ const userController = {
         console.log("req.body:", req.body);
         try {
             console.log("req.file:", req.file);
-
+    
             if (!req.file) {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
-
+    
             const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body; // Default rol_id = 2 para usuarios regulares
-
+    
             console.log("Contraseña recibida:", user_password);
-
-            const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(user_password, saltRounds);
-
+    
             const newUser = await User.create({
                 first_name,
                 last_name,
                 user_name,
                 email,
                 image: req.file.filename,
-                user_password: hashedPassword,
+                user_password: user_password, 
                 security_question,
                 security_answer,
-                rol_id: parseInt(rol_id) // Asegúrate de que rol_id sea un número
+                rol_id: parseInt(rol_id) 
             });
-
+    
             res.redirect('/users/login');
-
+    
         } catch (error) {
             console.error("Error al registrar usuario:", error);
             res.render('users/register', { error: "Error interno del servidor.", ...req.body });
         }
     },
 
-
     loginUser: async (req, res) => {
         const { usuario, contrasena, remember } = req.body;
-
+        console.log('Contraseña ingresada al login:', contrasena);
+    
         try {
             const user = await User.findOne({
                 where: {
@@ -53,16 +50,17 @@ const userController = {
                 },
                 include: [{ model: Rol, as: 'rol' }]
             });
-
+    
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
-
+    
+            console.log('Hash de la contraseña en la BD:', user.user_password); 
             const result = await bcrypt.compare(contrasena, user.user_password);
             if (!result) {
                 return res.render('users/login', { error: "Contraseña incorrecta." });
             }
-
+    
             if (user) {
                 req.session.user = {
                     user_id: user.user_id,
@@ -75,13 +73,13 @@ const userController = {
                     rol_name: user.rol ? user.rol.rol_name : null
                 };
                 console.log('Usuario logueado - req.session.user:', req.session.user);
-
+    
                 if (remember) {
-                    res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); // Guarda el usuario por 30 días
+                    res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
                 } else {
                     res.clearCookie('remember');
                 }
-
+    
                 return res.redirect('/');
             } else {
                 return res.render('users/login', { error: "Usuario o contraseña incorrectos." });

@@ -1,8 +1,10 @@
 
-const db = require('../../database/models'); // Importa los modelos
+const db = require('../../database/models'); 
 const multer = require('multer');
 const path = require('path');
-const { Op } = require('sequelize'); // Importa el operador Op para búsquedas
+const { Op } = require('sequelize'); 
+const productsPerPage = 3;
+
 
 const productsController = {
     add: async (req, res) => {
@@ -85,7 +87,12 @@ const productsController = {
 
             const products = await db.Product.findAll({
                 limit: perPage,
-                offset: start
+                offset: start,
+                include: [{
+                    model: db.Category,
+                    as: 'category', 
+                    attributes: ['category_id', 'category_name'] 
+                }]
             });
 
             const totalProducts = await db.Product.count();
@@ -152,12 +159,24 @@ const productsController = {
 
     getAllProducts: async (req, res) => {
         try {
-            console.log(db.Product);
-            const products = await db.Product.findAll();
-            res.render('products/allProducts', { products });
+            const page = parseInt(req.query.page) || 1;
+            const offset = (page - 1) * productsPerPage;
+
+            const { count, rows: products } = await db.Product.findAndCountAll({
+                limit: productsPerPage,
+                offset: offset,
+            });
+
+            const totalPages = Math.ceil(count / productsPerPage);
+
+            res.render('products/allProducts', {
+                products: products,
+                currentPage: page,
+                totalPages: totalPages,
+            });
         } catch (error) {
             console.error(error);
-            res.render('products/allProducts', { error: 'Error al obtener los productos', products: [] });
+            res.render('products/allProducts', { error: 'Error al obtener los productos', products: [], currentPage: 1, totalPages: 1 });
         }
     },
 
