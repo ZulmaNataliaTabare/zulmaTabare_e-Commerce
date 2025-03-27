@@ -33,8 +33,8 @@ router
 .post('/users/forgotPassword', redirectIfLoggedIn, forgotPassword)
 .get('/users/adminUsers', authMiddleware.isAdmin, adminUsers) 
 .delete('/adminUsers/delete/:id', authMiddleware.isAdmin, deleteUser) 
-.get('/users/edit/:id', authMiddleware.isAdmin, editUser) 
-.post('/users/edit/:id', authMiddleware.isAdmin, upload.single('image'), updateUser); 
+.get('/users/editUsers/:id', authMiddleware.isAdmin, editUser) 
+.post('/users/editUsers/:id', authMiddleware.isAdmin, upload.single('image'), updateUser); 
     
     
     

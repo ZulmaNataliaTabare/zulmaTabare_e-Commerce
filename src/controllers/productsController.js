@@ -2,32 +2,42 @@
 const db = require('../../database/models'); // Importa los modelos
 const multer = require('multer');
 const path = require('path');
+const { Op } = require('sequelize'); // Importa el operador Op para búsquedas
 
 const productsController = {
-    add: (req, res) => {
-        res.render('products/productAdd');
+    add: async (req, res) => {
+        try {
+            const Category = await db.Category.findAll(); 
+            const Colors = await db.Color.findAll(); 
+            res.render('products/productAdd', { Categories: Category, availableColors: Colors }); 
+        } catch (error) {
+            console.error("Error al obtener categorías para el formulario de agregar producto:", error);
+            res.render('products/productAdd', { error: "Error al cargar el formulario", Categories: [] });
+        }
     },
 
     create: async (req, res) => {
         try {
             if (!req.file) {
-                return res.render('products/productAdd', { error: "Debes seleccionar una imagen para el producto.", ...req.body });
+                const Categories = await db.Category.findAll(); 
+                return res.render('products/productAdd', { error: "Debes seleccionar una imagen para el producto.", ...req.body, Categories });
             }
-
+    
             await db.Product.create({
-                product_name: req.body.name,
+                product_name: req.body.product_name, 
                 product_description: req.body.description,
                 image: req.file.filename,
-                category_id: req.body.category,
+                category_id: req.body.category_id, 
                 features: req.body.features,
                 colors: req.body.colors,
                 price: req.body.price
             });
-
+    
             res.redirect('/products');
         } catch (error) {
             console.error("Error al crear producto:", error);
-            res.render('products/productAdd', { error: "Error interno del servidor al crear el producto.", ...req.body });
+            const Categories = await db.Category.findAll(); 
+            res.render('products/productAdd', { error: "Error interno del servidor al crear el producto.", ...req.body, Categories });
         }
     },
 
@@ -125,9 +135,15 @@ const productsController = {
             if (!category_id) {
                 return res.status(400).render('products/category', { error: 'Categoría no especificada', category_id: null, products: [] });
             }
+
+            const category = await db.Category.findByPk(category_id);
+            if (!category) {
+                return res.status(404).render('products/category', { error: 'Categoría no encontrada', category_id: null, products: [] });
+            }
+
             console.log(db.Product);
             const products = await db.Product.findAll({ where: { category_id } });
-            res.render('products/category', { category_id, products, error: null });
+            res.render('products/category', { category: category, products, error: null });
         } catch (error) {
             console.error("Error al ver la categoría:", error);
             res.status(500).render('products/category', { error: "Error interno del servidor", category_id: req.query.category_id, products: [] });
@@ -143,7 +159,36 @@ const productsController = {
             console.error(error);
             res.render('products/allProducts', { error: 'Error al obtener los productos', products: [] });
         }
-    }
+    },
+
+    search: async (req, res) => {
+        try {
+            const searchTerm = req.query.q; 
+
+            if (!searchTerm) {
+                return res.render('products/allProducts', { products: [], searchTerm: '' }); 
+            }
+
+            const products = await db.Product.findAll({
+                where: {
+                    [Op.or]: [
+                        {
+                            product_name: {
+                                [Op.like]: `%${searchTerm}%` 
+                            }
+                        },
+                    ]
+                }
+            });
+
+            res.render('products/allProducts', { products, searchTerm }); // Renderiza la vista con los resultados y el término de búsqueda
+        } catch (error) {
+            console.error("Error al buscar productos:", error);
+            res.render('products/allProducts', { error: 'Error al realizar la búsqueda', products: [], searchTerm: '' });
+        }
+    },
+
+
 };
 
 module.exports = productsController;

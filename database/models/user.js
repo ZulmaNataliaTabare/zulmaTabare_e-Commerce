@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
+  class User extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,8 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  user.init({
-    user_id: DataTypes.INTEGER,
+  User.init({
+    user_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+    }, 
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     user_name: DataTypes.STRING,
@@ -24,12 +28,14 @@ module.exports = (sequelize, DataTypes) => {
     security_question: DataTypes.STRING,
     security_answer: DataTypes.STRING,
     rol_id: DataTypes.INTEGER,
-    created_at: DataTypes.DATE
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'user',
+    modelName: 'User',
+    tableName: 'Users',
     timestamps: true,
-    underscored: true,
+    underscored: false,
     hooks: {
     beforeCreate: async (user) => {
       user.user_password = await bcrypt.hash(user.user_password, saltRounds);
@@ -37,15 +43,15 @@ module.exports = (sequelize, DataTypes) => {
     }
     });
 
-  user.associate = function(models) {
-    user.hasMany(models.cart, { 
+  User.associate = function(models) {
+    User.hasMany(models.Cart, { 
       foreignKey: 'user_id',
       as: 'cart'
     });
-    user.belongsTo(models.rol, { 
+    User.belongsTo(models.Rol, { 
       foreignKey: 'rol_id', 
       as: 'rol'
     });
   };
-  return user;
+  return User;
 };

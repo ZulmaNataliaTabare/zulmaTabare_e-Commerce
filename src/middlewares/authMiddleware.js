@@ -16,7 +16,8 @@ class AdminError extends Error {
 
 const isAdmin = (req, res, next) => {
     if (!req.session.user || req.session.user.rol_id !== 1) {
-        throw new AdminError("No tienes permiso para acceder a esta página.");
+        console.log('isAdmin Middleware - Acceso Denegado:', req.session.user);
+        throw new Error("No tienes permiso para acceder a esta página."); 
     }
     next();
 };

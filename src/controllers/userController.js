@@ -1,7 +1,7 @@
-const fs = require('fs/promises');
 const path = require('path');
-const usersFilePath = path.join(__dirname, '../data/users.json');
-const User = require('../models/users');
+const { User, Rol, sequelize } = require('../../database/models');
+const Sequelize = require('sequelize');
+const { Op } = Sequelize;
 const bcrypt = require('bcrypt');
 
 const userController = {
@@ -15,16 +15,14 @@ const userController = {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
 
-            const { first_name, last_name, user_name, email, user_password, security_question, security_answer } = req.body;
+            const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body; // Default rol_id = 2 para usuarios regulares
 
             console.log("Contraseña recibida:", user_password);
 
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(user_password, saltRounds);
 
-            const users = await User.getAll();
-            const newUser = {
-                user_id: users.length ? parseInt(users[users.length - 1].user.id) + 1 : 1,
+            const newUser = await User.create({
                 first_name,
                 last_name,
                 user_name,
@@ -33,20 +31,14 @@ const userController = {
                 user_password: hashedPassword,
                 security_question,
                 security_answer,
-            };
-
-            try {
-                await fs.writeFile(usersFilePath, JSON.stringify([...users, newUser], null, 2));
-            } catch (writeError) {
-                console.error("Error al escribir users.json:", writeError);
-                return res.render('users/register', { error: "Error al guardar el usuario.", ...req.body });// Devuelve a la vista register con error
-            }
+                rol_id: parseInt(rol_id) // Asegúrate de que rol_id sea un número
+            });
 
             res.redirect('/users/login');
 
         } catch (error) {
             console.error("Error al registrar usuario:", error);
-            res.render('users/register', { error: "Error interno del servidor.", ...req.body });// Devuelve a la vista register con error
+            res.render('users/register', { error: "Error interno del servidor.", ...req.body });
         }
     },
 
@@ -55,8 +47,12 @@ const userController = {
         const { usuario, contrasena, remember } = req.body;
 
         try {
-            const users = await User.getAll();
-            const user = users.find(u => u.user_name === usuario || u.email === usuario);
+            const user = await User.findOne({
+                where: {
+                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
+                },
+                include: [{ model: Rol, as: 'rol' }]
+            });
 
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
@@ -68,15 +64,20 @@ const userController = {
             }
 
             if (user) {
-                req.session.user = user;
+                req.session.user = {
+                    user_id: user.user_id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    user_name: user.user_name,
+                    email: user.email,
+                    image: user.image,
+                    rol_id: user.rol_id,
+                    rol_name: user.rol ? user.rol.rol_name : null
+                };
+                console.log('Usuario logueado - req.session.user:', req.session.user);
 
                 if (remember) {
-                    res.cookie('remember', user.user_name, {
-                        maxAge: 30 * 24 * 60 * 60 * 1000,
-                        httpOnly: true,
-                        sameSite: 'strict',
-                        secure: process.env.NODE_ENV === 'production',
-                    });
+                    res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true }); // Guarda el usuario por 30 días
                 } else {
                     res.clearCookie('remember');
                 }
@@ -112,41 +113,53 @@ const userController = {
     },
 
     updateProfile: async (req, res) => {
+        const { id } = req.params;
+        const loggedInUser = req.session.user;
+
         try {
-            const user = req.session.user;
-            if (!user) {
+            if (!loggedInUser) {
                 return res.redirect('/users/login');
             }
 
-            const { first_name, last_name, user_name, email, user_password } = req.body;
+            const { first_name, last_name, user_name, email, current_password, password: new_password, security_question, security_answer } = req.body;
             const updatedUser = {
-                first_name: first_name || user.first_name,
-                last_name: last_name || user.last_name,
-                user_name: user_name || user.user_name,
-                email: email || user.email,
+                first_name: first_name || loggedInUser.first_name,
+                last_name: last_name || loggedInUser.last_name,
+                user_name: user_name || loggedInUser.user_name,
+                email: email || loggedInUser.email,
+                security_question: security_question || loggedInUser.security_question,
+                security_answer: security_answer || loggedInUser.security_answer
             };
 
-            if (user_password) {
-                updatedUser.user_password = await bcrypt.hash(user_password, 10);
+            if (new_password) {
+                updatedUser.user_password = await bcrypt.hash(new_password, 10);
+            } else if (current_password) {
+                const isMatch = await bcrypt.compare(current_password, loggedInUser.user_password);
+                if (!isMatch) {
+                    return res.status(400).send("La contraseña actual es incorrecta.");
+                }
             }
 
             if (req.file) {
                 updatedUser.image = req.file.filename;
             }
 
-            if (user.user_id === req.params.user_id) {
-                await User.update(user.user_id, updatedUser);
-                req.session.user = { ...user, ...updatedUser };
+            const userIdToUpdate = parseInt(id);
+
+            if (loggedInUser.user_id === userIdToUpdate) {
+                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
+                req.session.user = { ...loggedInUser, ...updatedUser };
                 res.redirect('/users/profile');
-            } else if (user.isAdmin) {
-                await User.update(req.params.user_id, updatedUser);
+            } else if (loggedInUser.rol_id === 1) {
+                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
                 res.redirect('/users/adminUsers');
             } else {
-                return res.render('users/profile', { error: "No tienes permisos para realizar esta acción.", user: req.session.user }); // Devuelve a la vista profile con error
+                return res.render('users/profile', { error: "No tienes permisos para realizar esta acción.", user: req.session.user });
             }
+
         } catch (error) {
-            console.error("Error al actualizar perfil:", error);
-            res.render('users/profile', { error: "Error interno del servidor.", user: req.session.user });// Devuelve a la vista profile con error
+            console.error("Error al actualizar usuario:", error);
+            res.render('users/profile', { error: "Error interno del servidor.", user: req.session.user });
         }
     },
 
@@ -154,8 +167,11 @@ const userController = {
         const { usuario } = req.body;
 
         try {
-            const users = await User.getAll();
-            const user = users.find(u => u.user_name === usuario || u.email === usuario);
+            const user = await User.findOne({
+                where: {
+                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
+                }
+            });
 
             if (user) {
                 res.json({ pregunta: user.security_question });
@@ -172,8 +188,11 @@ const userController = {
         const { usuario, respuesta, contrasena } = req.body;
 
         try {
-            const users = await User.getAll();
-            const user = users.find(u => u.user_name === usuario || u.email === usuario);
+            const user = await User.findOne({
+                where: {
+                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
+                }
+            });
 
             if (!user) {
                 return res.render('users/forgotPassword', { error: "Usuario no encontrado." });
@@ -189,7 +208,7 @@ const userController = {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
 
-            await User.update(user.user_id, { user_password: hashedPassword });
+            await User.update({ user_password: hashedPassword }, { where: { user_id: user.user_id } });
 
             res.redirect('/users/login');
         } catch (error) {
@@ -201,7 +220,7 @@ const userController = {
     deleteUser: async (req, res) => {
         const { id } = req.params;
         try {
-            await User.delete(id);
+            await User.destroy({ where: { user_id: id } });
             res.redirect('/users/adminUsers');
         } catch (error) {
             console.error("Error al eliminar usuario:", error);
@@ -210,52 +229,60 @@ const userController = {
     },
 
     editUser: async (req, res) => {
-        const { id } = parseInt(req.params.user_id);
+        const { id } = req.params;
         try {
-            const user = await User.findById(id);
-            if (!user) {
-                return res.status(404).send("Usuario no encontrado");
+            const userToEdit = await User.findByPk(parseInt(id));
+            if (!userToEdit) {
+                return res.render('users/adminUsers', { error: 'Usuario no encontrado.' });
             }
-            res.render('users/editUser', { user });
+            res.render('users/editUsers', { userToEdit });
         } catch (error) {
             console.error("Error al obtener usuario:", error);
-            res.status(500).send("Error interno del servidor");
+            res.render('users/adminUsers', { error: "Error interno del servidor." });
         }
     },
-    
+
     updateUser: async (req, res) => {
         const { id } = req.params;
-        const user = req.session.user;
+        const loggedInUser = req.session.user;
 
         try {
-            if (!user) {
+            if (!loggedInUser) {
                 return res.redirect('/users/login');
             }
 
-            const { first_name, last_name, user_name, email, user_password, security_question, security_answer } = req.body;
+            const { first_name, last_name, user_name, email, current_password, password: new_password, security_question, security_answer, rol_id } = req.body;
             const updatedUser = {
-                first_name: first_name || user.first_name,
-                last_name: last_name || user.last_name,
-                user_name: user_name || user.user_name,
-                email: email || user.email,
-                security_question: security_question || user.security_question,
-                security_answer: security_answer || user.security_answer
+                first_name: first_name || loggedInUser.first_name,
+                last_name: last_name || loggedInUser.last_name,
+                user_name: user_name || loggedInUser.user_name,
+                email: email || loggedInUser.email,
+                security_question: security_question || loggedInUser.security_question,
+                security_answer: security_answer || loggedInUser.security_answer,
+                rol_id: loggedInUser.rol_id === 1 && rol_id ? parseInt(rol_id) : loggedInUser.rol_id // Solo admin puede cambiar rol
             };
 
-            if (contrasena) {
-                updatedUser.constrasena = await bcrypt.hash(user_password, 10);
+            if (new_password) {
+                updatedUser.user_password = await bcrypt.hash(new_password, 10);
+            } else if (current_password) {
+                const isMatch = await bcrypt.compare(current_password, loggedInUser.user_password);
+                if (!isMatch) {
+                    return res.status(400).send("La contraseña actual es incorrecta.");
+                }
             }
 
             if (req.file) {
                 updatedUser.image = req.file.filename;
             }
 
-            await User.update(id, updatedUser);
+            const userIdToUpdate = parseInt(id);
 
-            if (user.id === id) {
-                req.session.user = { ...user, ...updatedUser };
+            if (loggedInUser.user_id === userIdToUpdate) {
+                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
+                req.session.user = { ...loggedInUser, ...updatedUser };
                 res.redirect('/users/profile');
-            } else if (user.isAdmin) {
+            } else if (loggedInUser.rol_id === 1) {
+                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
                 res.redirect('/users/adminUsers');
             } else {
                 res.status(403).send("No tienes permisos para realizar esta acción.");
@@ -269,7 +296,9 @@ const userController = {
 
     adminUsers: async (req, res) => {
         try {
-            const users = await User.getAll();
+            const users = await User.findAll({
+                include: [{ model: Rol, as: 'rol' }] // Incluye la información del rol
+            });
             const totalPages = Math.ceil(users.length / 10);
             const currentPage = req.query.page ? parseInt(req.query.page) : 1;
             const usersToShow = users.slice((currentPage - 1) * 10, currentPage * 10);
@@ -280,8 +309,6 @@ const userController = {
             res.status(500).send("Error interno del servidor.");
         }
     },
-
-
 };
 
 module.exports = userController;

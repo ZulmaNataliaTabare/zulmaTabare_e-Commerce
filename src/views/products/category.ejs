@@ -6,7 +6,7 @@
 
     <main>
     <div id="products" class="products-title">
-        <h5><%=  category_id  %></h5>
+        <h5><%= category ? category.category_name : 'Categoría no encontrada' %></h5>
     </div>
     <section class="articles-ambos" aria-label="Articles">
     <% if (products && products.length) { %>
