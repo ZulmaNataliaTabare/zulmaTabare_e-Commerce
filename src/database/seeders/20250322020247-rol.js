@@ -1,13 +1,10 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
+const rols = require('../../data/rols.json')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async  (queryInterface) => {
     try {
-      const rawData =fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'rols.json'), 'utf8');
-      const rols = JSON.parse(rawData);
 
       const rolsWithTimestamps = rols.map((item) => ({
         rol_id: item.rol_id,

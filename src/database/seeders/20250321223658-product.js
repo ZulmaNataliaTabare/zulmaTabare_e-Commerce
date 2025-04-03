@@ -1,13 +1,10 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
+const products = require('../../data/products.json');
+const { numeroAleatorio } = require('../../utils/utils');
 
 module.exports = {
   up: async (queryInterface) => {
     try { 
-      const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'products.json'), 'utf-8');
-      const products = JSON.parse(rawData);
-
       const productsWithTimestamps = products.map((item) => ({
         product_id: item.product_id,
         product_name: item.product_name,
@@ -16,6 +13,7 @@ module.exports = {
         product_description: item.product_description,
         features: Array.isArray(item.features) ? JSON.stringify(item.features) : item.features, // Convertir array a string
         category_id: item.category_id,
+        section_id : numeroAleatorio(1,2),
         stock: item.stock,
         createdAt: new Date(), 
         updatedAt: new Date(), 

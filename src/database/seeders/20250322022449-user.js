@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   up: async (queryInterface) => {
     try {
-      const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'users.json'), 'utf8');
+      const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'users.json'), 'utf8');
       const users = JSON.parse(rawData);
 
       const usersWithTimestamps = users.map((item) => ({
@@ -20,8 +20,7 @@ module.exports = {
         security_question: item.security_question,
         security_answer: item.security_answer,
         rol_id: item.rol_id,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
       }));
 
       await queryInterface.bulkInsert('Users', usersWithTimestamps, {});

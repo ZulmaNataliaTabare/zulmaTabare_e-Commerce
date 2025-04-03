@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
     up: async (queryInterface) => {
         try {
-          const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'colors.json'), 'utf8');
+          const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'colors.json'), 'utf8');
           const colors = JSON.parse(rawData);
     
           const colorsWithTimestamps = colors.map((item) => ({

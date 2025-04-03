@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
     up: async (queryInterface) => {
         try {
-          const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'data', 'cart_details.json'), 'utf8');
+          const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'cart_details.json'), 'utf8');
           const cart_details = JSON.parse(rawData);
     
           const cart_detailsWithTimestamps = cart_details.map((item) => ({

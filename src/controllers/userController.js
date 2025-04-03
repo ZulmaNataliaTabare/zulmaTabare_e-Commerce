@@ -1,5 +1,5 @@
 const path = require('path');
-const { User, Rol, sequelize } = require('../../database/models');
+const { User, Rol, sequelize } = require('../database/models');
 const Sequelize = require('sequelize');
 const { Op } = Sequelize;
 const bcrypt = require('bcrypt');
