@@ -19,13 +19,24 @@ module.exports = {
         type: Sequelize.STRING
       },
       product_description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       features: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       category_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'categories',
+          key: 'category_id'
+        }
+      },
+      section_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'sections',
+          key: 'section_id'
+        }
       },
       stock: {
         type: Sequelize.INTEGER

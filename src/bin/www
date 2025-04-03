@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const app = require('../app');
+const app = require('../../app');
 var debug = require('debug')('zulmatabare-e-commerce:server');
 var http = require('http');
 

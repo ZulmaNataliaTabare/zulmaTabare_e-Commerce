@@ -1,33 +1,43 @@
+const db = require('../database/models'); 
 
 
 const { filterProducts: myFilterProducts } = require('../utils/utils.js'); // Importa la función de filtrado
 
 const indexController = {
-    home: (req, res) => {
-        const products = req.app.locals.products;
-        const user = req.session.user || null; // Obtengo el usuario de la sesión
+    home: async (req, res) => {
+        try {
 
-        if (!products) {
-            console.error("Error: products no está definido. Revisa app.js");
-            return res.status(500).send("Error interno del servidor");
+            const [carouselItems,products_sales] = await Promise.all([
+                 db.Product.findAll({
+                    where : {
+                        section_id : 1
+                    },
+                    order: [
+                        [db.Sequelize.literal('RAND()')]
+                      ],
+                      limit: 5
+                }),
+                db.Product.findAll({
+                    where : {
+                        section_id : 2
+                    },
+                    order: [
+                        [db.Sequelize.literal('RAND()')]
+                      ],
+                      limit: 3
+                })
+            
+            ])
+    
+            res.render('index', {
+                title: 'Inicio',
+                products : products_sales,
+                carouselItems
+            });
+        } catch (error) {
+            console.log(error);
+            
         }
-
-        const getRandomProducts = (products, num) => { 
-            const shuffled = products.sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, num);
-        };
-
-        const randomProducts = getRandomProducts(products, 3);
-
-        const featuredProducts = myFilterProducts(products, [1, 7, 12, 10, 20]); //Productos destacados
-
-        res.render('index', {
-            title: 'Inicio',
-            products: randomProducts,
-            featuredProducts,
-            carouselItems: myFilterProducts(products, [1, 7, 12, 10, 20]),
-            user: user
-        });
     },
 };
 

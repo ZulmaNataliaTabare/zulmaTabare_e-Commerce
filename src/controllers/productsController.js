@@ -1,5 +1,5 @@
 
-const db = require('../../database/models'); 
+const db = require('../database/models'); 
 const multer = require('multer');
 const path = require('path');
 const { Op } = require('sequelize'); 
