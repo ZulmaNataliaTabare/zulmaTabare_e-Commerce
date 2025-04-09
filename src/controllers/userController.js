@@ -7,32 +7,36 @@ const bcrypt = require('bcrypt');
 const userController = {
 
     registerUser: async (req, res) => {
+        const errorrs = validationResult(req);
+        if (!errorrs.isEmpty()) {
+            return res.render('users/register', { errors: errorrs.array(), ...req.body });
+        }
         console.log("req.body:", req.body);
         try {
             console.log("req.file:", req.file);
-    
+
             if (!req.file) {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
-    
-            const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body; // Default rol_id = 2 para usuarios regulares
-    
+
+            const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body; 
+
             console.log("Contraseña recibida:", user_password);
-    
+
             const newUser = await User.create({
                 first_name,
                 last_name,
                 user_name,
                 email,
                 image: req.file.filename,
-                user_password: user_password, 
+                user_password: user_password,
                 security_question,
                 security_answer,
-                rol_id: parseInt(rol_id) 
+                rol_id: parseInt(rol_id)
             });
-    
+
             res.redirect('/users/login');
-    
+
         } catch (error) {
             console.error("Error al registrar usuario:", error);
             res.render('users/register', { error: "Error interno del servidor.", ...req.body });
@@ -40,9 +44,13 @@ const userController = {
     },
 
     loginUser: async (req, res) => {
+        const errorrs = validationResult(req);
+        if (!errorrs.isEmpty()) {
+            return res.render('users/login', { errors: errorrs.array(), ...req.body });
+        }
         const { usuario, contrasena, remember } = req.body;
         console.log('Contraseña ingresada al login:', contrasena);
-    
+
         try {
             const user = await User.findOne({
                 where: {
@@ -50,17 +58,17 @@ const userController = {
                 },
                 include: [{ model: Rol, as: 'rol' }]
             });
-    
+
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
-    
-            console.log('Hash de la contraseña en la BD:', user.user_password); 
+
+            console.log('Hash de la contraseña en la BD:', user.user_password);
             const result = await bcrypt.compare(contrasena, user.user_password);
             if (!result) {
                 return res.render('users/login', { error: "Contraseña incorrecta." });
             }
-    
+
             if (user) {
                 req.session.user = {
                     user_id: user.user_id,
@@ -73,13 +81,13 @@ const userController = {
                     rol_name: user.rol ? user.rol.rol_name : null
                 };
                 console.log('Usuario logueado - req.session.user:', req.session.user);
-    
+
                 if (remember) {
                     res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
                 } else {
                     res.clearCookie('remember');
                 }
-    
+
                 return res.redirect('/');
             } else {
                 return res.render('users/login', { error: "Usuario o contraseña incorrectos." });
@@ -111,6 +119,10 @@ const userController = {
     },
 
     updateProfile: async (req, res) => {
+        const errorrs = validationResult(req);
+        if (!errorrs.isEmpty()) {
+            return res.render('users/profile', { errors: errorrs.array(), user: req.session.user });
+        }
         const { id } = req.params;
         const loggedInUser = req.session.user;
 
@@ -241,6 +253,10 @@ const userController = {
     },
 
     updateUser: async (req, res) => {
+        const errorrs = validationResult(req);
+        if (!errorrs.isEmpty()) {
+            return res.render('users/editUsers', { errors: errorrs.array(), userToEdit: req.body });
+        }
         const { id } = req.params;
         const loggedInUser = req.session.user;
 
@@ -257,7 +273,7 @@ const userController = {
                 email: email || loggedInUser.email,
                 security_question: security_question || loggedInUser.security_question,
                 security_answer: security_answer || loggedInUser.security_answer,
-                rol_id: loggedInUser.rol_id === 1 && rol_id ? parseInt(rol_id) : loggedInUser.rol_id // Solo admin puede cambiar rol
+                rol_id: loggedInUser.rol_id === 1 && rol_id ? parseInt(rol_id) : loggedInUser.rol_id 
             };
 
             if (new_password) {
@@ -293,15 +309,22 @@ const userController = {
     },
 
     adminUsers: async (req, res) => {
-        try {
-            const users = await User.findAll({
-                include: [{ model: Rol, as: 'rol' }] // Incluye la información del rol
-            });
-            const totalPages = Math.ceil(users.length / 10);
-            const currentPage = req.query.page ? parseInt(req.query.page) : 1;
-            const usersToShow = users.slice((currentPage - 1) * 10, currentPage * 10);
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const limit = 10;
+        const offset = (page - 1) * limit;
 
-            res.render('users/adminUsers', { users: usersToShow, totalPages, currentPage });
+        try {
+            const { count, rows: users } = await User.findAndCountAll({
+                include: [{ model: Rol, as: 'rol' }],
+                limit: limit,
+                offset: offset,
+                order: [['user_id', 'ASC']] 
+            });
+
+            const totalPages = Math.ceil(count / limit);
+            const currentPage = page;
+
+            res.render('users/adminUsers', { users, totalPages, currentPage });
         } catch (error) {
             console.error("Error al obtener usuarios:", error);
             res.status(500).send("Error interno del servidor.");

@@ -1,17 +1,18 @@
-
-const db = require('../database/models'); 
+const db = require('../database/models');
 const multer = require('multer');
 const path = require('path');
-const { Op } = require('sequelize'); 
+const { Op } = require('sequelize');
 const productsPerPage = 3;
 
 
 const productsController = {
     add: async (req, res) => {
         try {
-            const Category = await db.Category.findAll(); 
-            const Colors = await db.Color.findAll(); 
-            res.render('products/productAdd', { Categories: Category, availableColors: Colors }); 
+            const [Category, Colors] = await Promise.all([
+                db.Category.findAll(),
+                db.Color.findAll()
+            ]);
+            res.render('products/productAdd', { Categories: Category, availableColors: Colors });
         } catch (error) {
             console.error("Error al obtener categorías para el formulario de agregar producto:", error);
             res.render('products/productAdd', { error: "Error al cargar el formulario", Categories: [] });
@@ -21,24 +22,24 @@ const productsController = {
     create: async (req, res) => {
         try {
             if (!req.file) {
-                const Categories = await db.Category.findAll(); 
+                const Categories = await db.Category.findAll();
                 return res.render('products/productAdd', { error: "Debes seleccionar una imagen para el producto.", ...req.body, Categories });
             }
-    
+
             await db.Product.create({
-                product_name: req.body.product_name, 
+                product_name: req.body.product_name,
                 product_description: req.body.description,
                 image: req.file.filename,
-                category_id: req.body.category_id, 
+                category_id: req.body.category_id,
                 features: req.body.features,
                 colors: req.body.colors,
                 price: req.body.price
             });
-    
+
             res.redirect('/products');
         } catch (error) {
             console.error("Error al crear producto:", error);
-            const Categories = await db.Category.findAll(); 
+            const Categories = await db.Category.findAll();
             res.render('products/productAdd', { error: "Error interno del servidor al crear el producto.", ...req.body, Categories });
         }
     },
@@ -80,23 +81,22 @@ const productsController = {
     },
 
     admin: async (req, res) => {
-        try {
-            const perPage = 6;
-            const page = parseInt(req.query.page) || 1;
-            const start = (page - 1) * perPage;
+        const perPage = 6;
+        const page = parseInt(req.query.page) || 1;
+        const offset = (page - 1) * perPage;
 
-            const products = await db.Product.findAll({
+        try {
+            const { count, rows: products } = await db.Product.findAndCountAll({
                 limit: perPage,
-                offset: start,
+                offset: offset,
                 include: [{
                     model: db.Category,
-                    as: 'category', 
-                    attributes: ['category_id', 'category_name'] 
+                    as: 'category',
+                    attributes: ['category_id', 'category_name']
                 }]
             });
 
-            const totalProducts = await db.Product.count();
-            const totalPages = Math.ceil(totalProducts / perPage);
+            const totalPages = Math.ceil(count / perPage);
 
             res.render('products/admin', {
                 products,
@@ -122,17 +122,17 @@ const productsController = {
     },
 
     detail: async (req, res) => {
-        let product = null; // Declare product outside the try block
+        let product = null; 
         try {
-        product = await db.Product.findByPk(req.params.id);
-        if (!product) {
-            return res.status(404).render('products/admin', { error: 'Producto no encontrado', totalPages: 0 });
-        }
-        console.log(db.Product);
-        res.render('products/productDetail', { product, hasFeatures: Array.isArray(product.features) && product.features.length > 0 });
+            product = await db.Product.findByPk(req.params.id);
+            if (!product) {
+                return res.status(404).render('products/admin', { error: 'Producto no encontrado', totalPages: 0 });
+            }
+            console.log(db.Product);
+            res.render('products/productDetail', { product, hasFeatures: Array.isArray(product.features) && product.features.length > 0 });
         } catch (error) {
-        console.error("Error al obtener producto:", error);
-        res.status(500).render('products/admin', { error: "Error interno del servidor", totalPages: 0 });
+            console.error("Error al obtener producto:", error);
+            res.status(500).render('products/admin', { error: "Error interno del servidor", totalPages: 0 });
         }
     },
 
@@ -143,13 +143,16 @@ const productsController = {
                 return res.status(400).render('products/category', { error: 'Categoría no especificada', category_id: null, products: [] });
             }
 
-            const category = await db.Category.findByPk(category_id);
+            const [category, products] = await Promise.all([
+                db.Category.findByPk(category_id),
+                db.Product.findAll({ where: { category_id } })
+            ]);
+
             if (!category) {
                 return res.status(404).render('products/category', { error: 'Categoría no encontrada', category_id: null, products: [] });
             }
 
             console.log(db.Product);
-            const products = await db.Product.findAll({ where: { category_id } });
             res.render('products/category', { category: category, products, error: null });
         } catch (error) {
             console.error("Error al ver la categoría:", error);
@@ -182,10 +185,10 @@ const productsController = {
 
     search: async (req, res) => {
         try {
-            const searchTerm = req.query.q; 
+            const searchTerm = req.query.q;
 
             if (!searchTerm) {
-                return res.render('products/allProducts', { products: [], searchTerm: '' }); 
+                return res.render('products/allProducts', { products: [], searchTerm: '' });
             }
 
             const products = await db.Product.findAll({
@@ -193,21 +196,19 @@ const productsController = {
                     [Op.or]: [
                         {
                             product_name: {
-                                [Op.like]: `%${searchTerm}%` 
+                                [Op.like]: `%${searchTerm}%`
                             }
                         },
                     ]
                 }
             });
 
-            res.render('products/allProducts', { products, searchTerm }); // Renderiza la vista con los resultados y el término de búsqueda
+            res.render('products/allProducts', { products, searchTerm }); 
         } catch (error) {
             console.error("Error al buscar productos:", error);
             res.render('products/allProducts', { error: 'Error al realizar la búsqueda', products: [], searchTerm: '' });
         }
     },
-
-
 };
 
 module.exports = productsController;

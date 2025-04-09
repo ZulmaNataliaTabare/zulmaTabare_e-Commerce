@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --env-file=.env --watch ./bin/www",
+    "start": "node --env-file=.env ./src/bin/www",
     "kill-port": "npx kill-port 3002",
     "dev": "nodemon src/bin/www",
     "development": "npm run-script dev -- --watch",
@@ -20,6 +20,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
     "http-errors": "~1.6.3",
     "jstransformer": "^1.0.0",
     "method-override": "^3.0.0",

@@ -8,14 +8,14 @@ const indexController = {
         try {
 
             const [carouselItems,products_sales] = await Promise.all([
-                 db.Product.findAll({
+                db.Product.findAll({
                     where : {
                         section_id : 1
                     },
                     order: [
                         [db.Sequelize.literal('RAND()')]
-                      ],
-                      limit: 5
+                    ],
+                    limit: 5
                 }),
                 db.Product.findAll({
                     where : {
@@ -23,8 +23,8 @@ const indexController = {
                     },
                     order: [
                         [db.Sequelize.literal('RAND()')]
-                      ],
-                      limit: 3
+                    ],
+                    limit: 3
                 })
             
             ])
