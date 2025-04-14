@@ -10,8 +10,27 @@
         </div>
         <div class="login-register">
             <form action="/users/login" method="POST">
+                <% if (locals.errors && errors.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <% errors.forEach(error => { %>
+                                <li><%= error.msg %></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                <% } %>
                 <input type="text" name="usuario" placeholder="Usuario o Email" required class="input-field">
+                <% if (locals.errors && errors.find(err=> err.param === 'usuario' )) {%>
+                    <div class="invalid-feedback">
+                        <%= errors.find(err => err.param === 'usuario').msg %>
+                    </div>
+                <% } %>
                 <input type="password" name="contrasena" placeholder="Contraseña" required class="input-field">
+                <% if (locals.errors && errors.find(err=> err.param === 'contrasena' )) {%>
+                    <div class="invalid-feedback">
+                        <%= errors.find(err => err.param === 'contrasena').msg %>
+                    </div>
+                <% } %>
                 <div class="remember-me"> 
                     <input type="checkbox" id="remember" name="remember"> 
                     <label for="remember">Recuérdame</label> 

@@ -2,7 +2,11 @@
     <% if (product) { %>
         <a href="/products/productDetail/<%= product.product_id %>">
             <div class="card" data-product-id="<%= product.product_id %>">
-                <img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">
+                <% if (product.image) { %>
+                    <img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos" onerror="this.src='/images/default-image.png'">
+                <% } else { %>
+                    <img src="/uploads/default-image.png" alt="Imagen por defecto" class="products-img-ambos">
+                <% } %>
                 <div class="card-body">
                     <div class="fav">
                         <i class="fa-solid fa-heart"></i>
@@ -15,8 +19,7 @@
         </a>
     <% } else { %>
         <p>Error: Datos de producto incompletos.</p>
-                <% console.log("Datos INCOMPLETOS en images.ejs - ID:", product.product_id, "Producto:", product && product.name, "Precio:", price, "Tipo de Precio:", typeof price); %>
-
+        <% console.log("Datos INCOMPLETOS en images.ejs - ID:", product && product.product_id, "Producto:", product && product.name, "Precio:", price, "Tipo de Precio:", typeof price); %>
     <% } %>
 </div>
 

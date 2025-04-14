@@ -66,26 +66,24 @@ router
     )
     .get('/users/cart', isLoggedIn, (req, res) => res.render('users/cart'))
     .get('/users/login', redirectIfLoggedIn, (req, res) => res.render('users/login'))
-    .post('/users/login', 
-        redirectIfLoggedIn, 
+    .post('/users/login',
+        redirectIfLoggedIn,
         [
             body('usuario')
-                .notEmpty().withMessage('El mail o nombre de usuario es obligatorio')
-                .custom(async (value) => {
-                    const user = await db.User.findOne({ 
-                        where: { 
-                            [Op.or]: [{ user_name: value }, { email: value }] 
-                        }
-                    });
-                    if (!user) {
-                        throw new Error('El usuario no existe');
-                    }
-                    req.userToCheck = user;
-                    return true;
-                }),
-
-
-            body('constrasena')
+            .notEmpty().withMessage('El mail o nombre de usuario es obligatorio')
+            .custom(async (value) => {
+                const user = await db.User.findOne({
+                    where: Sequelize.literal('user_name = :usuario OR email = :usuario', {
+                        usuario: value
+                    })
+                });
+                if (!user) {
+                    throw new Error('El usuario no existe');
+                }
+                req.userToCheck = user;
+                return true;
+            }),
+            body('contrasena')
                 .notEmpty().withMessage('La contraseña es obligatoria')
                 .custom(async (value, { req }) => {
                     if (!req.userToCheck) {
@@ -98,6 +96,7 @@ router
                     return true;
                 }),
         ],
+        
         loginUser
     )
     .get('/users/logout', isLoggedIn, logout)

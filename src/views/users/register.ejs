@@ -1,4 +1,3 @@
-
 <%-include('../partials/head') %>
 
 <body>
@@ -10,35 +9,84 @@
         </div>
         <div class="container p-5 bg-light rounded">
             <form action="/users/register" method="POST" enctype="multipart/form-data">
+                <% if (locals.errors && errors.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <% errors.forEach(error => { %>
+                                <li><%= error.msg %></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                <% } %>
                 <div class="form-group mb-3">
-                    <input type="text" name="first_name" placeholder="Nombre" required class="form-control">
+                    <input type="text" name="first_name" placeholder="Nombre" value="<%= locals.first_name ? first_name : '' %>" class="form-control <%= locals.errors && errors.find(err => err.param === 'first_name') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'first_name')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'first_name').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="text" name="last_name" placeholder="Apellido" required class="form-control">
+                    <input type="text" name="last_name" placeholder="Apellido" value="<%= locals.last_name ? last_name : '' %>" class="form-control <%= locals.errors && errors.find(err => err.param === 'last_name') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'last_name')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'last_name').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="text" name="user_name" placeholder="Nombre de Usuario" required class="form-control">
+                    <input type="text" name="user_name" placeholder="Nombre de Usuario" value="<%= locals.user_name ? user_name : '' %>" class="form-control <%= locals.errors && errors.find(err => err.param === 'user_name') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'user_name')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'user_name').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
                     <label for="image">Imagen:</label>
-                    <input type="file" class="form-control" id="image" name="image" required>
+                    <input type="file" class="form-control <%= locals.errors && errors.find(err => err.param === 'image') ? 'is-invalid' : '' %>" id="image" name="image" required>
+                    <% if (locals.errors && errors.find(err => err.param === 'image')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'image').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="email" name="email" placeholder="Email" required class="form-control">
+                    <input type="email" name="email" placeholder="Email" value="<%= locals.email ? email : '' %>" class="form-control <%= locals.errors && errors.find(err => err.param === 'email') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'email')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'email').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="password" name="user_password" placeholder="Contraseña" required class="form-control">
+                    <input type="password" name="user_password" placeholder="Contraseña" class="form-control <%= locals.errors && errors.find(err => err.param === 'user_password') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'user_password')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'user_password').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
                     <label for="security_question">Pregunta de Seguridad:</label>
                     <select name="security_question" id="security_question" class="form-control" required>
-                        <option value="¿Cuál es el nombre de tu primera mascota?">¿Cuál es el nombre de tu primera mascota?</option>
-                        <option value="¿Cuál es tu color favorito?">¿Cuál es tu color favorito?</option>
-                        <option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+                        <option value="¿Cuál es el nombre de tu primera mascota?" <%= locals.security_question === '¿Cuál es el nombre de tu primera mascota?' ? 'selected' : '' %>>¿Cuál es el nombre de tu primera mascota?</option>
+                        <option value="¿Cuál es tu color favorito?" <%= locals.security_question === '¿Cuál es tu color favorito?' ? 'selected' : '' %>>¿Cuál es tu color favorito?</option>
+                        <option value="¿Cuál es tu comida favorita?" <%= locals.security_question === '¿Cuál es tu comida favorita?' ? 'selected' : '' %>>¿Cuál es tu comida favorita?</option>
                     </select>
+                    <% if (locals.errors && errors.find(err => err.param === 'security_question')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'security_question').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="form-group mb-3">
-                    <input type="text" name="security_answer" placeholder="Respuesta de Seguridad" required class="form-control">
+                    <input type="text" name="security_answer" placeholder="Respuesta de Seguridad" value="<%= locals.security_answer ? security_answer : '' %>" class="form-control <%= locals.errors && errors.find(err => err.param === 'security_answer') ? 'is-invalid' : '' %>">
+                    <% if (locals.errors && errors.find(err => err.param === 'security_answer')) { %>
+                        <div class="invalid-feedback">
+                            <%= errors.find(err => err.param === 'security_answer').msg %>
+                        </div>
+                    <% } %>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
             </form>
@@ -46,7 +94,6 @@
     </main>
 
     <%-include('../partials/footer') %>
-
-
+    <script src="/javascripts/registerValidation.js"></script>
 </body>
 </html>

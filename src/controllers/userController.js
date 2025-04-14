@@ -1,8 +1,8 @@
 const path = require('path');
-const { User, Rol, sequelize } = require('../database/models');
-const Sequelize = require('sequelize');
+const { User, Rol, Sequelize } = require('../database/models');
 const { Op } = Sequelize;
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
 
 const userController = {
 
@@ -44,31 +44,35 @@ const userController = {
     },
 
     loginUser: async (req, res) => {
-        const errorrs = validationResult(req);
-        if (!errorrs.isEmpty()) {
-            return res.render('users/login', { errors: errorrs.array(), ...req.body });
-        }
+        // const errorrs = validationResult(req);
+        // if (!errorrs.isEmpty()) {
+        //     return res.render('users/login', { errors: errorrs.array(), ...req.body });
+        // }
         const { usuario, contrasena, remember } = req.body;
         console.log('Contraseña ingresada al login:', contrasena);
 
+        
         try {
             const user = await User.findOne({
                 where: {
-                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
+                    [Sequelize.Op.or]: [
+                        { user_name: usuario },
+                        { email: usuario }
+                    ]
                 },
                 include: [{ model: Rol, as: 'rol' }]
             });
-
+    
             if (!user) {
                 return res.render('users/login', { error: "Usuario no encontrado." });
             }
-
+    
             console.log('Hash de la contraseña en la BD:', user.user_password);
             const result = await bcrypt.compare(contrasena, user.user_password);
             if (!result) {
                 return res.render('users/login', { error: "Contraseña incorrecta." });
             }
-
+    
             if (user) {
                 req.session.user = {
                     user_id: user.user_id,
@@ -81,13 +85,13 @@ const userController = {
                     rol_name: user.rol ? user.rol.rol_name : null
                 };
                 console.log('Usuario logueado - req.session.user:', req.session.user);
-
+    
                 if (remember) {
                     res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
                 } else {
                     res.clearCookie('remember');
                 }
-
+    
                 return res.redirect('/');
             } else {
                 return res.render('users/login', { error: "Usuario o contraseña incorrectos." });
@@ -178,9 +182,9 @@ const userController = {
 
         try {
             const user = await User.findOne({
-                where: {
-                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
-                }
+                where: Sequelize.literal('user_name = :usuario OR email = :usuario', {
+                    usuario: usuario
+                })
             });
 
             if (user) {
@@ -199,9 +203,9 @@ const userController = {
 
         try {
             const user = await User.findOne({
-                where: {
-                    [Op.or]: [{ user_name: usuario }, { email: usuario }]
-                }
+                where: Sequelize.literal('user_name = :usuario OR email = :usuario', {
+                    usuario: usuario
+                })
             });
 
             if (!user) {

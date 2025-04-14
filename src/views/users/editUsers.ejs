@@ -1,4 +1,3 @@
-
 <%- include('../partials/head') %>
 
 <body>
@@ -6,48 +5,45 @@
 
     <main class="container mt-5">
         <h1>Editar Usuario: <%= userToEdit.user_name %></h1>
-<form action="/users/editUsers/<%= userToEdit.user_id %>" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="first_name" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="first_name" name="first_name" value="<%= userToEdit.first_name %>">
-    </div>
-    <div class="mb-3">
-        <label for="last_name" class="form-label">Apellido:</label>
-        <input type="text" class="form-control" id="last_name" name="last_name" value="<%= userToEdit.last_name %>">
-    </div>
-    <div class="mb-3">
-        <label for="user_name" class="form-label">Usuario:</label>
-        <input type="text" class="form-control" id="user_name" name="user_name" value="<%= userToEdit.user_name %>">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" value="<%= userToEdit.email %>">
-    </div>
-    <div class="mb-3">
-        <label for="security_question" class="form-label">Pregunta de Seguridad:</label>
-        <input type="text" class="form-control" id="security_question" name="security_question" value="<%= userToEdit.security_question %>">
-    </div>
-    <div class="mb-3">
-        <label for="security_answer" class="form-label">Respuesta de Seguridad:</label>
-        <input type="text" class="form-control" id="security_answer" name="security_answer" value="<%= userToEdit.security_answer %>">
-    </div>
-    <div class="mb-3">
-        <label for="image" class="form-label">Imagen de Perfil:</label>
-        <input type="file" class="form-control" id="image" name="image">
-        <% if (userToEdit.image) { %>
-            <img src="/uploads/<%= userToEdit.image %>" alt="Imagen actual" style="max-width: 100px;">
-        <% } %>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Nueva Contraseña (opcional):</label>
-        <input type="password" class="form-control" id="password" name="password">
-        <small class="form-text text-muted">Déjalo en blanco si no deseas cambiar la contraseña.</small>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-</form>
-    </main>
+        <form action="/users/editUsers/<%= userToEdit.user_id %>" method="POST" enctype="multipart/form-data">
+            <% if (locals.errors && errors.length > 0) { %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% errors.forEach(error => { %>
+                            <li><%= error.msg %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+            <div class="mb-3">
+                <label for="first_name" class="form-label">Nombre:</label>
+                <input type="text" class="form-control <%= locals.errors && errors.find(err => err.param === 'first_name') ? 'is-invalid' : '' %>" id="first_name" name="first_name" value="<%= userToEdit.first_name %>">
+                <% if (locals.errors && errors.find(err => err.param === 'first_name')) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.find(err => err.param === 'first_name').msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Apellido:</label>
+                <input type="text" class="form-control <%= locals.errors && errors.find(err => err.param === 'last_name') ? 'is-invalid' : '' %>" id="last_name" name="last_name" value="<%= userToEdit.last_name %>">
+                <% if (locals.errors && errors.find(err => err.param === 'last_name')) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.find(err => err.param === 'last_name').msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="mb-3">
+                <label for="user_name" class="form-label">Usuario:</label>
+                <input type="text" class="form-control <%= locals.errors && errors.find(err => err.param === 'user_name') ? 'is-invalid' : '' %>" id="user_name" name="user_name" value="<%= userToEdit.user_name %>">
+                <% if (locals.errors && errors.find(err => err.param === 'user_name')) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.find(err => err.param === 'user_name').msg %>
+                    </div>
+                <% } %>
+            </div>
+        </main>
 
-    <%- include('../partials/footer') %>
-</body>
-
-</html>
+        <script src="/javascripts/editUserValidation.js"></script>
+        <%- include('../partials/footer') %>
+    </body>

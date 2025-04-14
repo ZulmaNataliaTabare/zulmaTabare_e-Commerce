@@ -45,7 +45,7 @@ app
     .set('views', path.join(__dirname, 'src', 'views'))
     .set('view engine', 'ejs')
 
-    .use(express.static(path.join(__dirname, 'public')))
+.use(express.static(path.join(__dirname, 'public')))
 .use(express.json())
 .use(express.urlencoded({ extended: true }))
 .use(methodOverride('_method'))
