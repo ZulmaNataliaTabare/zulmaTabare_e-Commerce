@@ -1,0 +1,18 @@
+.articles {
+    width: 50%;
+}
+
+.card {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.products-img {
+    width: 100%;
+}
+
+.product-description, .article-text {
+    font-size: 18px;
+}
+
+

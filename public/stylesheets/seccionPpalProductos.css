@@ -1,0 +1,23 @@
+
+.articles-ambos {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.products-title {
+    font-size: 35px;
+    margin-left: 70px;
+}
+
+.contenedor-img-ambos {
+    width: 400px;
+    margin: 10px;
+}
+
+.products-img-ambos {
+    width: 250px;
+}
+
+.article-text {
+    font-size: 18px;
+}

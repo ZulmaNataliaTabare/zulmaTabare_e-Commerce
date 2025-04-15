@@ -4,8 +4,9 @@
     <%-include('../partials/header') %>
 
     <main>
-        <div class="container">
-            <h1 class="text-center mb-4">Agregar producto</h1>
+        <h1 class="text-center mb-4">Agregar producto</h1>
+        <div class="container p-4 m-auto bg-light rounded">
+            
             <form action="/products/add" method="POST" enctype="multipart/form-data" class="w-50 mx-auto">
                 <% if (locals.errors && Object.keys(errors).length > 0) { %>
                     <div class="alert alert-danger">

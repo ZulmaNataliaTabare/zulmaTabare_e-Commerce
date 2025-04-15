@@ -1,0 +1,10 @@
+/* REGISTER, LOGIN Y CART */
+
+.input-register, .input-field {
+    width: 90%;
+    font-size: 1rem;
+}
+.register, .login-register, .cart-container {
+    width: 70%;
+    padding: 3rem;
+}

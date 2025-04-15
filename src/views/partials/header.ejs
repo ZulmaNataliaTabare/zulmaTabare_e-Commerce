@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="/uploads/logo.png" alt="Logo" class="logo d-inline-block align-middle">
-            </a>
-            <div class="d-flex align-items-center">
                 <% if (locals.user) { %>
                     <span class="user-name text-primary fw-bold me-3">Hola, <%= user.user_name %></span>
                     <a href="/users/logout" class="me-3"><i class="fa-solid fa-right-from-bracket logout-icon"></i></a>
                 <% } else { %>
+            </a>
+            <div class="d-flex align-items-center">
                     <a href="/users/login" class="me-3"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
                     <a href="/users/register" class="me-3"><i class="fa-solid fa-user-plus register-icon"></i></a>
                 <% } %>
