@@ -119,7 +119,7 @@ const productsController = {
         }
     },
 
-   update: [
+update: [
     validateImage, // Middleware para validar el formato de la imagen (Multer se maneja en la ruta)
     body('product_name')
         .notEmpty().withMessage('El nombre del producto es obligatorio.')
@@ -249,7 +249,14 @@ const productsController = {
             if (!product) {
                 return res.status(404).render('products/admin', { error: 'Producto no encontrado', totalPages: 0 });
             }
-            console.log(db.Product);
+
+            if (typeof product.features === 'string' && product.features.trim() !== '') {
+                product.features = product.features.split(',').map(item => item.trim());
+            } else {
+                product.features = [];
+            }
+
+            console.log(product.features);
             res.render('products/productDetail', { product, hasFeatures: Array.isArray(product.features) && product.features.length > 0 });
         } catch (error) {
             console.error("Error al obtener producto:", error);

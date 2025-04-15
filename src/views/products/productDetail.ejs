@@ -15,10 +15,12 @@
             <p><%= typeof product.product_description !== 'undefined' ? product.product_description : '' %></p>
             
             <h3>Características:</h3>
-            <% if (typeof product.features !== 'undefined' && Array.isArray(product.features)) { %>
+            <% if (product && Array.isArray(product.features) && product.features.length > 0) { %>
+                <ul>
                 <% product.features.forEach(feature => { %>
                     <li class="product-description"><%= feature %></li>
                 <% }) %>
+                </ul>
             <% } else { %>
                 <p>No hay características disponibles</p>
             <% } %>
