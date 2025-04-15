@@ -28,6 +28,8 @@ header {
     box-sizing: border-box;
 }
 
+
+
 nav.nav {
     display: flex;
     justify-content: space-between;
@@ -404,3 +406,76 @@ button:hover {
     margin-bottom: 100px;
     box-sizing: border-box;
 }
+
+header .input-group {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    width: auto; 
+}
+
+header .form-control {
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    padding: 0.5rem 0.75rem;
+    margin-right: 0;
+    flex-grow: 2; 
+}
+
+header .input-group-text {
+    background-color: #f8f9fa; 
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    padding: 0.5rem 0.75rem;
+    margin-left: 0;
+    display: flex;
+}
+
+header .input-group-text i {
+    padding-right: 0; 
+    margin-left: 5px;
+    color: var(--text-color--);
+    font-size: 20px;
+}
+
+.destacados-container {
+    background-color: #e0b0ff; 
+    padding: 10px 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    overflow: hidden; 
+    border-radius: 70%;
+}
+
+.destacados-titulo {
+    color: #ff69b4; 
+    font-size: 3rem; 
+    white-space: nowrap; 
+    animation: moverTexto 10s linear infinite alternate; 
+}
+
+@keyframes moverTexto {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+  /* Estilos para "Ofertas" */
+.ofertas-titulo {
+    font-size: 3rem;
+    color: #ff69b4; 
+    background-color: rgb(232, 241, 241);
+    color: red;
+    text-align: center;
+    animation: moverTexto 10s linear infinite alternate; 
+    padding: 15px 0; 
+    border-radius: 70%;
+}
+
+@keyframes parpadear {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+

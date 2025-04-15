@@ -4,6 +4,7 @@
 @import "register.css";
 @import "login.css";
 @import "cart.css";
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 :root {
   --primary-color: #e6b0f6; /* Lila Claro */
@@ -40,7 +41,13 @@
 body {
 background-color: var(--background-color);
 color: var(--text-color);
-font-family: Arial, sans-serif;
+font-family: 'Sriracha', cursive;
+}
+
+.sriracha-regular {
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Eliminar desbordes horizontales */
@@ -280,7 +287,7 @@ html, body {
 }
 
 
-  .nav {
+  .nav.nav{
       flex-direction: column;
       align-items: flex-start;
   }
@@ -583,7 +590,7 @@ ol {
   }
 }
 
-/* TABLA DE PROSUCTOS, FORMULARIOS Y ESTRUCTURA DE VISTA DE ADMINISTRACIÓN */
+/* TABLA DE PRODUCTOS, FORMULARIOS Y ESTRUCTURA DE VISTA DE ADMINISTRACIÓN */
 
 /* Estilo general */
 
@@ -756,4 +763,11 @@ button {
       font-size: 12px;
   }
 }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+      flex-wrap: wrap !important;
+  }
+}
+
 

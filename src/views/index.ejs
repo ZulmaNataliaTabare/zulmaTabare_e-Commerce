@@ -2,34 +2,30 @@
 <body>
 <%- include('./partials/header') %>
 <main>
-    
-    
-<!-- Sección del Carrusel -->
-<section class="carousel">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <% carouselItems.forEach(product => { %>
-                <div class="swiper-slide">
-                    <a href="/products/productDetail/<%= product.product_id %>"><img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos"> </a>
-                </div>
-            <% }) %>
-        </div>
+    <div class="destacados-container">
+        <h2 class="destacados-titulo">Productos Destacados</h2>
+    </div>
 
-
-            <!-- Paginación -->
+    <section class="carousel">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <% carouselItems.forEach(product => { %>
+                    <div class="swiper-slide">
+                        <a href="/products/productDetail/<%= product.product_id %>"><img src="/uploads/<%= product.image %>" alt="<%= product.product_name %>" class="products-img-ambos"> </a>
+                    </div>
+                <% }) %>
+            </div>
             <div class="swiper-pagination"></div>
-            <!-- Navegación -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
     </section>
 
-    <div>
-        <h4>Ofertas</h4>
+    <div class="container-sm">
+        <h4 class="ofertas-titulo">¡¡¡OFERTAS!!!</h4>
     </div>
-    
+
     <section class="offers">
-        <!-- Productos -->
         <% products.forEach(product => { %>
             <div class="products">
                 <a href="/products/productDetail/<%= product.product_id %>"><img class="article" src="/uploads/<%= product.image %>" alt="<%= product.product_name %>"></a>
@@ -49,7 +45,7 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/javascripts/carousel.js"></script>
-<script src="/javascripts/index.js"></script> 
+<script src="/javascripts/index.js"></script>
 
 </body>
 </html>

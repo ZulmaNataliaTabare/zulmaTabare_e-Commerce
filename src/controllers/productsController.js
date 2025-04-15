@@ -307,12 +307,19 @@ const productsController = {
     search: async (req, res) => {
         try {
             const searchTerm = req.query.q;
+            const page = parseInt(req.query.page) || 1;
+            const offset = (page - 1) * productsPerPage;
 
             if (!searchTerm) {
-                return res.render('products/allProducts', { products: [], searchTerm: '' });
+                const { count, rows: products } = await db.Product.findAndCountAll({
+                    limit: productsPerPage,
+                    offset: offset,
+                });
+                const totalPages = Math.ceil(count / productsPerPage);
+                return res.render('products/allProducts', { products, searchTerm: '', currentPage: page, totalPages });
             }
 
-            const products = await db.Product.findAll({
+            const { count, rows: products } = await db.Product.findAndCountAll({
                 where: {
                     [Op.or]: [
                         {
@@ -321,15 +328,20 @@ const productsController = {
                             }
                         },
                     ]
-                }
+                },
+                limit: productsPerPage,
+                offset: offset,
             });
 
-            res.render('products/allProducts', { products, searchTerm });
+            const totalPages = Math.ceil(count / productsPerPage);
+
+            res.render('products/allProducts', { products, searchTerm, currentPage: page, totalPages });
         } catch (error) {
             console.error("Error al buscar productos:", error);
-            res.render('products/allProducts', { error: 'Error al realizar la búsqueda', products: [], searchTerm: '' });
+            res.render('products/allProducts', { error: 'Error al realizar la búsqueda', products: [], searchTerm: '', currentPage: 1, totalPages: 1 });
         }
     },
 };
+
 
 module.exports = productsController;
