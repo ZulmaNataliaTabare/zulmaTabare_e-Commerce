@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form[action="/users/profile"]');
-    const firstNameInput = form.querySelector('#nombre');
-    const lastNameInput = form.querySelector('#apellido');
-    const emailInput = form.querySelector('#email');
-    const userNameInput = form.querySelector('#user_name');
-    const passwordInput = form.querySelector('#contrasena'); // "contrasena" en el ID, "password" en el name
-    const imageInput = form.querySelector('#image');
+    const firstNameInput = document.querySelector('#nombre');
+    const lastNameInput = document.querySelector('#apellido');
+    const emailInput = document.querySelector('#email');
+    const userNameInput = document.querySelector('#user_name');
+    const passwordInput = document.querySelector('#contrasena'); 
+    const imageInput = document.querySelector('#image');
 
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,89 +18,51 @@ document.addEventListener('DOMContentLoaded', function() {
         return allowedTypes.includes(file.type);
     };
 
-    const displayError = (field, message) => {
-        const errorDiv = field.nextElementSibling;
-        if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-            errorDiv.textContent = message;
-        } else {
-            const newErrorDiv = document.createElement('div');
-            newErrorDiv.classList.add('invalid-feedback');
-            newErrorDiv.textContent = message;
-            field.parentNode.insertBefore(newErrorDiv, field.nextSibling);
-        }
-        field.classList.add('is-invalid');
-    };
-
-    const clearError = (field) => {
-        const errorDiv = field.nextElementSibling;
-        if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-            errorDiv.remove();
-        }
-        field.classList.remove('is-invalid');
-    };
-
     form.addEventListener('submit', function(event) {
-        let hasErrors = false;
-
-        clearError(firstNameInput);
-        clearError(lastNameInput);
-        clearError(emailInput);
-        clearError(userNameInput);
-        clearError(passwordInput);
-        clearError(imageInput);
+        let errors = [];
 
         // Nombre
         if (!firstNameInput.value.trim()) {
-            displayError(firstNameInput, 'El nombre es obligatorio.');
-            hasErrors = true;
+            errors.push('El nombre es obligatorio.');
         } else if (firstNameInput.value.trim().length < 2) {
-            displayError(firstNameInput, 'El nombre debe tener al menos 2 caracteres.');
-            hasErrors = true;
+            errors.push('El nombre debe tener al menos 2 caracteres.');
         }
 
         // Apellido
         if (!lastNameInput.value.trim()) {
-            displayError(lastNameInput, 'El apellido es obligatorio.');
-            hasErrors = true;
+            errors.push('El apellido es obligatorio.');
         } else if (lastNameInput.value.trim().length < 2) {
-            displayError(lastNameInput, 'El apellido debe tener al menos 2 caracteres.');
-            hasErrors = true;
+            errors.push('El apellido debe tener al menos 2 caracteres.');
         }
 
         // Email
         if (!emailInput.value.trim()) {
-            displayError(emailInput, 'El email es obligatorio.');
-            hasErrors = true;
+            errors.push('El email es obligatorio.');
         } else if (!isValidEmail(emailInput.value.trim())) {
-            displayError(emailInput, 'El email debe ser válido.');
-            hasErrors = true;
+            errors.push('El email debe ser válido.');
         }
-        // (Opcional) Validación de email repetido se manejará en el backend.
 
         // Nombre de Usuario
         if (!userNameInput.value.trim()) {
-            displayError(userNameInput, 'El nombre de usuario es obligatorio.');
-            hasErrors = true;
+            errors.push('El nombre de usuario es obligatorio.');
         } else if (userNameInput.value.trim().length < 2) {
-            displayError(userNameInput, 'El nombre de usuario debe tener al menos 2 caracteres.');
-            hasErrors = true;
+            errors.push('El nombre de usuario debe tener al menos 2 caracteres.');
         }
 
-        // Contraseña (opcional, solo validar si se escribe algo)
+        // Contraseña 
         if (passwordInput.value.trim() && passwordInput.value.length < 8) {
-            displayError(passwordInput, 'La contraseña debe tener al menos 8 caracteres.');
-            hasErrors = true;
+            errors.push('La contraseña debe tener al menos 8 caracteres.');
         }
-        // (Opcional) Validación de complejidad de contraseña podría añadirse aquí.
+    
 
-        // Imagen (opcional, solo validar si se selecciona un archivo)
+        // Imagen 
         if (imageInput.files[0] && !isValidFileType(imageInput.files[0])) {
-            displayError(imageInput, 'El archivo debe ser JPG, JPEG, PNG o GIF.');
-            hasErrors = true;
+            errors.push('El archivo debe ser JPG, JPEG, PNG o GIF.');
         }
 
-        if (hasErrors) {
+        if (errors.length > 0) {
             event.preventDefault();
+            alert('Se encontraron los siguientes errores:\n\n' + errors.join('\n'));
         }
     });
 });

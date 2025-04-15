@@ -5,7 +5,7 @@
 
     <main>
         <h1 class="text-center mb-4">Agregar producto</h1>
-        <div class="container p-4 m-auto bg-light rounded">
+        <div class="container p-4 bg-light rounded">
             
             <form action="/products/add" method="POST" enctype="multipart/form-data" class="w-50 mx-auto">
                 <% if (locals.errors && Object.keys(errors).length > 0) { %>

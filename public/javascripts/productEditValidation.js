@@ -1,107 +1,68 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form[action^="/products/edit/"]'); 
-    const nameInput = form.querySelector('#name');
-    const descriptionInput = form.querySelector('#description');
-    const imageInput = form.querySelector('#image');
-    const priceInput = form.querySelector('#price');
-    const categorySelect = form.querySelector('#category');
-    const featuresInput = form.querySelector('#features');
-    const stockInput = form.querySelector('#stock');
+    const form = document.querySelector('form[action^="/products/edit/"]');
+    const nameInput = document.querySelector('#name');
+    const descriptionInput = document.querySelector('#description');
+    const imageInput = document.querySelector('#image');
+    const priceInput = document.querySelector('#price');
+    const categorySelect = document.querySelector('#category');
+    const featuresInput = document.querySelector('#features');
+    const stockInput = document.querySelector('#stock');
 
     const isValidFileType = (file) => {
-        if (!file) return true; 
+        if (!file) return true;
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
         return allowedTypes.includes(file.type);
     };
 
-    const displayError = (field, message) => {
-        const errorDiv = field.nextElementSibling;
-        if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-            errorDiv.textContent = message;
-        } else {
-            const newErrorDiv = document.createElement('div');
-            newErrorDiv.classList.add('invalid-feedback');
-            newErrorDiv.textContent = message;
-            field.parentNode.insertBefore(newErrorDiv, field.nextSibling);
-        }
-        field.classList.add('is-invalid');
-    };
-
-    const clearError = (field) => {
-        const errorDiv = field.nextElementSibling;
-        if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-            errorDiv.remove();
-        }
-        field.classList.remove('is-invalid');
-    };
-
     form.addEventListener('submit', function(event) {
-        let hasErrors = false;
-
-        clearError(nameInput);
-        clearError(descriptionInput);
-        clearError(imageInput);
-        clearError(priceInput);
-        clearError(categorySelect);
-        clearError(featuresInput);
-        clearError(stockInput);
+        let errors = [];
 
         // Nombre
         if (!nameInput.value.trim()) {
-            displayError(nameInput, 'El nombre del producto es obligatorio.');
-            hasErrors = true;
+            errors.push('El nombre del producto es obligatorio.');
         } else if (nameInput.value.trim().length < 5) {
-            displayError(nameInput, 'El nombre del producto debe tener al menos 5 caracteres.');
-            hasErrors = true;
+            errors.push('El nombre del producto debe tener al menos 5 caracteres.');
         }
 
         // Descripción
         if (!descriptionInput.value.trim()) {
-            displayError(descriptionInput, 'La descripción es obligatoria.');
-            hasErrors = true;
+            errors.push('La descripción es obligatoria.');
         } else if (descriptionInput.value.trim().length < 20) {
-            displayError(descriptionInput, 'La descripción debe tener al menos 20 caracteres.');
-            hasErrors = true;
+            errors.push('La descripción debe tener al menos 20 caracteres.');
         }
 
-        // Imagen 
+        // Imagen
         if (imageInput.files[0] && !isValidFileType(imageInput.files[0])) {
-            displayError(imageInput, 'El archivo debe ser JPG, JPEG, PNG o GIF.');
-            hasErrors = true;
+            errors.push('El archivo de imagen debe ser JPG, JPEG, PNG o GIF.');
         }
 
         // Precio
         if (!priceInput.value.trim()) {
-            displayError(priceInput, 'El precio es obligatorio.');
-            hasErrors = true;
+            errors.push('El precio es obligatorio.');
         } else if (isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) <= 0) {
-            displayError(priceInput, 'El precio debe ser un número mayor que cero.');
-            hasErrors = true;
+            errors.push('El precio debe ser un número mayor que cero.');
         }
 
         // Categoría
         if (!categorySelect.value) {
-            displayError(categorySelect, 'La categoría es obligatoria.');
-            hasErrors = true;
+            errors.push('La categoría es obligatoria.');
         }
 
         // Características
         if (!featuresInput.value.trim()) {
-            displayError(featuresInput, 'Las características son obligatorias.');
-            hasErrors = true;
+            errors.push('Las características son obligatorias.');
         }
 
         // Stock
         if (!stockInput.value.trim()) {
-            displayError(stockInput, 'El stock es obligatorio.');
-            hasErrors = true;
+            errors.push('El stock es obligatorio.');
         } else if (isNaN(parseInt(stockInput.value)) || parseInt(stockInput.value) < 0) {
-            displayError(stockInput, 'El stock debe ser un número entero no negativo.');
-            hasErrors = true;
+            errors.push('El stock debe ser un número entero no negativo.');
         }
 
-        if (hasErrors) {
+        if (errors.length > 0) {
             event.preventDefault();
+            alert('Se encontraron los siguientes errores:\n\n' + errors.join('\n'));
         }
     });
 });
