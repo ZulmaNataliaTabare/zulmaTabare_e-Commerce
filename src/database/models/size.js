@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'size_id_variations',
         as: 'product_variations'
       });
+      Size.belongsToMany(models.Product, {
+        through: models.Product_variation,
+        foreignKey: 'size_id_variations',
+        otherKey: 'product_id_variations',
+        as: 'products'
+      });
     }
     }
   Size.init({

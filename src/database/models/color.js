@@ -10,12 +10,24 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-    Color.associate = function(models) {
-    Color.hasMany(models.Product, { 
+    
+    Color.hasMany(models.Product_variation, { 
       foreignKey: 'color_id_variations',
-      as: 'product'
+      as: 'product_variations'
     });
-  };
+
+    Color.belongsToMany(models.Product, {
+      through: models.Product_variation, 
+      foreignKey: 'color_id_variations',
+      otherKey: 'product_id_variations',
+      as: 'products'
+    });
+    Color.belongsToMany(models.Cart_detail, {
+      through: models.Product_variation,
+      foreignKey: 'color_id_variations',
+      otherKey: 'cart_detail_id',
+      as: 'cart_detail'
+    });
     }
   }
     Color.init({

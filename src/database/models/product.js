@@ -22,6 +22,20 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'product_id_variations',
         as:'product_variation'
       });
+      Product.belongsToMany(models.Size, {
+        through: models.Product_variation,
+        foreignKey: 'product_id_variations',
+        otherKey: 'size_id_variations',
+        as: 'sizes',
+        attributes: []
+      });
+      Product.belongsToMany(models.Color, {
+        through: models.Product_variation,
+        foreignKey: 'product_id_variations',
+        otherKey: 'color_id_variations',
+        as: 'colors',
+        attributes: []
+      });
     };
   }
   Product.init({

@@ -1,3 +1,4 @@
+const db = require('../database/models');
 const path = require('path');
 const { User, Rol, Sequelize } = require('../database/models');
 const { Op } = Sequelize;
@@ -10,7 +11,7 @@ const userController = {
         const errorrs = validationResult(req);
         if (!errorrs.isEmpty()) {
             return res.render('users/register', { errors: errorrs.array(), ...req.body });
-        }
+        }                      
         console.log("req.body:", req.body);
         try {
             console.log("req.file:", req.file);
@@ -44,10 +45,7 @@ const userController = {
     },
 
     loginUser: async (req, res) => {
-        // const errorrs = validationResult(req);
-        // if (!errorrs.isEmpty()) {
-        //     return res.render('users/login', { errors: errorrs.array(), ...req.body });
-        // }
+    
         const { usuario, contrasena, remember } = req.body;
         console.log('Contraseña ingresada al login:', contrasena);
 
@@ -334,6 +332,87 @@ const userController = {
             res.status(500).send("Error interno del servidor.");
         }
     },
+
+    getUsersAPI: async (req, res) => {
+        try {
+            const page =parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const offset = (page - 1) * limit;
+            const { count, rows: users } = await User.findAndCountAll({
+                attributes: ['user_id', 'first_name', 'email'],
+                limit,
+                offset,
+            });
+
+            const totalUsers = count;
+            const totalPages = Math.ceil(totalUsers / limit);
+
+
+            const usersWithDetail = users.map(user => ({
+                id: user.user_id,
+                name: user.first_name,
+                email: user.email,
+                detail: `/api/users/${user.user_id}` 
+            }));
+
+            res.json({
+                count: usersWithDetail.length,
+                totalUsers,
+                totalPages,
+                currentPage: page,
+                users: usersWithDetail,
+                status: 200
+            });
+        } catch (error) {
+            console.error("Error al obtener listado de usuarios para la API:", error);
+            res.status(500).json({ error: 'Error al obtener el listado de usuarios' });
+        }
+    },
+
+    getUserDetailAPI: async (req, res) => {
+        const userId = req.params.id;
+
+        try {
+            const user = await User.findByPk(userId, {
+                attributes: {
+                    exclude: ['user_password', 'rol_id'] // Excluimos campos sensibles
+                }
+            });
+
+            if (user) {
+                // Construir la URL de la imagen de perfil
+                const imageUrl = `/uploads/${user.image}`; // Asumiendo que las imágenes están en la carpeta 'public/uploads'
+
+                res.json({
+                    ...user.get({ plain: true }), // Convertir el objeto Sequelize a un objeto plano
+                    image_url: imageUrl
+                });
+            } else {
+                res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+        } catch (error) {
+            console.error("Error al obtener detalle del usuario:", error);
+            res.status(500).json({ error: 'Error al obtener el detalle del usuario' });
+        }
+    },
+
+    getTotalUsers: async (req, res) => {
+        console.log('¡Se ha llamado a getTotalUsers!');
+        try {
+            const totalUsers = await db.User.count();
+            res.status(200).json({
+                total: totalUsers,
+                status: 200
+            });
+        } catch (error) {
+            console.error("Error al obtener la cantidad total de usuarios:", error);
+            res.status(500).json({
+                error: 'Error interno del servidor al obtener la cantidad total de usuarios',
+                status: 500
+            });
+        }
+    }
+
 };
 
 module.exports = userController;

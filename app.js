@@ -11,9 +11,6 @@ const app = express();
 const port = process.env.PORT || 3002;
 app.set('port', port);
 
-
-
-
 // Importa los middlewares
 const errorLogger = require('./src/middlewares/errorLogger');
 const adminErrorHandler = require('./src/middlewares/adminErrorHandler');
@@ -28,6 +25,8 @@ const checkUserSession = require('./src/middlewares/checkUserSession');
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
+const apiUsersRouter = require('./src/routes/apiUsers');
+const apiProductRoutes = require('./src/routes/apiProducts');
 
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
 
@@ -74,15 +73,16 @@ app
     })
 
     // Rutas
+    .use('/api/users', apiUsersRouter)
+    .use('/api/products', apiProductRoutes) 
     .use('/', indexRouter)
     .use('/', usersRouter)
     .use('/products', productsRouter)
 
-    // Middlewares de manejo de errores 
+    // Middlewares de manejo de errores
     .use(errorLogger)
     .use(adminErrorHandler)
     .use(errorHandler)
     .use(notFoundHandler)
-
 
 module.exports = app;
