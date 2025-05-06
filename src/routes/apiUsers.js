@@ -5,7 +5,9 @@ const userController = require('../controllers/userController');
 
 
 router
-        .get('/users/', userController.getUsersAPI)
-        .get('/count', userController.getTotalUsers)
-        .get('/users/:id', userController.getUserDetailAPI); 
+        .get('/', userController.getUsersAPI)
+        .get('/count/', userController.getTotalUsers)
+        .get('/latest', userController.getLastUsersAPI)
+        .get('/:id', userController.getUserDetailAPI)
+        
 module.exports = router;

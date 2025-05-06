@@ -4,7 +4,11 @@ const productsController = require('../controllers/productsController');
 
 
 router
-        .get('/products/', productsController.getProductsAPI)
-        .get('/products/:id', productsController.getProductDetailAPI);
+        .get('/', productsController.getProductsAPI)
+        .get('/categories/countByCategories', productsController.getProductsCountByCategoriesAPI)
+        .get('/categories/count', productsController.getTotalCategoriesCountAPI)
+        .get('/:id', productsController.getProductDetailAPI);
+        
+
 
 module.exports = router;

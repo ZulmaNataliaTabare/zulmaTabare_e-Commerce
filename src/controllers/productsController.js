@@ -12,14 +12,14 @@ const productsController = {
         try {
             const [Category, Colors] = await Promise.all([
                 db.Category.findAll(),
-                db.Color.findAll(), // Asumo que tienes un modelo Color si vas a validar colores
+                db.Color.findAll(), 
             ]);
             res.render("products/productAdd", {
                 Categories: Category,
                 availableColors: Colors,
                 errors: {},
                 ...req.body,
-            }); // Mantén los datos del formulario en caso de error
+            }); 
         } catch (error) {
             console.error(
                 "Error al obtener categorías para el formulario de agregar producto:",
@@ -69,7 +69,7 @@ const productsController = {
                 }
                 return true;
             }),
-        // Opcional: Validación de colores (asumiendo que 'colors' es un array de IDs)
+        
         body("colors.*") // Valida cada elemento del array 'colors'
             .optional()
             .isInt()
@@ -109,7 +109,7 @@ const productsController = {
                     features: req.body.features,
                     colors: colorsArray ? colorsArray.join(",") : null, // Guarda los colores como string separado por comas
                     price: req.body.price,
-                    stock: req.body.stock, // Asegúrate de incluir el stock si lo tienes en el formulario
+                    stock: req.body.stock, 
                 });
                 res.redirect("/products");
             } catch (error) {
@@ -130,11 +130,11 @@ const productsController = {
     edit: async (req, res) => {
         try {
             const product = await db.Product.findByPk(req.params.id, {
-                include: [{ association: "category" }], // Incluye la categoría para acceder a category.category_id en la vista
+                include: [{ association: "category" }], 
             });
             const [Categories, Colors] = await Promise.all([
                 db.Category.findAll(),
-                db.Color.findAll(), // Asumo que tienes un modelo Color
+                db.Color.findAll(), 
             ]);
             if (product) {
                 res.render("products/productEdit", {
@@ -190,8 +190,8 @@ const productsController = {
                 }
                 return true;
             }),
-        // Opcional: Validación de colores (asumiendo que 'colors' es un array de IDs)
-        body("colors.*") // Valida cada elemento del array 'colors'
+        
+        body("colors.*") 
             .optional()
             .isInt()
             .withMessage("El color seleccionado no es válido.")
@@ -212,7 +212,7 @@ const productsController = {
             if (!errors.isEmpty()) {
                 return res.render("products/productEdit", {
                     errors: errors.mapped(),
-                    product: { ...product.get({ plain: true }), ...req.body }, // Combina datos del producto con los enviados
+                    product: { ...product.get({ plain: true }), ...req.body }, 
                     Categories: Categories,
                     availableColors: Colors,
                 });
@@ -235,7 +235,7 @@ const productsController = {
                         features: req.body.features,
                         colors: colorsArray ? colorsArray.join(",") : null,
                         price: req.body.price,
-                        stock: req.body.stock, // Asegúrate de incluir el stock si lo tienes en el formulario
+                        stock: req.body.stock, 
                     },
                     {
                         where: { product_id: req.params.id },
@@ -465,28 +465,14 @@ const productsController = {
     getProductsAPI: async (req, res) => {
         try {
             const page = parseInt(req.query.page) || 1;
-            const limit = parseInt(req.query.limit) || 10;
+            const limit = parseInt(req.query.limit) || 5000;
             const offset = (page - 1) * limit;
 
             const { count, rows: products } = await db.Product.findAndCountAll({
                 include: [
-                    {
-                        model: db.Category,
-                        as: 'category',
-                        attributes: ['category_id', 'category_name']
-                    },
-                    {
-                        model: db.Size,
-                        as: 'sizes',
-                        attributes: ['size_id', 'size_name'],
-                        through: { attributes: [] }
-                    },
-                    {
-                        model: db.Color,
-                        as: 'colors',
-                        attributes: ['color_id', 'color_name', 'color_code'],
-                        through: { attributes: [] }
-                    }
+                    { model: db.Category, as: 'category', attributes: ['category_id', 'category_name'] },
+                    { model: db.Size, as: 'sizes', attributes: ['size_id', 'size_name'], through: { attributes: [] } },
+                    { model: db.Color, as: 'colors', attributes: ['color_id', 'color_name', 'color_code'], through: { attributes: [] } }
                 ],
                 limit,
                 offset
@@ -495,7 +481,6 @@ const productsController = {
             const totalProducts = count;
             const totalPages = Math.ceil(totalProducts / limit);
 
-            // Obtener el conteo de productos por categoría (como antes)
             const countByCategoryResult = await db.Product.findAll({
                 attributes: ['category_id', [sequelize.fn('COUNT', sequelize.col('category_id')), 'count']],
                 group: ['category_id'],
@@ -507,22 +492,11 @@ const productsController = {
                 countByCategory[item.category_id] = parseInt(item.count);
             });
 
-            res.status(200).json({
-                count: products.length,
-                totalProducts,
-                totalPages,
-                currentPage: page,
-                products,
-                countByCategory,
-                status: 200
-            });
+            res.status(200).json({ count: products.length, totalProducts, totalPages, currentPage: page, products, countByCategory, status: 200 });
 
         } catch (error) {
             console.error("Error al obtener el listado de productos con paginación:", error);
-            res.status(500).json({
-                error: 'Error interno del servidor al obtener el listado de productos con paginación',
-                status: 500
-            });
+            res.status(500).json({ error: 'Error interno del servidor al obtener el listado de productos con paginación', status: 500 });
         }
     },
 
@@ -531,50 +505,91 @@ const productsController = {
             const productId = req.params.id;
             const product = await db.Product.findByPk(productId, {
                 include: [
-                    {
-                        model: db.Category,
-                        as: 'category',
-                        attributes: ['category_id', 'category_name']
-                    },
-                    {
-                        model: db.Size,
-                        as: 'sizes',
-                        attributes: ['size_id', 'size_name'],
-                        through: { 
-                            attributes: []
-                        }
-                    },
-                    {
-                        model: db.Color,
-                        as: 'colors',
-                        attributes: ['color_id', 'color_name', 'color_code'],
-                        through: { 
-                            attributes: []
-                        }
-                    }
+                    { model: db.Category, as: 'category', attributes: ['category_id', 'category_name'] },
+                    { model: db.Size, as: 'sizes', attributes: ['size_id', 'size_name'], through: { attributes: [] } },
+                    { model: db.Color, as: 'colors', attributes: ['color_id', 'color_name', 'color_code'], through: { attributes: [] } }
                 ]
             });
 
             if (product) {
-                res.status(200).json({
-                    data: product,
-                    status: 200
-                });
+                res.status(200).json({ data: product, status: 200 });
             } else {
-                res.status(404).json({
-                    error: 'Producto no encontrado',
-                    status: 404
-                });
+                res.status(404).json({ error: 'Producto no encontrado', status: 404 });
             }
         } catch (error) {
             console.error("Error al obtener el detalle del producto:", error);
-            res.status(500).json({
-                error: 'Error interno del servidor al obtener el detalle del producto',
-                status: 500
+            res.status(500).json({ error: 'Error interno del servidor al obtener el detalle del producto', status: 500 });
+        }
+    },
+
+    getTotalCategoriesCountAPI: async (req, res) => {
+        try {
+            const totalCategories = await db.Category.count();
+            res.status(200).json({ count: totalCategories, status: 200 });
+        } catch (error) {
+            console.error("Error al obtener el total de categorías:", error);
+            res.status(500).json({ error: 'Error interno del servidor al obtener el total de categorías', status: 500 });
+        }
+    },
+
+    getLastProductAPI: async (req, res) => {
+        try {
+            const latestProduct = await Product.findOne({
+                order: [['createdAt', 'DESC']],  
+                include: [{
+                    model: Category,
+                    as: 'category'
+                }, {
+                    model: Size,
+                    as: 'sizes'
+                }, {
+                    model: Color,
+                    as: 'colors'
+                }]
+            });
+    
+            if (!latestProduct) {
+                return res.status(404).json({ 
+                    error: 'No se encontraron productos' 
+                });
+            }
+    
+            res.json(latestProduct);
+        } catch (error) {
+            console.error('Error:', error);
+            res.status(500).json({ 
+                error: 'Error al obtener el producto más reciente' 
             });
         }
-    }
+    },
 
+    getProductsCountByCategoriesAPI: async (req, res) => {
+        try {
+            const categoriesWithCount = await db.Product.findAll({
+                attributes: ['category_id', [sequelize.fn('COUNT', sequelize.col('Product.category_id')), 'count']],
+                group: ['Product.category_id'],
+                include: [
+                    {
+                        model: db.Category,
+                        as: 'category',
+                        attributes: ['category_id', 'category_name']
+                    }],
+                });
+
+                const formattedResult = categoriesWithCount.map(item => ({
+                    category_id: item.category.category_id,
+                    category_name: item.category.category_name,
+                    count: parseInt(item.dataValues.count)
+                }));
+
+                return res.status(200).json({ data: formattedResult});
+            } catch (error) {
+                console.error("Error al obtener el conteo de productos por categoría:", error);
+                return res.status(500).json({ error: 'Error interno del servidor al obtener el conteo de productos por categoría' });
+            }
+    }
 };
 
+
 module.exports = productsController;
+

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const methodOverride = require('method-override');
 const fs = require('fs');
@@ -9,6 +10,9 @@ const logger = require('morgan');
 const app = express();
 
 const port = process.env.PORT || 3002;
+
+app.use(cors({ origin: 'http://localhost:5173' })); // Permitir solicitudes CORS desde el frontend
+
 app.set('port', port);
 
 // Importa los middlewares
@@ -84,5 +88,15 @@ app
     .use(adminErrorHandler)
     .use(errorHandler)
     .use(notFoundHandler)
+    .use((req, res, next) => {
+        console.log(`Ruta solicitada: ${req.path}`);
+        console.log(`Rutas disponibles:`);
+        app._router.stack.forEach(layer => {
+            if (layer.route) {
+                console.log(layer.route.path);
+            }
+        });
+        next();
+    });
 
 module.exports = app;

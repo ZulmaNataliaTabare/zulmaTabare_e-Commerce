@@ -411,8 +411,25 @@ const userController = {
                 status: 500
             });
         }
-    }
+    },
 
+    getLastUsersAPI: async (req, res) => {
+        try {
+            const latestUser = await db.User.findOne({
+                order: [['createdAt', 'DESC']]
+            });
+
+            if (latestUser) {
+                return res.status(200).json({ data: latestUser, status: 200 });
+            } else {
+                return res.status(404).json({ message: 'No users found.', status: 404 });
+            }
+        } catch (error) {
+            console.error("Error fetching latest user:", error);
+            return res.status(500).json({ error: 'Internal server error', status: 500 });
+        }
+    }
 };
+
 
 module.exports = userController;

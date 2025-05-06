@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const { admin, detail, add, create, edit, remove, update, category, getAllProducts, search } = require('../controllers/productsController');
