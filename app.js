@@ -31,6 +31,7 @@ const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
 const apiUsersRouter = require('./src/routes/apiUsers');
 const apiProductRoutes = require('./src/routes/apiProducts');
+const cartRouter = require('./src/routes/cart');
 
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
 
@@ -48,16 +49,16 @@ app
     .set('views', path.join(__dirname, 'src', 'views'))
     .set('view engine', 'ejs')
 
-.use(express.static(path.join(__dirname, 'public')))
-.use(express.json())
-.use(express.urlencoded({ extended: true }))
-.use(methodOverride('_method'))
-.use(cookieParser())
-.use(sessionMiddleware)
-.use(rememberMeMiddleware)
-.use(checkUserSession)
-.use(logger('dev'))
-.use(requestLogger)
+    .use(express.static(path.join(__dirname, 'public')))
+    .use(express.json())
+    .use(express.urlencoded({ extended: true }))
+    .use(methodOverride('_method'))
+    .use(cookieParser())
+    .use(sessionMiddleware)
+    .use(rememberMeMiddleware)
+    .use(checkUserSession)
+    .use(logger('dev'))
+    .use(requestLogger)
 
     // Middleware para productos destacados y carrusel
     .use((req, res, next) => {
@@ -74,21 +75,24 @@ app
 
         app.locals.carouselProducts = getCarouselProducts;
         next();
-    })
+    });
 
     // Rutas
-    .use('/api/users', apiUsersRouter)
-    .use('/api/products', apiProductRoutes) 
-    .use('/', indexRouter)
-    .use('/', usersRouter)
-    .use('/products', productsRouter)
+    app
+        .use('/api/users', apiUsersRouter)
+        .use('/api/products', apiProductRoutes)
+        .use('/', indexRouter)
+        .use('/', usersRouter)
+        .use('/products', productsRouter)
+        .use('/cart', cartRouter)
+
 
     // Middlewares de manejo de errores
-    .use(errorLogger)
-    .use(adminErrorHandler)
-    .use(errorHandler)
-    .use(notFoundHandler)
-    .use((req, res, next) => {
+        .use(errorLogger)
+        .use(adminErrorHandler)
+        .use(errorHandler)
+        .use(notFoundHandler)
+        .use((req, res, next) => {
         console.log(`Ruta solicitada: ${req.path}`);
         console.log(`Rutas disponibles:`);
         app._router.stack.forEach(layer => {
