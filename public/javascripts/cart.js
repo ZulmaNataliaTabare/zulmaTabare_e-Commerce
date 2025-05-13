@@ -110,6 +110,28 @@ const agregarItem = async (e,id) => {
     }
 }
 
+const agregarAlCarrito = async (elemento) => {
+    const productId = elemento.dataset.productId;
+    if (productId) {
+        try {
+            const response = await fetch(`/api/cart/item/${productId}`);
+            const result = await response.json();
+            if (result.ok) {
+                console.log('Producto agregado al carrito:', result.data);
+                // Aquí puedes actualizar la interfaz de usuario
+                const modalCarrito = new bootstrap.Modal(document.getElementById('mostrar-carrito'));
+                modalCarrito.show();
+            } else {
+                console.error('Error al agregar producto al carrito:', result.msg);
+            }
+        } catch (error) {
+            console.error('Error de red al agregar al carrito:', error);
+        }
+    } else {
+        console.error('No se encontró el ID del producto.');
+    }
+}
+
 const agregarItemDesdeEvento = async (event) => {
     const botonFav = event.currentTarget; 
     const productId = botonFav.dataset.productId;
