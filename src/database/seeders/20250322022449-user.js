@@ -21,6 +21,7 @@ module.exports = {
         security_answer: item.security_answer,
         rol_id: item.rol_id,
         created_at: new Date(),
+        updated_at: new Date(),
       }));
 
       await queryInterface.bulkInsert('Users', usersWithTimestamps, {});

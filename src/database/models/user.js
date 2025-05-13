@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'Users',
     timestamps: true,
-    underscored: false,
+    underscored: true,
     hooks: {
       beforeCreate: async (user) => {
         console.log('Contraseña antes del hash:', user.user_password);
