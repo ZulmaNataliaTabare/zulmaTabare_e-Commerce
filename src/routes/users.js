@@ -64,7 +64,7 @@ router
         ],
         registerUser
     )
-    .get('/users/cart', isLoggedIn, (req, res) => res.render('users/cart'))
+    
     .get('/users/login', redirectIfLoggedIn, (req, res) => res.render('users/login'))
     .post('/users/login',
         redirectIfLoggedIn,

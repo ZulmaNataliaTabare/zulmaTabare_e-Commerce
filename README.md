@@ -2,7 +2,7 @@
 
 ## Desafío Profesional Full Stack
 
-Nuestro e-commerce ofrece una amplia gama de productos relacionados con la salud, diseñados específicamente para satisfacer las necesidades del personal de salud. Entre nuestra oferta, encontrarás: equipos de bolsillo para médicos y enfermeros, accesorios, lapiceras, anotadores, etc. El sitio está dirigido a todo el personal de salud, incluyendo médicos, enfermeros y demás profesionales del ámbito sanitario, tanto hombres como mujeres.
+Mi e-commerce ofrece una amplia gama de productos relacionados con la salud, diseñados específicamente para satisfacer las necesidades del personal de salud. Entre nuestra oferta, encontrarás: equipos de bolsillo para médicos y enfermeros, accesorios, lapiceras, anotadores, etc. El sitio está dirigido a todo el personal de salud, incluyendo médicos, enfermeros y demás profesionales del ámbito sanitario, tanto hombres como mujeres.
 
 ## Tabla de Contenidos
 1. [Descripción del Proyecto]
@@ -16,7 +16,7 @@ Nuestro e-commerce ofrece una amplia gama de productos relacionados con la salud
 ## Descripción del Proyecto
 
 ### Funcionamiento
-Nuestro e-commerce ofrece productos esenciales para el personal de salud, proporcionando soluciones prácticas y útiles para su día a día.
+Mi e-commerce ofrece productos esenciales para el personal de salud, proporcionando soluciones prácticas y útiles para su día a día.
 
 ## Tecnologías Utilizadas
 - **Lenguajes de Programación**: HTML, CSS, JavaScript
@@ -100,4 +100,4 @@ Curaressalvar https://curaressalvar.es/
 
 
  Link al documento o plataforma que estoy utilizando para hacer el seguimiento de las tareas de mi proyecto:
-  https://sulmatabare.atlassian.net/jira/core/projects/C1/board
+  https://trello.com/b/b5B4slTw/sprint-8-api-y-dashboard

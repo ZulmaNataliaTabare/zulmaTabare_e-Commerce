@@ -1,16 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const indexController = require('../controllers/indexController');
+const indexController = require("../controllers/indexController");
+const cartRoutes = require("./apiCarts"); 
+router.get("/", indexController.home);
 
-router.get('/', indexController.home);
+router.get("/", (req, res) => {
+    const featuredProducts = req.app.locals.featuredProducts();
+    const carouselItems = req.app.locals.carouselProducts();
+    const randomProducts = getRandomProducts(req.app.locals.products, 3);
 
-router.get('/',  (req, res) => {
-    const featuredProducts = req.app.locals.featuredProducts(); 
-    const carouselItems = req.app.locals.carouselProducts(); 
-    const randomProducts = getRandomProducts(req.app.locals.products, 3); 
-
-    if (!req.app.locals.products || !carouselItems) { 
-        console.error("Error: products o carouselItems no están definidos. Revisa app.js");
+    if (!req.app.locals.products || !carouselItems) {
+        console.error(
+            "Error: products o carouselItems no están definidos. Revisa app.js"
+        );
         return res.status(500).send("Error interno del servidor");
     }
 
@@ -22,12 +24,13 @@ router.get('/',  (req, res) => {
         }
     }
 
-    res.render('index', {
-        title: 'Inicio',
+    res.render("index", {
+        title: "Inicio",
         products: uniqueRandomProducts,
-        carouselItems
+        carouselItems,
     });
 });
 
+router.use("/", cartRoutes); 
 
 module.exports = router;

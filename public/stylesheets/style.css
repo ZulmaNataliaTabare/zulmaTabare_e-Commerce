@@ -3,12 +3,11 @@
 @import "stylesProducts.css";
 @import "register.css";
 @import "login.css";
-@import "cart.css";
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @import "seccionPpalProductos.css";
 @import "seccionGralProductos.css";
 @import "registerLoginCart.css";
-@import "table.css";
+@import "tabla.css";
 @import "paginacion.css";
 
 :root {

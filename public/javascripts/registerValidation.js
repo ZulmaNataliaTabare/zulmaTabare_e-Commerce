@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Imagen
         if (!imageInput.files[0]) {
-            errors.push('La imagen es obligatoria.'); // Según tu formulario, es 'required'
+            errors.push('La imagen es obligatoria.'); 
         } else if (!isValidFileType(imageInput.files[0])) {
             errors.push('El archivo debe ser JPG, JPEG, PNG o GIF.');
         }

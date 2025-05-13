@@ -1,19 +1,28 @@
+<div class="bg-dark text-white text-center py-5">
+    
+    <a class="navbar-brand" href="/"><img src="/uploads/logo.png" alt="Logo" class="logo d-inline-block align-middle">
+    <p class="mb-0 fs-1">PARA LA SALUD E-COMMERCE</p>
+</div>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-cl-pr">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img src="/uploads/logo.png" alt="Logo" class="logo d-inline-block align-middle">
+            
                 <% if (locals.user) { %>
                     <span class="user-name text-primary fw-bold me-3">Hola, <%= user.user_name %></span>
                     <a href="/users/logout" class="me-3"><i class="fa-solid fa-right-from-bracket logout-icon"></i></a>
                 <% } else { %>
             </a>
             <div class="d-flex align-items-center">
-                    <a href="/users/login" class="me-3"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
-                    <a href="/users/register" class="me-3"><i class="fa-solid fa-user-plus register-icon"></i></a>
-                <% } %>
-                <a href="/users/cart"><i class="fa-solid fa-bag-shopping cart-icon"></i></a>
-            </div>
+                        <a href="/users/login" class="me-3"><i class="fa-solid fa-right-to-bracket login-icon"></i></a>
+                        <a href="/users/register" class="me-3"><i class="fa-solid fa-user-plus register-icon"></i></a>
+                    <% } %>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#mostrar-carrito" class="position-relative">
+                                <span>
+                                    <i class="fs-3 fa-solid fa-cart-shopping"></i>                                
+                                </span>
+                                <span class="badge rounded-pill bg-primary position-absolute top-0"></span>
+                            </a>
+                    </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,7 +30,7 @@
             <div class="collapse navbar-collapse fs-6" id="navbarNav">
                 <ul class="navbar-nav me-auto ">
                     <li class="nav-item">
-                        <a class="nav-link " href="/products/category?category_id=2">Ambos</a>
+                        <a class="nav-link" href="/products/category?category_id=2">Ambos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/products/category?category_id=6">Zuecos</a>

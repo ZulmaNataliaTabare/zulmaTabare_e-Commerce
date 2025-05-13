@@ -31,8 +31,6 @@ const usersRouter = require('./src/routes/users');
 const productsRouter = require('./src/routes/products');
 const apiUsersRouter = require('./src/routes/apiUsers');
 const apiProductRoutes = require('./src/routes/apiProducts');
-const cartRouter = require('./src/routes/cart');
-
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
 
 // Cargar productos
@@ -84,8 +82,6 @@ app
         .use('/', indexRouter)
         .use('/', usersRouter)
         .use('/products', productsRouter)
-        .use('/cart', cartRouter)
-
 
     // Middlewares de manejo de errores
         .use(errorLogger)
