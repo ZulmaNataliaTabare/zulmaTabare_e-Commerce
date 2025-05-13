@@ -22,7 +22,7 @@ const addItemToCart = async (req, res) => {
         console.log(req.params);
 
         let product = await db.Product.findByPk(req.params.id, {
-            include: ['category', 'images']
+            include: ['category']
         });
 
         if (!product) {
@@ -39,7 +39,7 @@ const addItemToCart = async (req, res) => {
         let item = {
             id: product.id,
             nombre: product.name,
-            image: product.images[0].url,
+            image: product.image,
             precio: product.price,
             categoria: product.category.name,
             cantidad: 1,
