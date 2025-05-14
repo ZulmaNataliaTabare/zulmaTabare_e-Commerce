@@ -416,7 +416,7 @@ const userController = {
     getLastUsersAPI: async (req, res) => {
         try {
             const latestUser = await db.User.findOne({
-                order: [['createdAt', 'DESC']]
+                order: [['user_id', 'DESC']], 
             });
 
             if (latestUser) {

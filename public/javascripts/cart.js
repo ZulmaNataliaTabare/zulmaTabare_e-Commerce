@@ -132,6 +132,10 @@ const agregarAlCarrito = async (elemento) => {
     }
 }
 
+
+
+
+
 const agregarItemDesdeEvento = async (event) => {
     const botonFav = event.currentTarget; 
     const productId = botonFav.dataset.productId;
