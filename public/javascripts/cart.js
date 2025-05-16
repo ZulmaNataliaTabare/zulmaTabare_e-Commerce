@@ -1,4 +1,5 @@
 console.log('Carrito online');
+
 let spanCantidad = document.querySelector('span.badge'); //cantidad de productos en el icono del carrito
 let changuito = document.querySelector('#lista-carrito tbody'); //caja donde se van agregar los productos del carrito
 let spanTotal = document.getElementById('total'); //h5 total de productos agregados al carrito
@@ -138,16 +139,24 @@ const agregarAlCarrito = async (elemento) => {
 }
 
 const vaciarCarrito = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-        let response = await fetch(urlBase + 'api/cart/empty')
-        let result = await response.json()
-        console.log('Carrito vacío:', result.data); 
+        let response = await fetch(urlBase + 'api/cart/empty');
+        let result = await response.json();
+        console.log('Respuesta de la API al vaciar el carrito:', result); 
+        console.log('Carrito vacío:', result.data);
         mostrarCantidad(result.data);
         cargarTabla(result.data);
     } catch (error) {
-        console.log(error)
+        console.log('Error al vaciar el carrito:', error);
     }
+}
+
+const btnVaciarCarrito = document.getElementById('btn-delete-cart');
+if (btnVaciarCarrito) {
+    btnVaciarCarrito.addEventListener('click', vaciarCarrito);
+} else {
+    console.error('No se encontró el botón para vaciar el carrito (btn-delete-cart)');
 }
 
 
