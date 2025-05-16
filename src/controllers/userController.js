@@ -416,7 +416,8 @@ const userController = {
     getLastUsersAPI: async (req, res) => {
         try {
             const latestUser = await db.User.findOne({
-                order: [['user_id', 'DESC']], 
+                order: [['user_id', 'DESC']],
+                attributes: Object.keys(User.rawAttributes).filter(attr => attr !== 'user_password'), 
             });
 
             if (latestUser) {

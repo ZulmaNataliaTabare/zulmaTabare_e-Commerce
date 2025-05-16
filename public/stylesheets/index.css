@@ -443,11 +443,13 @@ header .input-group-text i {
     font-size: 20px;
 }
 
-.destacados-container {
+
+/* Estilos para "Destacados" */
+/* .destacados-container {
     background-color: #e0b0ff; 
     padding: 10px 20px;
     margin: 20px auto;
-    width: 80%;
+    width: 100%;
     max-width: 1200px;
     text-align: center;
     overflow: hidden; 
@@ -464,7 +466,39 @@ header .input-group-text i {
 @keyframes moverTexto {
     0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
+} */
+
+.banner-deslizante-container {
+    width: 100%;
+    overflow: hidden; 
+    background-color: #f34343; 
+    color: white;
+    padding: 10px 0;
 }
+
+.banner-deslizante {
+    white-space: nowrap; 
+    animation: deslizarInfinito 20s linear infinite; 
+    position: relative;
+    left: 0;
+    width: auto;  
+}
+
+.banner-texto {
+    display: inline-block; 
+    padding: 0 20px;
+    font-size: 3.2em;
+}
+
+@keyframes deslizarInfinito {
+    0% {
+        transform: translateX(0%); 
+    }
+    100% {
+        transform: translateX(-100%); 
+    }
+}
+
 
   /* Estilos para "Ofertas" */
 .ofertas-titulo {

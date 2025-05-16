@@ -16,7 +16,7 @@ function App() { // Defino el componente principal App
             <TotalProductsPanel/>
             <TotalUsersPanel/>
             <TotalCategoriesPanel/>
-            <LastUserDetailPanel/>
+            {/* <LastUserDetailPanel/> */}
             <CategoriesProductCountPanel/>
             <ProductListPanel/>
         </div>

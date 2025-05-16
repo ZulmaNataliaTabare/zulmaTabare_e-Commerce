@@ -37,14 +37,13 @@ const addItemToCart = async (req, res) => {
         }
 
         let item = {
-            id: product.id,
-            nombre: product.name,
-            image: product.image,
+            id: product.product_id,
+            image:`/uploads/${product.image}`,
             precio: product.price,
-            categoria: product.category.name,
             cantidad: 1,
-            total: product.price,
-        };
+            total: parseFloat(product.price) * 1, 
+            product_name: product.product_name,
+};
 
         // Si el producto ya existe en el carrito, aumentar la cantidad
         let existing = req.session.cart.find(i => i.id === item.id);
@@ -83,22 +82,15 @@ const emptyCart = async (req,res) => {
     }
 }
 
-const removeItem = async (req,res) => {
+const removeItem = async (e,id) => {
     try {
-        let cart = req.session.cart
-        let item = cart.find(item => item.id == req.params.id)
-        if(item) {
-            cart.splice(cart.indexOf(item),1)
-        }
-        return res.status(200).json({
-            ok: true,
-            data : req.session.cart
-        })
+        let response = await fetch(urlBase + 'api/cart/item/remove/' + id); 
+        let result = await response.json();
+        console.log('Carrito actualizado (después de eliminar ítem):', result.data); 
+        mostrarCantidad(result.data);
+        cargarTabla(result.data);
     } catch (error) {
-        return res.status(500).json({
-            ok: false,
-            msg: error.message || 'Upss, hubo un error'
-        })
+        console.log(error)
     }
 }
 

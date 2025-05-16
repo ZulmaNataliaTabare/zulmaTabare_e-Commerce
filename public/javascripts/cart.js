@@ -9,7 +9,7 @@ let btnCartEmpty = document.getElementById('btn-delete-cart'); //boton para vaci
 let btnNextBuy = document.getElementById('btn-next-buy'); //boton para continuar con la compra
 const miModalCarrito = document.getElementById('mostrar-carrito'); // Obtener referencia al modal
 
-const urlBase = window.origin +'/'; //url base del sitio
+const urlBase = window.location.origin + '/'; 
 /**
  * Muestra la cantidad de productos agregados al carrito en el icono del carrito y en el men
  * @param {*} changuito Array de productos agregados al carrito
@@ -27,8 +27,8 @@ const mostrarCantidad = (changuito) => {
     }
     if(spanCantidad){
         spanCantidad.innerHTML = cantidad
-        spanTotal.innerHTML = `<span>$</span> <span class="float-end">${total}</span>`
-    }
+        spanTotal.innerHTML = `<span>$</span> <span class="float-end">${total}</span>`;
+}
 
     if(cantidad == 0){
         cartHead.style.display = 'none'
@@ -43,6 +43,7 @@ const mostrarCantidad = (changuito) => {
         btnCartEmpty.classList.remove('disabled');
         btnNextBuy.classList.remove('disabled');
     }
+    
 }
 
 /**
@@ -57,12 +58,12 @@ const cargarTabla = (carrito) => {
             <img class="w-100" src="${producto.image}" id="imgProduct">
             </td>
             <td class="text-center col-3 align-middle">
-            <a class="text-danger h5" onClick="removeItem(event,${producto.id})"><i class="fas fa-minus-square"></i></a>
+            <a class="text-danger h5" onClick="removeItem(event,${producto.product_id})"><i class="fas fa-minus-square"></i></a>
             <span class="h5">${producto.cantidad}<span>
-            <a class="text-success h5" onClick="addItem(event,${producto.id})"><i class="fas fa-plus-square"></i></a>
+            <a class="text-success h5" onClick="addItem(event,${producto.products_id})"><i class="fas fa-plus-square"></i></a>
             </td>
             <td class="align-middle">
-            ${producto.nombre}
+            ${producto.product_name}
             </td>
 
             <td class="align-middle">
@@ -85,11 +86,13 @@ const getCarrito = async () => {
     try {
         let response = await fetch(urlBase + 'api/cart')
         let result = await response.json()
-        if(result.data.length > 0) {
+        if(result.data && result.data.length > 0) {
+            console.log('Carrito inicial:', result.data); 
             cargarTabla(result.data)
             mostrarCantidad(result.data)
-        }else{
-            mostrarCantidad(result.data)
+        } else {
+            console.log('Carrito inicial vacío'); 
+            mostrarCantidad([])
         }
     } catch (error) {
         console.log(error)
@@ -102,6 +105,7 @@ const agregarItem = async (e,id) => {
     try {
         let response = await fetch(urlBase + 'api/cart/item/' + id)
         let result = await response.json()
+        console.log('Carrito actualizado (después de agregar cantidad):', result.data); 
         mostrarCantidad(result.data);
         cargarTabla(result.data);
 
@@ -117,8 +121,9 @@ const agregarAlCarrito = async (elemento) => {
             const response = await fetch(`/api/cart/item/${productId}`);
             const result = await response.json();
             if (result.ok) {
-                console.log('Producto agregado al carrito:', result.data);
-                // Aquí puedes actualizar la interfaz de usuario
+                console.log('Producto agregado al carrito (respuesta de la API):', result.data); 
+                cargarTabla(result.data);
+                mostrarCantidad(result.data);
                 const modalCarrito = new bootstrap.Modal(document.getElementById('mostrar-carrito'));
                 modalCarrito.show();
             } else {
@@ -132,39 +137,21 @@ const agregarAlCarrito = async (elemento) => {
     }
 }
 
-
-
-
-
-const agregarItemDesdeEvento = async (event) => {
-    const botonFav = event.currentTarget; 
-    const productId = botonFav.dataset.productId;
-    if (productId) {
-        console.log('¡CLICK EN AGREGAR AL CARRITO DESDE EVENTO PARA EL ID:', productId, '!');
-        try {
-            const response = await fetch(`/api/cart/item/${productId}`);
-            const result = await response.json();
-            if (result.ok) {
-                console.log('Producto agregado al carrito:', result.data);
-                mostrarCantidad(result.data);
-            } else {
-                console.error('Error al agregar producto al carrito:', result.msg);
-            }
-        } catch (error) {
-            console.error('Error de red al agregar al carrito:', error);
-        }
-    } else {
-        console.error('No se encontró el ID del producto en el dataset.');
+const vaciarCarrito = async (e) => {
+    e.preventDefault()
+    try {
+        let response = await fetch(urlBase + 'api/cart/empty')
+        let result = await response.json()
+        console.log('Carrito vacío:', result.data); 
+        mostrarCantidad(result.data);
+        cargarTabla(result.data);
+    } catch (error) {
+        console.log(error)
     }
-};
+}
 
-const botonesAgregarCarritoOffers = document.querySelectorAll('.offers .fav');
-botonesAgregarCarritoOffers.forEach(boton => {
-    boton.addEventListener('click', agregarItemDesdeEvento);
-});
 
-const botonesAgregarCarritoImages = document.querySelectorAll('.contenedor-img-ambos .fav');
-botonesAgregarCarritoImages.forEach(boton => {
-    boton.addEventListener('click', agregarItemDesdeEvento);
-});
+
+
+
 

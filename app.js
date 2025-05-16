@@ -32,6 +32,7 @@ const productsRouter = require('./src/routes/products');
 const apiUsersRouter = require('./src/routes/apiUsers');
 const apiProductRoutes = require('./src/routes/apiProducts');
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
+const apiCartsRouter = require('./src/routes/apiCarts');
 
 // Cargar productos
 const productsFilePath = path.join(__dirname, 'src', 'data', 'products.json');
@@ -82,6 +83,7 @@ app
         .use('/', indexRouter)
         .use('/', usersRouter)
         .use('/products', productsRouter)
+        .use('/api/cart', apiCartsRouter)
 
     // Middlewares de manejo de errores
         .use(errorLogger)
