@@ -3,7 +3,6 @@ import TotalProductsPanel from '../components/TotalProductsPanel.jsx'; // Import
 import './css/App.css'; // Importo el archivo CSS para estilos
 import TotalUsersPanel from '../components/TotalUsersPanel.jsx';
 import TotalCategoriesPanel from '../components/TotalCategoriesPanel.jsx';
-import LastUserDetailPanel from '../components/LastUserDetailPanel.jsx';
 import CategoriesProductCountPanel from '../components/CategoriesProductCountPanel.jsx';
 import ProductListPanel from '../components/ProductListPanel.jsx';
 
