@@ -23,6 +23,6 @@
 ],
 "env": {
     "DB_CONNECTION_STRING": "@db_connection_string", 
-    "REACT_APP_API_URL": "https://zulmatabare_E-commerce.vercel.app" 
+    "REACT_APP_API_URL": "" 
 }
 }
