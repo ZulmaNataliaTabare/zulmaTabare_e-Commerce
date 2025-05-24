@@ -2,25 +2,23 @@
 "version": 2,
 "builds": [
     {
-    "src": "backend/index.js", 
+    "src": "backend/index.js",
     "use": "@vercel/node"
-    },
-    {
-    "src": "frontend/package.json", 
-    "use": "@vercel/static-build",
-    "config": { "distDir": "build" } 
     }
 ],
 "routes": [
     {
-    "src": "/api/(.*)", 
-    "dest": "backend/index.js"
-    },
-    {
     "src": "/(.*)", 
-    "dest": "frontend/build/$1"
+    "dest": "backend/index.js"
     }
 ],
 "env": {
+    "DB_CONNECTION_STRING": "@db_connection_string", 
+    "DB_USERNAME": "root", 
+    "DB_PASSWORD": "qRPJcEAaQUDnpDChwsMjZLOiMnnQgKdkwx",
+    "DB_HOST": "ballast.proxy.rlwy.net",
+    "DB_PORT": "43380",
+    "DB_DATABASE": "railway"
+    
 }
 }
