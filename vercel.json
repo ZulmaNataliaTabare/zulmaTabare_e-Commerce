@@ -22,7 +22,5 @@
     }
 ],
 "env": {
-    "DB_CONNECTION_STRING": "@db_connection_string", 
-    "REACT_APP_API_URL": "" 
 }
 }
