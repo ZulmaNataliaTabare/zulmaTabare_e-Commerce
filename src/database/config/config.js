@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   development: {
@@ -15,7 +15,7 @@ module.exports = {
     migrationStoragePath: "../migrations",
   },
   test: {
-    username: "root",
+    username: "root", 
     password: "root",
     database: "database_test",
     host: "127.0.0.1",
@@ -23,12 +23,16 @@ module.exports = {
     seederStoragePath: "../seeders",
     migrationStoragePath: "../migrations",
   },
-  production: {
-    username: "root",
-    password: "root",
-    database: "database_production",
-    host: "127.0.0.1",
+  production: { 
+    username: process.env.DB_USERNAME, 
+    password: process.env.DB_PASSWORD, 
+    database: process.env.DB_DATABASE,
+    host: process.env.DB_HOST,         
+    port: process.env.DB_PORT,         
     dialect: "mysql",
+    dialectOptions: {
+      charset: "utf8mb4",
+    },
     seederStoragePath: "../seeders",
     migrationStoragePath: "../migrations",
   },
