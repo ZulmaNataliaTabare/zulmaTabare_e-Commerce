@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 
-const db = require('./src/models'); 
+const db = require(path.resolve(__dirname, 'src', 'database', 'models')); 
 
 const app = express();
 
