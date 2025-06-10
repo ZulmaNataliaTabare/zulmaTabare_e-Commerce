@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 'use strict';
 const {
   Model
@@ -11,15 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.belongsTo(models.Rol, {
+        foreignKey: 'rol_id',
+        as: 'rol'
+      });
+      User.hasMany(models.Cart, {
+        foreignKey: 'user_id',
+        as: 'carts'
+      });
     }
   }
   User.init({
     user_id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-    }, 
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     user_name: DataTypes.STRING,
@@ -29,35 +35,15 @@ module.exports = (sequelize, DataTypes) => {
     security_question: DataTypes.STRING,
     security_answer: DataTypes.STRING,
     rol_id: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users',
+    tableName: 'users', 
     timestamps: true,
-    underscored: true,
-    hooks: {
-      beforeCreate: async (user) => {
-        console.log('Contraseña antes del hash:', user.user_password);
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(user.user_password, saltRounds);
-        console.log('Contraseña hasheada:', hashedPassword);
-        user.user_password = hashedPassword;
-      },
-    },
+    underscored: true 
   });
-
-  User.associate = function(models) {
-    User.hasMany(models.Cart, { 
-      foreignKey: 'user_id',
-      as: 'cart'
-    });                
-    User.belongsTo(models.Rol, { 
-      foreignKey: 'rol_id', 
-      as: 'rol'
-    });
-  };
 
 // // ------------------- BLOQUE DE PRUEBA  -------------------
 //     const testGetLastUser = async () => {
