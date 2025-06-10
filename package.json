@@ -7,7 +7,7 @@
   "license": "ISC",
   "main": "app.js",
   "scripts": {
-    "start": "node --env-file=.env ./src/bin/www",
+    "start": "node ./src/bin/www",
     "kill-port": "npx kill-port 3002",
     "dev": "nodemon src/bin/www",
     "development": "npm run-script dev -- --watch",
