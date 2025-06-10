@@ -100,16 +100,4 @@ app
     .use(errorHandler)
     .use(notFoundHandler);
 
-
-(async () => {
-    try {
-        await db.sequelize.authenticate();
-        console.log('✅ Conexión a la base de datos establecida correctamente en Vercel.');
-
-
-    } catch (error) {
-        console.error('❌ ERROR CRÍTICO: No se pudo conectar a la base de datos en Vercel:', error);
-        
-    }
-})(); 
-module.exports = app;
+module.exports = { app, db};
