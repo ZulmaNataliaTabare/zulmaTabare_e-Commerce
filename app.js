@@ -1,4 +1,7 @@
-require('dotenv').config();
+'use strict';
+
+require('dotenv').config(); 
+
 const cors = require('cors');
 const express = require('express');
 const methodOverride = require('method-override');
@@ -7,13 +10,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+
+const db = require('./src/models'); 
+
 const app = express();
+
 
 const port = process.env.PORT || 3002;
 
-app.use(cors({ origin: 'http://localhost:5173' })); // Permitir solicitudes CORS desde el frontend
-
-app.set('port', port);
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // Importa los middlewares
 const errorLogger = require('./src/middlewares/errorLogger');
@@ -34,7 +39,7 @@ const apiProductRoutes = require('./src/routes/apiProducts');
 const { filterProducts: myFilterProducts } = require('./src/utils/utils.js');
 const apiCartsRouter = require('./src/routes/apiCarts');
 
-// Cargar productos
+// Cargar productos desde products.json
 const productsFilePath = path.join(__dirname, 'src', 'data', 'products.json');
 let products = [];
 try {
@@ -42,8 +47,10 @@ try {
     app.locals.products = products;
 } catch (err) {
     console.error('Error al cargar el archivo de productos:', err);
+    
 }
 
+// Configuración de vistas y assets estáticos
 app
     .set('views', path.join(__dirname, 'src', 'views'))
     .set('view engine', 'ejs')
@@ -56,49 +63,53 @@ app
     .use(sessionMiddleware)
     .use(rememberMeMiddleware)
     .use(checkUserSession)
-    .use(logger('dev'))
-    .use(requestLogger)
+    .use(logger('dev')) 
+    .use(requestLogger);
 
-    // Middleware para productos destacados y carrusel
-    .use((req, res, next) => {
-        function getFeaturedProducts() {
-            const featuredIds = [1, 7, 12, 10, 20];
-            return myFilterProducts(app.locals.products, featuredIds);
-        }
+// Middleware para productos destacados y carrusel
+app.use((req, res, next) => {
+    function getFeaturedProducts() {
+        const featuredIds = [1, 7, 12, 10, 20];
+        
+        return myFilterProducts(app.locals.products || [], featuredIds);
+    }
 
-        app.locals.featuredProducts = getFeaturedProducts;
+    app.locals.featuredProducts = getFeaturedProducts;
 
-        function getCarouselProducts() {
-            return myFilterProducts(app.locals.products, [1, 7, 12, 10, 20]);
-        }
+    function getCarouselProducts() {
+        return myFilterProducts(app.locals.products || [], [1, 7, 12, 10, 20]);
+    }
 
-        app.locals.carouselProducts = getCarouselProducts;
-        next();
-    });
+    app.locals.carouselProducts = getCarouselProducts;
+    next();
+});
 
-    // Rutas
-    app
-        .use('/api/users', apiUsersRouter)
-        .use('/api/products', apiProductRoutes)
-        .use('/', indexRouter)
-        .use('/', usersRouter)
-        .use('/products', productsRouter)
-        .use('/api/cart', apiCartsRouter)
+// Rutas
+app
+    .use('/api/users', apiUsersRouter)
+    .use('/api/products', apiProductRoutes)
+    .use('/', indexRouter)
+    .use('/', usersRouter)
+    .use('/products', productsRouter)
+    .use('/api/cart', apiCartsRouter);
 
-    // Middlewares de manejo de errores
-        .use(errorLogger)
-        .use(adminErrorHandler)
-        .use(errorHandler)
-        .use(notFoundHandler)
-        .use((req, res, next) => {
-        console.log(`Ruta solicitada: ${req.path}`);
-        console.log(`Rutas disponibles:`);
-        app._router.stack.forEach(layer => {
-            if (layer.route) {
-                console.log(layer.route.path);
-            }
-        });
-        next();
-    });
+// Middlewares de manejo de errores (siempre al final de las rutas)
+app
+    .use(errorLogger)
+    .use(adminErrorHandler)
+    .use(errorHandler)
+    .use(notFoundHandler);
 
+
+(async () => {
+    try {
+        await db.sequelize.authenticate();
+        console.log('✅ Conexión a la base de datos establecida correctamente en Vercel.');
+
+
+    } catch (error) {
+        console.error('❌ ERROR CRÍTICO: No se pudo conectar a la base de datos en Vercel:', error);
+        
+    }
+})(); 
 module.exports = app;
