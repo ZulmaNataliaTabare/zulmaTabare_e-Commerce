@@ -25,7 +25,7 @@ module.exports = {
         updated_at: new Date(),
       }));
 
-      await queryInterface.bulkInsert('Users', usersWithTimestamps, {});
+      await queryInterface.bulkInsert('users', usersWithTimestamps, {});
     } catch (error) {
       console.error('Error al leer o insertar datos desde JSON:', error);
       throw error;
