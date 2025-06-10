@@ -18,13 +18,5 @@
     "src": "/(.*)",
     "dest": "app.js"
     }
-],
-"env": {
-    "DB_USERNAME": "root", 
-    "DB_PASSWORD": "qRPJcEAaQUDnpDChwsMjZLOiMnnQgKdkwx",
-    "DB_HOST": "ballast.proxy.rlwy.net",
-    "DB_PORT": "43380",
-    "DB_DATABASE": "railway"
-    
-}
+    ]
 }
