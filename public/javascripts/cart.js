@@ -59,9 +59,10 @@ const cargarTabla = (carrito) => {
             <img class="w-100" src="${producto.image}" id="imgProduct">
             </td>
             <td class="text-center col-3 align-middle">
-            <a class="text-danger h5" onClick="removeItem(event,${producto.product_id})"><i class="fas fa-minus-square"></i></a>
+            <a class="text-danger h5" onClick="removeItem(event,${producto.products_id})"><i class="fas fa-minus-square"></i></a>
             <span class="h5">${producto.cantidad}<span>
-            <a class="text-success h5" onClick="agregarItem(event,${producto.product_id})"><i class="fas fa-plus-square"></i></a> </td>
+            <a class="text-success h5" onClick="addItem(event,${producto.products_id})"><i class="fas fa-plus-square"></i></a>
+            </td>
             <td class="align-middle">
             ${producto.product_name}
             </td>
