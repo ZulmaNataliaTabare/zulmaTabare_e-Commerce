@@ -2,10 +2,11 @@
 const fs = require('fs');
 const path = require('path');
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface) => {
     try {
+      await new Promise(resolve => setTimeout(resolve, 500));
+
       const rawData = fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'users.json'), 'utf8');
       const users = JSON.parse(rawData);
 
@@ -16,7 +17,7 @@ module.exports = {
         user_name: item.user_name,
         email: item.email,
         image: item.image,
-        user_password: item.user_password, // Usar el hash existente
+        user_password: item.user_password,
         security_question: item.security_question,
         security_answer: item.security_answer,
         rol_id: item.rol_id,
