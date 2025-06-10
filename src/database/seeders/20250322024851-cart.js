@@ -15,7 +15,7 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
           }));
-          await queryInterface.bulkInsert('Carts', cartsWithTimestamps, {});
+          await queryInterface.bulkInsert('carts', cartsWithTimestamps, {});
         } catch (error) {
           console.error('Error al leer o insertar datos desde JSON:', error);
           throw error;

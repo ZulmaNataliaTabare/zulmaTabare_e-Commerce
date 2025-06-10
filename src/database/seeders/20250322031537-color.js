@@ -16,7 +16,7 @@ module.exports = {
             createdAt: new Date(),
             updatedAt: new Date(),
           }));
-          await queryInterface.bulkInsert('Colors', colorsWithTimestamps, {});
+          await queryInterface.bulkInsert('colors', colorsWithTimestamps, {});
         } catch (error) {
           console.error('Error al leer o insertar datos desde JSON:', error);
           throw error;
