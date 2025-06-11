@@ -2,7 +2,7 @@ const db = require('../database/models');
 const path = require('path');
 const { User, Rol, Sequelize } = require('../database/models');
 const { Op } = Sequelize;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); 
 const { validationResult } = require('express-validator');
 
 const userController = {
@@ -11,18 +11,15 @@ const userController = {
         const errorrs = validationResult(req);
         if (!errorrs.isEmpty()) {
             return res.render('users/register', { errors: errorrs.array(), ...req.body });
-        }                      
-        console.log("req.body:", req.body);
+        }
         try {
-            console.log("req.file:", req.file);
-
             if (!req.file) {
                 return res.status(400).send("Debes seleccionar una imagen.");
             }
 
-            const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body; 
+            const { first_name, last_name, user_name, email, user_password, security_question, security_answer, rol_id = 2 } = req.body;
 
-            console.log("Contraseña recibida:", user_password);
+            const hashedPassword = await bcrypt.hash(user_password, 10);
 
             const newUser = await User.create({
                 first_name,
@@ -30,7 +27,7 @@ const userController = {
                 user_name,
                 email,
                 image: req.file.filename,
-                user_password: user_password,
+                user_password: hashedPassword,
                 security_question,
                 security_answer,
                 rol_id: parseInt(rol_id)
@@ -40,16 +37,13 @@ const userController = {
 
         } catch (error) {
             console.error("Error al registrar usuario:", error);
-            res.render('users/register', { error: "Error interno del servidor.", ...req.body });
+            res.render('users/register', { error: "Error interno del servidor al registrar usuario.", ...req.body });
         }
     },
 
     loginUser: async (req, res) => {
-    
         const { usuario, contrasena, remember } = req.body;
-        console.log('Contraseña ingresada al login:', contrasena);
 
-        
         try {
             const user = await User.findOne({
                 where: {
@@ -60,17 +54,17 @@ const userController = {
                 },
                 include: [{ model: Rol, as: 'rol' }]
             });
-    
+
             if (!user) {
-                return res.render('users/login', { error: "Usuario no encontrado." });
+                return res.render('users/login', { error: "Credenciales inválidas." });
             }
-    
-            console.log('Hash de la contraseña en la BD:', user.user_password);
-            const result = await bcrypt.compare(contrasena, user.user_password);
-            if (!result) {
-                return res.render('users/login', { error: "Contraseña incorrecta." });
+
+            const passwordMatch = await bcrypt.compare(contrasena, user.user_password);
+
+            if (!passwordMatch) {
+                return res.render('users/login', { error: "Credenciales inválidas." });
             }
-    
+
             if (user) {
                 req.session.user = {
                     user_id: user.user_id,
@@ -82,21 +76,20 @@ const userController = {
                     rol_id: user.rol_id,
                     rol_name: user.rol ? user.rol.rol_name : null
                 };
-                console.log('Usuario logueado - req.session.user:', req.session.user);
-    
+
                 if (remember) {
                     res.cookie('remember', usuario, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
                 } else {
                     res.clearCookie('remember');
                 }
-    
+
                 return res.redirect('/');
             } else {
                 return res.render('users/login', { error: "Usuario o contraseña incorrectos." });
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
-            res.render('users/login', { error: "Error interno del servidor.", ...req.body });
+            res.render('users/login', { error: "Error interno del servidor al iniciar sesión.", ...req.body });
         }
     },
 
@@ -115,7 +108,6 @@ const userController = {
         if (!req.session.user) {
             return res.redirect('/users/login');
         }
-
         const user = req.session.user;
         return res.render('users/profile', { user });
     },
@@ -123,9 +115,9 @@ const userController = {
     updateProfile: async (req, res) => {
         const errorrs = validationResult(req);
         if (!errorrs.isEmpty()) {
-            return res.render('users/profile', { errors: errorrs.array(), user: req.session.user });
+            return res.render('users/profile', { errors: errorrs.array(), user: req.session.user, oldData: req.body });
         }
-        const { id } = req.params;
+        const userIdToUpdate = parseInt(req.params.id) || req.session.user.user_id;
         const loggedInUser = req.session.user;
 
         try {
@@ -134,46 +126,61 @@ const userController = {
             }
 
             const { first_name, last_name, user_name, email, current_password, password: new_password, security_question, security_answer } = req.body;
-            const updatedUser = {
-                first_name: first_name || loggedInUser.first_name,
-                last_name: last_name || loggedInUser.last_name,
-                user_name: user_name || loggedInUser.user_name,
-                email: email || loggedInUser.email,
-                security_question: security_question || loggedInUser.security_question,
-                security_answer: security_answer || loggedInUser.security_answer
-            };
 
-            if (new_password) {
-                updatedUser.user_password = await bcrypt.hash(new_password, 10);
-            } else if (current_password) {
-                const isMatch = await bcrypt.compare(current_password, loggedInUser.user_password);
-                if (!isMatch) {
-                    return res.status(400).send("La contraseña actual es incorrecta.");
-                }
+            const userInDb = await User.findByPk(userIdToUpdate);
+            if (!userInDb) {
+                return res.status(404).send("Usuario no encontrado para actualizar.");
             }
+
+            const updatedUser = {
+                first_name: first_name,
+                last_name: last_name,
+                user_name: user_name,
+                email: email,
+                security_question: security_question,
+                security_answer: security_answer
+            };
 
             if (req.file) {
                 updatedUser.image = req.file.filename;
             }
 
-            const userIdToUpdate = parseInt(id);
+            if (new_password && new_password.trim() !== '') {
+                if (current_password) {
+                    const isCurrentPasswordCorrect = await bcrypt.compare(current_password, userInDb.user_password);
+                    if (!isCurrentPasswordCorrect) {
+                        return res.render('users/profile', { errors: [{ msg: "La contraseña actual es incorrecta." }], user: req.session.user, oldData: req.body });
+                    }
+                }
+                updatedUser.user_password = await bcrypt.hash(new_password, 10);
+            } else if (current_password && current_password.trim() !== '') {
+                const isCurrentPasswordCorrect = await bcrypt.compare(current_password, userInDb.user_password);
+                if (!isCurrentPasswordCorrect) {
+                    return res.render('users/profile', { errors: [{ msg: "La contraseña actual es incorrecta." }], user: req.session.user, oldData: req.body });
+                }
+            }
 
-            if (loggedInUser.user_id === userIdToUpdate) {
+
+            if (loggedInUser.user_id === userIdToUpdate || loggedInUser.rol_id === 1) {
                 await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
-                req.session.user = { ...loggedInUser, ...updatedUser };
-                res.redirect('/users/profile');
-            } else if (loggedInUser.rol_id === 1) {
-                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
-                res.redirect('/users/adminUsers');
+
+                if (loggedInUser.user_id === userIdToUpdate) {
+                    req.session.user = { ...req.session.user, ...updatedUser };
+                    if (updatedUser.user_password) {
+                        delete req.session.user.user_password;
+                    }
+                }
+                return res.redirect('/users/profile');
             } else {
-                return res.render('users/profile', { error: "No tienes permisos para realizar esta acción.", user: req.session.user });
+                return res.status(403).send("No tienes permisos para realizar esta acción.");
             }
 
         } catch (error) {
             console.error("Error al actualizar usuario:", error);
-            res.render('users/profile', { error: "Error interno del servidor.", user: req.session.user });
+            res.render('users/profile', { error: "Error interno del servidor al actualizar perfil.", user: req.session.user, oldData: req.body });
         }
     },
+
 
     getPreguntaSeguridad: async (req, res) => {
         const { usuario } = req.body;
@@ -257,7 +264,8 @@ const userController = {
     updateUser: async (req, res) => {
         const errorrs = validationResult(req);
         if (!errorrs.isEmpty()) {
-            return res.render('users/editUsers', { errors: errorrs.array(), userToEdit: req.body });
+            const userToEdit = await User.findByPk(req.params.id);
+            return res.render('users/editUsers', { errors: errorrs.array(), userToEdit: userToEdit, oldData: req.body });
         }
         const { id } = req.params;
         const loggedInUser = req.session.user;
@@ -267,48 +275,47 @@ const userController = {
                 return res.redirect('/users/login');
             }
 
-            const { first_name, last_name, user_name, email, current_password, password: new_password, security_question, security_answer, rol_id } = req.body;
-            const updatedUser = {
-                first_name: first_name || loggedInUser.first_name,
-                last_name: last_name || loggedInUser.last_name,
-                user_name: user_name || loggedInUser.user_name,
-                email: email || loggedInUser.email,
-                security_question: security_question || loggedInUser.security_question,
-                security_answer: security_answer || loggedInUser.security_answer,
-                rol_id: loggedInUser.rol_id === 1 && rol_id ? parseInt(rol_id) : loggedInUser.rol_id 
+            const { first_name, last_name, user_name, email, password: new_password, security_question, security_answer, rol_id } = req.body;
+
+            const userToUpdateInDb = await User.findByPk(parseInt(id));
+            if (!userToUpdateInDb) {
+                return res.render('users/editUsers', { error: "Usuario a editar no encontrado.", userToEdit: req.body });
+            }
+
+            const updatedUserData = {
+                first_name: first_name,
+                last_name: last_name,
+                user_name: user_name,
+                email: email,
+                security_question: security_question,
+                security_answer: security_answer
             };
 
-            if (new_password) {
-                updatedUser.user_password = await bcrypt.hash(new_password, 10);
-            } else if (current_password) {
-                const isMatch = await bcrypt.compare(current_password, loggedInUser.user_password);
-                if (!isMatch) {
-                    return res.status(400).send("La contraseña actual es incorrecta.");
-                }
+            if (loggedInUser.rol_id === 1 && rol_id) {
+                updatedUserData.rol_id = parseInt(rol_id);
+            }
+
+            if (new_password && new_password.trim() !== '') {
+                updatedUserData.user_password = await bcrypt.hash(new_password, 10);
             }
 
             if (req.file) {
-                updatedUser.image = req.file.filename;
+                updatedUserData.image = req.file.filename;
             }
 
-            const userIdToUpdate = parseInt(id);
-
-            if (loggedInUser.user_id === userIdToUpdate) {
-                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
-                req.session.user = { ...loggedInUser, ...updatedUser };
-                res.redirect('/users/profile');
-            } else if (loggedInUser.rol_id === 1) {
-                await User.update(updatedUser, { where: { user_id: userIdToUpdate } });
-                res.redirect('/users/adminUsers');
+            if (loggedInUser.rol_id === 1) {
+                await User.update(updatedUserData, { where: { user_id: parseInt(id) } });
+                return res.redirect('/users/adminUsers');
             } else {
-                res.status(403).send("No tienes permisos para realizar esta acción.");
+                return res.status(403).send("No tienes permisos de administrador para realizar esta acción.");
             }
 
         } catch (error) {
-            console.error("Error al actualizar usuario:", error);
-            res.status(500).send("Error interno del servidor");
+            console.error("Error al actualizar usuario (admin):", error);
+            res.render('users/editUsers', { error: "Error interno del servidor al actualizar usuario.", userToEdit: req.body });
         }
     },
+
 
     adminUsers: async (req, res) => {
         const page = req.query.page ? parseInt(req.query.page) : 1;
@@ -320,7 +327,7 @@ const userController = {
                 include: [{ model: Rol, as: 'rol' }],
                 limit: limit,
                 offset: offset,
-                order: [['user_id', 'ASC']] 
+                order: [['user_id', 'ASC']]
             });
 
             const totalPages = Math.ceil(count / limit);
@@ -352,7 +359,7 @@ const userController = {
                 id: user.user_id,
                 name: user.first_name,
                 email: user.email,
-                detail: `/api/users/${user.user_id}` 
+                detail: `/api/users/${user.user_id}`
             }));
 
             res.json({
@@ -375,16 +382,15 @@ const userController = {
         try {
             const user = await User.findByPk(userId, {
                 attributes: {
-                    exclude: ['user_password', 'rol_id'] // Excluimos campos sensibles
+                    exclude: ['user_password', 'rol_id']
                 }
             });
 
             if (user) {
-                // Construir la URL de la imagen de perfil
-                const imageUrl = `/uploads/${user.image}`; // Asumiendo que las imágenes están en la carpeta 'public/uploads'
+                const imageUrl = `/uploads/${user.image}`;
 
                 res.json({
-                    ...user.get({ plain: true }), // Convertir el objeto Sequelize a un objeto plano
+                    ...user.get({ plain: true }),
                     image_url: imageUrl
                 });
             } else {
@@ -397,7 +403,6 @@ const userController = {
     },
 
     getTotalUsers: async (req, res) => {
-        console.log('¡Se ha llamado a getTotalUsers!');
         try {
             const totalUsers = await db.User.count();
             res.status(200).json({
@@ -417,7 +422,7 @@ const userController = {
         try {
             const latestUser = await db.User.findOne({
                 order: [['user_id', 'DESC']],
-                attributes: Object.keys(User.rawAttributes).filter(attr => attr !== 'user_password'), 
+                attributes: Object.keys(User.rawAttributes).filter(attr => attr !== 'user_password'),
             });
 
             if (latestUser) {
@@ -431,6 +436,5 @@ const userController = {
         }
     }
 };
-
 
 module.exports = userController;
